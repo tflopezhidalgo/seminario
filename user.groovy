@@ -16,18 +16,22 @@ class User {
 	}
 
 	void setOcupation(String newOcupation) {
-		ocupation = newOcupation
+		this.ocupation = newOcupation
+		// actualizar tabla
 	}
 
 	void setLikedMusic(String newLikedMusic) {
-		likedMusic = newLikedMusic
+		// consultar tabla
+		this.likedMusic = newLikedMusic
 	}
 
 	String getLikedMusic() {
-		return likedMusic
+		// consultar tabla
+		return this.likedMusic
 	}
 
 	int getAge() {
+		// consultar tabla
 		return age
 	}
 }
