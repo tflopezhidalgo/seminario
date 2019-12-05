@@ -1,3 +1,0 @@
-class PrecioBebida extends Precio {         
-
-}
