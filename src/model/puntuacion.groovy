@@ -1,16 +1,20 @@
 
 class Puntuacion {
   int puntajePromedio
-  int cantidadDeCalificaciones
+  int cantidadDeEstrellas
 	
   Puntuacion() {	
-    this.cantidadDeCalificaciones = 0
+    this.cantidadDeEstrellas = 0
     this.puntajePromedio = 0
 	}
 
 	void actualizar(int puntos) {
-		this.cantidadDeCalificaciones += 1
+		this.cantidadDeEstrellas += 1
     this.puntaje += puntos
-    this.puntaje = this.puntaje / this.cantidadDeCalificaciones
+    this.puntaje = this.puntaje / this.cantidadDeEstrellas
 	}
+
+  int getPuntuacion() {
+    return this.puntajePromedio
+  }
 }

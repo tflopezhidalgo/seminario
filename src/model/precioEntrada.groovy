@@ -1,0 +1,3 @@
+class PrecioEntrada extends Precio {         
+
+}

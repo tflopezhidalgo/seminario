@@ -2,12 +2,12 @@ import java.text.SimpleDateFormat
 
 class Usuario {
 	String nombre
-    Zona nombre_zona
+  Zona nombre_zona
 	int edad
 	Presupuesto presupuesto
 	TipoDeMusica[] tipoDeMusica
-    Reputacion reputacion
-    Date creacion 
+  Reputacion reputacion
+  Date creacion 
 
 	Usuario(String nombre, int edad, String nombre_zona, String[] tiposMusica, int presupuesto) {
 		this.nombre = name

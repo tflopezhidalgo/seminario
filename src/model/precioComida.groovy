@@ -1,0 +1,3 @@
+class PrecioComida extends Precio {         
+
+}

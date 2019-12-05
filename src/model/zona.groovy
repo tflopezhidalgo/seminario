@@ -1,8 +1,8 @@
-
 class Zona {
   List zonasCercanas
 	
-  Zona() {	
+  Zona(List zonas) {
+		this.zonasCercanas = zonas	
 	}
 
 	int getZonaCercanas() {
