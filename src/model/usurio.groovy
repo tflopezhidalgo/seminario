@@ -1,37 +1,47 @@
+import java.text.SimpleDateFormat
 
+class Usuario {
+	String nombre
+    Zona nombre_zona
+	int edad
+	Presupuesto presupuesto
+	TipoDeMusica[] tipoDeMusica
+    Reputacion reputacion
+    Date creacion 
 
-class User {
-	String name
-	String direction
-	int age
-	String ocupation
-	String likedMusic
-
-	User(name, age, direction="", likedMusic="", ocupation="") {
-		this.name = name
+	Usuario(String nombre, int edad, String nombre_zona, String[] tiposMusica, int presupuesto) {
+		this.nombre = name
 		this.age = age
-		this.direction = direction 
-		this.likedMusic = likedMusic
+		this.zona = new Zona(nombre_zona)
+		this.tipoDeMusica = 
 		this.ocupation = ocupation
+        
+        def date = new Date()
+        sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss")
+        this.creacion = sdf.format(date)
+
 	}
 
-	void setOcupation(String newOcupation) {
-		this.ocupation = newOcupation
-		// actualizar tabla
+	void setMusicaQueEscucha(String musica_name) {
+		// creo un nuevo tipo de musica y lo agrego al array
+
 	}
 
-	void setLikedMusic(String newLikedMusic) {
+	void getMusicaQueEscucha(String musica_name) {
+        // obtengo de la tabla
+	}
+
+	int getEdad() {
 		// consultar tabla
-		this.likedMusic = newLikedMusic
+		return edad
 	}
 
-	String getLikedMusic() {
-		// consultar tabla
-		return this.likedMusic
-	}
+    int getPresupuesto() {
+        return presupuesto.getPresupuesto()
+    }
 
-	int getAge() {
-		// consultar tabla
-		return age
-	}
+    String getReputacion() {
+        // consultar en las tablas de 
+        return reputacion.getTipo()
+    }
 }
