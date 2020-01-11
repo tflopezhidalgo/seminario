@@ -559,7 +559,10 @@ h8 {
 }
 
 #content {
-    background: white
+    background: white;
+    width: 50%;
+    margin-left: 25%;
+
 }
 
 #content .row:before, #content .row:after {
