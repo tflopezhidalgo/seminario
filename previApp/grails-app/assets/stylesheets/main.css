@@ -160,14 +160,13 @@ img {
 }
 
 .nav a:active, .nav a:visited {
-    color: #666666;
+    color: #ffd35c;
 }
 
 .nav a:focus, .nav a:hover {
-    background-color: #999999;
+    background-color: #ffd35c;
     color: #ffffff;
     outline: none;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
 }
 
 .no-borderradius .nav a:focus, .no-borderradius .nav a:hover {
@@ -195,7 +194,7 @@ img {
 }
 
 .nav li.dropdown.show ul.dropdown-menu {
-    background-color: #424649;
+    background-color: #fff;
 }
 
 /* CREATE/EDIT FORMS AND SHOW PAGES */
@@ -582,7 +581,7 @@ a.skip {
 }
 
 .grails-logo-container {
-    background: #4287f5 no-repeat 50% 30%;
+    background: #55bfe6 no-repeat 50% 30%;
     margin-bottom: 20px;
     color: white;
     height:200px;

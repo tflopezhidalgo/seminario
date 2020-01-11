@@ -34,10 +34,12 @@
         </ul>
     </li>
     <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installed Plugins <span class="caret"></span></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Controllers <span class="caret"></span></a>
         <ul class="dropdown-menu">
-            <g:each var="plugin" in="${applicationContext.getBean('pluginManager').allPlugins}">
-                <li class="dropdown-item"><a href="#">${plugin.name} - ${plugin.version}</a></li>
+            <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
+                <li class="controller dropdown-item">
+                    <g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link>
+                </li>
             </g:each>
         </ul>
     </li>
@@ -49,19 +51,20 @@
 </div>
 
 <div id="content" role="main" >
-    <section class="row colset-2-its">
+    <section class="row colset-12-its">
         <h1>Welcome to PreviApp</h1>
-
-        <div id="controllers" role="navigation" >
-            <h2>Available Controllers:</h2>
-            <ul>
-                <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-                    <li class="controller">
-                        <g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link>
-                    </li>
-                </g:each>
-            </ul>
-        </div>
+        <g:each in="${[1,2,3,4,5]}">
+            <div class="card">
+                <div class="card-body">
+                    <asset:image src="place.png" alt="Previapp Logo" style="width: 200px;"/>
+                    <p><b>Lugar</b>: El mejor lugar para vos</p>
+                    <p><b>Zona</b>: Muy cerca tuyo</p>
+                    <p><b>Descripcion</b>: Birra gratis</p>
+                </div>
+            </div>
+        </g:each>
+        <input type="button" value="Actualizar" class="button"/> 
+        
     </section>
 </div>
 
