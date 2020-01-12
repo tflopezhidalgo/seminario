@@ -4,9 +4,10 @@ class Lugar {
 
 	String nombre
 	String direccion
-	Integer puntuacion
+	Reputacion reputacion
 	/* TODO: Agregar atributo de horario de atención */
 	Integer capacidad_maxima
+	Integer cantidad_de_visitas
 
     static constraints = {}
 
