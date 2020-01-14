@@ -1,14 +1,7 @@
 package previapp
 
-class Zona {
-
-	def zonas_cercanas
+class UsuarioRepository {
 
     static constraints = {
     }
-
-	Zona(){
-
-	}
-
 }

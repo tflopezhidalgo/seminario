@@ -1,14 +1,7 @@
 package previapp
 
-class Zona {
-
-	def zonas_cercanas
+class Comida {
 
     static constraints = {
     }
-
-	Zona(){
-
-	}
-
 }

@@ -1,10 +1,11 @@
-# seminario
+# previApp 
 
-# Problemas frecuentes:
+![Img previApp](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4NF8NkDocb198hl3fNS4wB6Srg5oTzLVmYHNBYPKuDTQGUP_neg&s)
 
-Al intentar correr ```grails``` sobre el directorio me sale el siguiente mensaje: _Gradle build daemon disappeared unexpectedly grails_
-- Se soluciona con ```rm -r ~/.gradle
-Este error se produce debido a la baja memoria que se le asigna por defecto a java, en particular al framework de gradle
+Informe: [Ver acá](https://docs.google.com/document/d/1HO976huka28Tqs-q4pQZHEhqln7hbCAe5fv_zaVhPxg/edit?usp=sharing)
+
+
+---
 
 # How to deploy
 
