@@ -3,20 +3,21 @@ package previapp
 class Bebida {
 	
 	/* TODO: Pasar a clase Currency/Money */
+	String nombre
 	Integer costo
 
-	static constraints = {
-	}
+	static constraints = {}
 
-	Bebida(Integer costo) {
+	Bebida(Integer costo, String nombre) {
 		this.costo = costo
+		this.nombre = nombre
 	}
 
-	def obtenerCosto() {
-		costo
+	Integer obtenerCosto() {
+		return this.costo
 	}
 
 	def setCosto(Integer nuevoCosto) {
-		costo = nuevoCosto
+		this.costo = nuevoCosto
 	}
 }

@@ -2,6 +2,14 @@ package previapp
 
 class Comida {
 
-    static constraints = {
-    }
+	String nombre
+	Integer costo
+
+    static constraints = {}
+
+	Comida(Integer costo, String nombre){
+		this.costo = costo
+		this.nombre = nombre
+	}
+
 }

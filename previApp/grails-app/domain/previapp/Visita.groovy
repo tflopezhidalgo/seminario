@@ -9,8 +9,11 @@ class Visita {
     static constraints = {
     }
 
-	Visita(){
+	static mapping = {
+		fecha_de_visita column: 'fecha'
+	}
 
+	Visita(){
 	}
 
 }
