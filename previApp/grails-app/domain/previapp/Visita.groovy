@@ -13,7 +13,10 @@ class Visita {
 		fecha_de_visita column: 'fecha'
 	}
 
-	Visita(){
+	Visita(Persona persona, Lugar lugar) {
+		this.persona_visitante = persona
+		this.lugar_visitado = lugar
+		this.fecha_de_visita = new Date()
 	}
 
 }

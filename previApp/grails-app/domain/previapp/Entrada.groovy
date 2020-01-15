@@ -2,12 +2,16 @@ package previapp
 
 class Entrada {
 
-	Persona persona
+	Usuario usuario	
 	Lugar lugar
 	Integer precio
 
     static constraints = {
     }
+
+	static mapping = {
+
+	}	
 
 	Entrada(Persona persona, Lugar lugar, Integer precio){
 		this.persona = persona

@@ -6,17 +6,25 @@ class Lugar {
 	String direccion
 	Reputacion reputacion
 	/* TODO: Agregar atributo de horario de atención */
-	def visitas
+	List visitas
 	Integer capacidad_maxima
 	Integer cantidad_de_visitas
 
     static constraints = {}
 
-	Lugar(String nombre, String direccion, Integer puntuacion = 0, Integer capacidad_maxima) {
-		
+	static mapping = {
+		table 'lugares'
+	}
+
+	static embedded = ['reputacion']
+
+	static hasMany = [visitas: Visita]
+
+	Lugar(String nombre, String direccion, Integer capacidad_maxima) {
+		this.reputacion = new Reputacion()
+		this.visitas = new ArrayList<Visita>()	
 		this.nombre = nombre
 		this.direccion = direccion
-		this.puntuacion = puntuacion
 		this.capacidad_maxima = capacidad_maxima
 	}
 
