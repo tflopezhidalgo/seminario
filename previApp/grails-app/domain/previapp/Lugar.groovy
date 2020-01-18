@@ -10,7 +10,11 @@ class Lugar {
 	Integer capacidad_maxima
 	Integer cantidad_de_visitas
 
-    static constraints = {}
+    static constraints = {
+        nombre nullable: false
+        direccion nullable:false
+        capacidad_maxima nullable: true
+    }
 
 	static mapping = {
 		table 'lugares'
