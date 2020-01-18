@@ -18,6 +18,10 @@ class Usuario {
 		table 'usuarios'
 	}
 
+    static constraints = {
+        persona nullable:false
+    }
+
 	static embedded = ['reputacion']
 
 	Usuario(Reputacion reputacion, Persona persona) {
