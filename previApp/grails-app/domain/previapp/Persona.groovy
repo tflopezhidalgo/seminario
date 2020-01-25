@@ -6,7 +6,7 @@ class Persona {
 	String apellido
 	Integer edad
 
-	static hasOne = [usuario: Usuario]
+	static belongTo = [usuario: Usuario]
 
     static constraints = {
     	nombre nullable: false

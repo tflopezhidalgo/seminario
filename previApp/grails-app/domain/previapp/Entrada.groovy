@@ -28,4 +28,8 @@ class Entrada {
 		//this.lugar = lugar
 		this.precio = precio
 	}
+
+	def obtenerPrecio() {
+		return this.precio
+	}
 }

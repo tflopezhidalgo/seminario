@@ -22,6 +22,7 @@ class Visita {
 	static belongTo = [	usuario_visitante: Usuario,
 						lugar_visitado: Lugar
 					]
+	
 	/*
 	Visita(Persona persona, Lugar lugar) {
 		this.persona_visitante = persona
