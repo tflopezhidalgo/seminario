@@ -10,12 +10,14 @@ class BootStrap {
         def lugar = new Lugar('Mi casa', 'Ortigoza 283', 20)
         lugar.save()
        
-        //def reputacion = new Reputacion().save()
+        def reputacion = new Reputacion()
+        reputacion.save()
+        
         def persona = new Persona('Tomas', 'Lopez', 23)
         persona.save()
 
         def usuario = new Usuario("Tomas")
-           // .addToPersona(persona)
+          // .addToPersona(nombre: "Tomas", apellido: "Lopez", edad: 23)
           //  .addToReputacion(reputacion)
         usuario.save()
 

@@ -11,10 +11,7 @@ class Reputacion {
 
     static constraints = {}
 	static mapping = {}
-
-	// reputacion solo pertenece a usuario
-	// relacion bilateral, no necesito mapear su usuario en la tabla
-	static hasOne = [usuario: Usuario]  
+	static belongTo = [usuario: Usuario]  
 	
 	Reputacion(){
 		this.nombre_reputacion = 'Bronce'
