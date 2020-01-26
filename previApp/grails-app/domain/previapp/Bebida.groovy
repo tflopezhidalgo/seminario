@@ -7,6 +7,9 @@ class Bebida {
 	Integer costo
 
 	static constraints = {}
+	static mapping = {}
+
+	//static belongTo = [lugar: Lugar]
 
 	Bebida(Integer costo, String nombre) {
 		this.costo = costo
