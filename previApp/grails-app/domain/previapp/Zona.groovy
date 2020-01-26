@@ -8,11 +8,12 @@ class Zona {
     static constraints = {
     }
 
-	Zona(ArrayList zonas) {
+	Zona(ArrayList zonas, String nombre) {
 		this.zonas_cercanas = new ArrayList<Zona>()
 		zonas.each { zona_aledaña ->
 			this.zonas_cercanas << zona_aledaña
 		}
+		this.nombre_zona = nombre
 	}
 
 	def agregarZona(Zona zona_aledaña) {
