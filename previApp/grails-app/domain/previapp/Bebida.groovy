@@ -2,7 +2,7 @@ package previapp
 
 class Bebida {
 	
-	/* TODO: Pasar a clase Currency/Money */
+	/* TODO: Pasar 'costo' a clase Currency/Money */
 	String nombre
 	Integer costo
 

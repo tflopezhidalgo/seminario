@@ -3,11 +3,9 @@ package previapp
 class Usuario {
 
 	String nombreUsuario
-	//Persona persona
 	Reputacion reputacion
 	Visita visitas
 	Persona persona
-	//Persona persona
 	//List visitas_realizadas // esto lo sacaria, la clase no tiene que conocer esto, se hace a travez de las tablas
 	//List entradas_adquiridas // esto lo sacaria, la clase no tiene que conocer esto, se hace a travez de las tablas y los belongTo
 

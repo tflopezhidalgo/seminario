@@ -4,20 +4,17 @@ class Lugar {
 
 	String nombre
 	String direccion
-	//Reputacion reputacion
 	/* TODO: Agregar atributo de horario de atención */
 	//List visitas
+	Puntuacion puntuacion
 	Visita visitas
-	//Usuario usuarios
 	Integer capacidad_maxima
-	Integer cantidad_de_visitas
 
     static constraints = {
         nombre nullable: false
         direccion nullable:false
         capacidad_maxima nullable: true
         visitas nullable: true
-        cantidad_de_visitas nullable: true
     }
 
 	static mapping = {
@@ -28,8 +25,8 @@ class Lugar {
 	static hasMany = [visitas: Visita] // despues usamos la tabla join visitas, la relacion es unilateral
 
 	Lugar(String nombre, String direccion, Integer capacidad_maxima=250) {
-		//this.reputacion = new Reputacion()
 		//this.visitas = new ArrayList<Visita>()	
+		this.puntuacion = new Puntuacion()
 		this.nombre = nombre
 		this.direccion = direccion
 		this.capacidad_maxima = capacidad_maxima
