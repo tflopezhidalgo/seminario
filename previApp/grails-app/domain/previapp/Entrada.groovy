@@ -2,8 +2,6 @@ package previapp
 
 class Entrada {
 
-	Usuario usuario	
-	Lugar lugar
 	Integer precio
 
     static constraints = {
@@ -19,17 +17,16 @@ class Entrada {
 		// precio column: "precio"
 	}	
 
-	/*static hasOne = [usuario: Usuario,
-					lugar: Lugar
-					]
-*/
+//	static hasOne = [usuario: Usuario, lugar: Lugar]
+
 	Entrada(Integer precio){
 		//this.persona = persona
 		//this.lugar = lugar
 		this.precio = precio
 	}
 
-	def obtenerPrecio() {
-		return this.precio
+	def fueAdquirida(){
+		// TODO: Devolver si existe un usuario asignado	
 	}
+
 }
