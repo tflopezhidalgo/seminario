@@ -5,7 +5,7 @@ class Entrada {
 	Integer precio
 
     static constraints = {
-    	usuario nullable: false
+		usuario nullable: true
     	lugar nullable: false
     	precio nullable: false
     }
@@ -17,15 +17,14 @@ class Entrada {
 		// precio column: "precio"
 	}	
 
-//	static hasOne = [usuario: Usuario, lugar: Lugar]
+	static belongsTo = [lugar: Lugar]
+	static hasOne = [usuario: Usuario]
 
-	Entrada(Integer precio){
-		//this.persona = persona
-		//this.lugar = lugar
+	Entrada(Integer precio) {
 		this.precio = precio
 	}
 
-	def fueAdquirida(){
+	boolean fueAdquirida() {
 		// TODO: Devolver si existe un usuario asignado	
 	}
 

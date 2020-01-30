@@ -6,14 +6,15 @@ class Lugar {
 	String direccion
 	/* TODO: Agregar atributo de horario de atención */
 	Puntuacion puntuacion
-	Integer capacidad_maxima
+	Integer capacidadMaxima
 
-	static hasMany = [visitas: Visita] 
+	static hasMany = [visitas: Visita, entradas: Entrada] 
+	static embedded = ['puntuacion']
 
     static constraints = {
         nombre nullable: false
         direccion nullable:false
-        capacidad_maxima nullable: true
+        capacidadMaxima nullable: true
     }
 
 	static mapping = {
@@ -21,11 +22,11 @@ class Lugar {
 		id name: 'nombre', type: 'string', generator: 'assigned'  // Declara la primary key de la tabla
 	}
 
-	Lugar(String nombre, String direccion, Integer capacidad_maxima=250) {
+	Lugar(String nombre, String direccion, Integer capacidadMaxima=250) {
 		this.puntuacion = new Puntuacion()
 		this.nombre = nombre
 		this.direccion = direccion
-		this.capacidad_maxima = capacidad_maxima
+		this.capacidadMaxima = capacidadMaxima
 	}
 
 

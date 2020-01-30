@@ -2,7 +2,7 @@ package previapp
 
 class Usuario {
 
-	String nombre_usuario
+	String nombre
 	Reputacion reputacion
 	Persona persona
 
@@ -12,27 +12,26 @@ class Usuario {
 
 	static mapping = {
 		table 'usuarios'
-		id name: 'nombre_usuario', generator: 'assigned', type: 'string'
+		id name: 'nombre', generator: 'assigned', type: 'string'
 		reputacion nullable: true
+		persona nullable: false
 	}
 
     static constraints = {
-    	nombre_usuario nullable: false
+    	nombre nullable: false
+		persona nullable: false
     }
 
-    static hasMany = [visitas: Visita]
+    static hasMany = [visitas: Visita, entradas: Entrada]
 	static embedded = ['reputacion', 'persona']
 
-	Usuario(String nombreUsuario) {
-		this.nombre_usuario = nombreUsuario
-		//this.persona = new Persona(nombre, apellido, edad)
-		//this.visitas_realizadas = new ArrayList<Visita>()
-		//this.entradas_adquiridas = new ArrayList<Entrada>()
+	Usuario(String nombre) {
+		this.nombre = nombre
 		this.reputacion = new Reputacion()
 	}
 
-	Usuario(String nombreUsuario, Persona persona){
-		this.nombre_usuario = nombreUsuario
+	Usuario(String nombre, Persona persona){
+		this.nombre = nombre
 		this.persona = persona
 		this.reputacion = new Reputacion()
 	}
