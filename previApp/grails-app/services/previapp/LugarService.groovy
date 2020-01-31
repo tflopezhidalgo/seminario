@@ -3,19 +3,21 @@ package previapp
 import grails.gorm.services.Service
 
 @Service(Lugar)
-interface LugarService {
+abstract class LugarService {
 
-    Lugar get(Serializable id)
+    abstract Lugar get(Serializable id)
 
-    List<Lugar> list(Map args)
+    abstract List<Lugar> list(Map args)
 
-    Long count()
+    abstract Long count()
 
-    void delete(Serializable id)
+    abstract void delete(Serializable id)
 
-    Lugar save(Lugar lugar)
+    abstract Lugar save(Lugar lugar)
 
-	List<Lugar> obtenerLugaresCompatibles(Usuario usuario) {}
+	List<Lugar> obtenerLugaresCompatibles(Usuario usuario) {
+		return []
+	}
 
 
 }

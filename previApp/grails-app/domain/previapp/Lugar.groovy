@@ -9,6 +9,7 @@ class Lugar {
 	Integer capacidadMaxima
 
 	static hasMany = [visitas: Visita] 
+	static hasOne = [zona: Zona]
 	static embedded = ['puntuacion']
 
     static constraints = {
