@@ -3,6 +3,8 @@ package previapp
 class Entrada {
 
 	Integer precio
+	Date fechaDeCompra
+	Date fechaDeEvento
 
     static constraints = {
 		usuario nullable: true
@@ -20,12 +22,18 @@ class Entrada {
 	static belongsTo = [lugar: Lugar]
 	static hasOne = [usuario: Usuario]
 
-	Entrada(Integer precio) {
+	Entrada(Integer precio, Date fechaDeEvento) {
+		this.fechaDeEvento = fechaDeEvento
 		this.precio = precio
 	}
 
 	boolean fueAdquirida() {
 		// TODO: Devolver si existe un usuario asignado	
+	}
+
+	void adquirir(Usuario usuario) {
+		this.fechaDeCompra = new Date()
+		this.usuario = usuario
 	}
 
 }

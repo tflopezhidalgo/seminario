@@ -15,4 +15,7 @@ interface LugarService {
 
     Lugar save(Lugar lugar)
 
+	List<Lugar> obtenerLugaresCompatibles(Usuario usuario) {}
+
+
 }
