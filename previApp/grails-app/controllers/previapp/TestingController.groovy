@@ -33,10 +33,7 @@ class TestingController {
 	}
 
 	def addOneEntry() {
-		Entrada entrada = new Entrada(30)
-		Lugar lugar = lugarService.get('Mi casita')
-		lugar.addToEntradas(entrada)
-		lugarService.save(lugar)
+
 	}
 
 	def sellOneEntry() {

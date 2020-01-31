@@ -8,7 +8,7 @@ class Lugar {
 	Puntuacion puntuacion
 	Integer capacidadMaxima
 
-	static hasMany = [visitas: Visita, entradas: Entrada] 
+	static hasMany = [visitas: Visita] 
 	static embedded = ['puntuacion']
 
     static constraints = {

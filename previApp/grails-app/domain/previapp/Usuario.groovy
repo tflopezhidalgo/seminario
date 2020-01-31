@@ -22,7 +22,7 @@ class Usuario {
 		persona nullable: false
     }
 
-    static hasMany = [visitas: Visita, entradas: Entrada]
+    static hasMany = [visitas: Visita]
 	static embedded = ['reputacion', 'persona']
 
 	Usuario(String nombre) {
