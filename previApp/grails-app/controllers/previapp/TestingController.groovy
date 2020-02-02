@@ -6,13 +6,19 @@ class TestingController {
 	UsuarioService usuarioService
 	PersonaService personaService
 	ZonaService zonaService
+	MusicaService musicaService
 
     def index() { 
-		
+
+		Musica musica = musicaService.get('Rock')		
 		Zona zona = new Zona('Avellaneda')
+
 		Lugar unLugar = new Lugar('Mi casita', 'Mariano Moreno 3939', 20)
 		unLugar.setZona(zona)
+		unLugar.addToMusica(musica)
+
 		zona.addToLugares(unLugar)
+
 		Persona persona = new Persona('Tomas', 'Lopez', 23)
 		Usuario usuario = new Usuario('tofelohi', persona)
 		
@@ -20,7 +26,7 @@ class TestingController {
 		lugarService.save(unLugar)
 		usuarioService.save(usuario)
 
-		render 'Se creo lugar $unLugar, $usuario, $persona'
+		render "Se creo lugar $unLugar, $usuario, $persona"
 	}
 
 	def addOneVisit() {

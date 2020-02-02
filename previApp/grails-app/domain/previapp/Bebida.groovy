@@ -6,21 +6,19 @@ class Bebida {
 	String nombre
 	Integer costo
 
-	static constraints = {}
-	static mapping = {}
+	static constraints = {
+		nombre nullable: false
+		costo nullable: false
+	}
 
-	//static belongTo = [lugar: Lugar]
+	static mapping = { 
+		table 'bebidas'
+		id name: 'nombre', generator: 'assigned', type: 'string'
+	}
 
-	Bebida(Integer costo, String nombre) {
+	Bebida(String nombre, Integer costo) {
 		this.costo = costo
 		this.nombre = nombre
 	}
 
-	Integer obtenerCosto() {
-		return this.costo
-	}
-
-	def setCosto(Integer nuevoCosto) {
-		this.costo = nuevoCosto
-	}
 }

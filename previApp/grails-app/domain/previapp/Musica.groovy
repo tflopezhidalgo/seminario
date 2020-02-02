@@ -2,8 +2,18 @@ package previapp
 
 class Musica {
 
-	String genero_musical
+	String generoMusical
 
     static constraints = {
+		generoMusical nullable: false
     }
+
+	static mapping = {
+		table 'musica'
+		id name: 'generoMusical', generator: 'assigned', type: 'string'
+	}
+
+	Musica(String generoMusical) {
+		this.generoMusical = generoMusical
+	}
 }

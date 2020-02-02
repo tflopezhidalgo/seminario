@@ -5,8 +5,7 @@ class Puntuacion {
 	Integer puntaje_promedio
 	Integer cantidad_estrellas  		
 
-    static constraints = {
-    }
+    static constraints = {}
 
 	Puntuacion() {
 		this.puntaje_promedio = 0
@@ -18,8 +17,4 @@ class Puntuacion {
 		this.puntaje += puntos
 		this.puntaje = this.puntaje / this.cantidad_estrellas
 	}  	*/
-
-	
-
-
 }

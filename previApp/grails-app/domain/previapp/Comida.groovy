@@ -10,7 +10,13 @@ class Comida {
     	costo nullable: false
     }
 
-	Comida(Integer costo, String nombre){
+	static mapping = { 
+		table 'comidas'
+		id name: 'nombre', generator: 'assigned', type: 'string'
+
+	}
+
+	Comida(String nombre, Integer precio){
 		this.costo = costo
 		this.nombre = nombre
 	}
