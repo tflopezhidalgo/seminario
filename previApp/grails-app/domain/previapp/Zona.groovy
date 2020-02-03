@@ -2,13 +2,23 @@ package previapp
 
 class Zona {
 
-	def zonas_cercanas
+	String nombre
+	static hasMany = [lugares: Lugar]
 
     static constraints = {
+		id name: 'nombre', generator: 'assigned', type: 'string'
     }
 
-	Zona(){
+	Zona(String nombre){
+		this.nombre = nombre
+	}
 
+	void agregarLugar(Lugar lugar) {	
+		lugares << lugar
+	}
+
+	Integer cantidadDeLugares() {
+		return lugares.size()
 	}
 
 }

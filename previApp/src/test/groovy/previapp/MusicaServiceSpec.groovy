@@ -1,9 +1,9 @@
 package previapp
 
-import grails.testing.gorm.DomainUnitTest
+import grails.testing.services.ServiceUnitTest
 import spock.lang.Specification
 
-class LugarRepositorySpec extends Specification implements DomainUnitTest<LugarRepository> {
+class MusicaServiceSpec extends Specification implements ServiceUnitTest<MusicaService>{
 
     def setup() {
     }

@@ -4,32 +4,45 @@ class Lugar {
 
 	String nombre
 	String direccion
+	String descripcion
 	/* TODO: Agregar atributo de horario de atención */
-	//List visitas
 	Puntuacion puntuacion
-	Visita visitas
-	Integer capacidad_maxima
+	Integer capacidadMaxima
+	Entrada entrada
+
+	static hasMany = [visitas: Visita, comidas: Comida, bebidas: Bebida, musica: Musica] 
+	static hasOne = [zona: Zona]
+	static embedded = ['puntuacion', 'entrada']
 
     static constraints = {
         nombre nullable: false
         direccion nullable:false
-        capacidad_maxima nullable: true
-        visitas nullable: true
+        capacidadMaxima nullable: true
+		entrada nullable: true
+		descripcion nullable: true
     }
 
 	static mapping = {
 		table 'lugares'
-		nombre unique: true
+		id name: 'nombre', type: 'string', generator: 'assigned'  // Declara la primary key de la tabla
 	}
 
-	static hasMany = [visitas: Visita] // despues usamos la tabla join visitas, la relacion es unilateral
-
-	Lugar(String nombre, String direccion, Integer capacidad_maxima=250) {
-		//this.visitas = new ArrayList<Visita>()	
+	Lugar(String nombre, String direccion, Integer capacidadMaxima) {
 		this.puntuacion = new Puntuacion()
 		this.nombre = nombre
 		this.direccion = direccion
-		this.capacidad_maxima = capacidad_maxima
+		this.descripcion = ''
+		this.capacidadMaxima = capacidadMaxima
+		this.entrada = new Entrada(2)
+	}
+
+	Lugar(String nombre, String direccion, Integer capacidadMaxima=250, Entrada entrada) {
+		this.puntuacion = new Puntuacion()
+		this.nombre = nombre
+		this.descripcion = ''
+		this.direccion = direccion
+		this.capacidadMaxima = capacidadMaxima
+		this.entrada = entrada
 	}
 
 
