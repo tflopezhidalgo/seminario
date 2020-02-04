@@ -1,25 +1,19 @@
 package previapp
 
 class Musica {
-	List subgeneros
-	String genero_musical
+
+	String generoMusical
 
     static constraints = {
+		generoMusical nullable: false
     }
 
-    Musica(ArrayList subgeneros_musicales, String nombre) {
-		this.subgeneros = new ArrayList<Zona>()
-		subgeneros_musicales.each { subgenero ->
-			this.subgeneros << subgenero
-		}
-		this.genero_musical = nombre
+	static mapping = {
+		table 'musica'
+		id name: 'generoMusical', generator: 'assigned', type: 'string'
 	}
 
-	def agregarSubgenero(Musica subgenero) {
-		this.subgeneros << subgenero
-	}
-
-	def getSubgeneros() {
-		return this.subgeneros
+	Musica(String generoMusical) {
+		this.generoMusical = generoMusical
 	}
 }

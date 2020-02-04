@@ -6,16 +6,12 @@ class Persona {
 	String apellido
 	Integer edad
 
-	static belongTo = [usuario: Usuario]
-
-	/*
-
     static constraints = {
     	nombre nullable: false
     	apellido nullable: false
     	edad nullable: false
     }
-*/
+
 	Persona(String nombre, String apellido, Integer edad){
 		this.nombre = nombre
 		this.apellido = apellido
