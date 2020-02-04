@@ -3,70 +3,70 @@ package previapp
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 
-class UsuarioController {
+class BebidaController {
 
-    UsuarioService usuarioService
+    BebidaService bebidaService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond usuarioService.list(params), model:[usuarioCount: usuarioService.count()]
+        respond bebidaService.list(params), model:[bebidaCount: bebidaService.count()]
     }
 
     def show(Long id) {
-        respond usuarioService.get(id)
+        respond bebidaService.get(id)
     }
 
     def create() {
-        respond new Usuario(params)
+        respond new Bebida(params)
     }
 
-    def save(Usuario usuario) {
-        if (usuario == null) {
+    def save(Bebida bebida) {
+        if (bebida == null) {
             notFound()
             return
         }
 
         try {
-            usuarioService.save(usuario)
+            bebidaService.save(bebida)
         } catch (ValidationException e) {
-            respond usuario.errors, view:'create'
+            respond bebida.errors, view:'create'
             return
         }
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuario.id])
+                flash.message = message(code: 'default.created.message', args: [message(code: 'bebida.label', default: 'Bebida'), bebida.id])
                 redirect(action: 'index')
             }
-            '*' { respond usuario, [status: CREATED] }
+            '*' { respond bebida, [status: CREATED] }
         }
     }
 
     def edit(Long id) {
-        respond usuarioService.get(id)
+        respond bebidaService.get(id)
     }
 
-    def update(Usuario usuario) {
-        if (usuario == null) {
+    def update(Bebida bebida) {
+        if (bebida == null) {
             notFound()
             return
         }
 
         try {
-            usuarioService.save(usuario)
+            bebidaService.save(bebida)
         } catch (ValidationException e) {
-            respond usuario.errors, view:'edit'
+            respond bebida.errors, view:'edit'
             return
         }
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuario.id])
-                redirect usuario
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'bebida.label', default: 'Bebida'), bebida.id])
+                redirect bebida
             }
-            '*'{ respond usuario, [status: OK] }
+            '*'{ respond bebida, [status: OK] }
         }
     }
 
@@ -76,11 +76,11 @@ class UsuarioController {
             return
         }
 
-        usuarioService.delete(id)
+        bebidaService.delete(id)
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'usuario.label', default: 'Usuario'), id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'bebida.label', default: 'Bebida'), id])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
@@ -90,7 +90,7 @@ class UsuarioController {
     protected void notFound() {
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'usuario.label', default: 'Usuario'), params.id])
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'bebida.label', default: 'Bebida'), params.id])
                 redirect action: "index", method: "GET"
             }
             '*'{ render status: NOT_FOUND }

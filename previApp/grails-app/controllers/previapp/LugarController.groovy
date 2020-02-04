@@ -6,6 +6,9 @@ import static org.springframework.http.HttpStatus.*
 class LugarController {
 
     LugarService lugarService
+    MusicaService musicaService
+    ComidaService comidaService
+    BebidaService bebidaService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -20,6 +23,14 @@ class LugarController {
 
     def create() {
         respond new Lugar(params)
+    }
+
+    def crearLugar(Lugar lugar, Musica musica, Comida comida, Bebida bebida) {
+        this.save(lugar)
+        musicaService.save(musica)
+        comidaService.save(comida)
+        bebidaService.save(comida)
+
     }
 
     def save(Lugar lugar) {
@@ -38,7 +49,7 @@ class LugarController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'lugar.label', default: 'Lugar'), lugar.id])
-                redirect lugar
+                redirect(action: 'index')
             }
             '*' { respond lugar, [status: CREATED] }
         }

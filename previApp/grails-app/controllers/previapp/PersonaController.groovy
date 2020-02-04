@@ -38,7 +38,7 @@ class PersonaController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'persona.label', default: 'Persona'), persona.id])
-                redirect persona
+                redirect(action: 'index')
             }
             '*' { respond persona, [status: CREATED] }
         }
