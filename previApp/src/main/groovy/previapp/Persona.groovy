@@ -1,4 +1,4 @@
-package previapp
+package previapp 
 
 class Persona {
 
@@ -11,6 +11,8 @@ class Persona {
     	apellido nullable: false
     	edad nullable: false
     }
+
+	Persona() {}
 
 	Persona(String nombre, String apellido, Integer edad){
 		this.nombre = nombre

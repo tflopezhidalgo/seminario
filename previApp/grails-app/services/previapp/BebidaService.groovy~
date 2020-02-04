@@ -1,0 +1,11 @@
+package previapp
+
+import grails.gorm.transactions.Transactional
+
+@Transactional
+class BebidaService {
+
+    def serviceMethod() {
+
+    }
+}

@@ -36,7 +36,7 @@ class Lugar {
 		this.entrada = new Entrada(2)
 	}
 
-	Lugar(String nombre, String direccion, Integer capacidadMaxima=250, Entrada entrada) {
+/*	Lugar(String nombre, String direccion, Integer capacidadMaxima=250, Entrada entrada) {
 		this.puntuacion = new Puntuacion()
 		this.nombre = nombre
 		this.descripcion = ''

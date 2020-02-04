@@ -10,9 +10,8 @@ class Reputacion {
 	Integer puntos
 
     static constraints = {}
-	static mapping = {}
 
-	Reputacion(){
+	Reputacion() {
 		this.nombreReputacion = 'Bronce'
 		this.puntos = 0
 	}

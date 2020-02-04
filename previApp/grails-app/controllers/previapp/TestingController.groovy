@@ -4,7 +4,6 @@ class TestingController {
 
 	LugarService lugarService
 	UsuarioService usuarioService
-	PersonaService personaService
 	ZonaService zonaService
 	MusicaService musicaService
 
@@ -12,8 +11,8 @@ class TestingController {
 
 		Musica musica = musicaService.get('Rock')		
 		Zona zona = new Zona('Avellaneda')
-
 		Lugar unLugar = new Lugar('Mi casita', 'Mariano Moreno 3939', 20)
+
 		unLugar.setZona(zona)
 		unLugar.addToMusica(musica)
 
@@ -22,7 +21,7 @@ class TestingController {
 		Persona persona = new Persona('Tomas', 'Lopez', 23)
 		Usuario usuario = new Usuario('tofelohi', persona)
 		
-		zona.save()
+		zonaService.save(zona)
 		lugarService.save(unLugar)
 		usuarioService.save(usuario)
 
@@ -47,8 +46,8 @@ class TestingController {
 
 	def addLugarToZona() {
 		Lugar lugar = new Lugar('La fiesta', 'JuanJose 123', 23)
-
 		Zona zona = zonaService.get('Avellaneda')
+
 		lugar.setZona(zona)
 		lugarService.save(lugar)
 		zona.agregarLugar(lugar)
