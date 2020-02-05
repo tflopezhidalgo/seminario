@@ -6,7 +6,7 @@ class Presupuesto {
     static constraints = {
     }
 
-	Usuario(int monto) {
+	Presupuesto(int monto) {
         this.monto_presupuesto = monto
     }
 
