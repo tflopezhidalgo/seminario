@@ -7,7 +7,6 @@ class Visita {
 	Lugar lugar_visitado
 	Date fecha_de_visita
 	Integer puntuacion
-	Date fecha_de_visita
 
     static constraints = {
     	fecha_de_visita nullable: false
