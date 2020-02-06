@@ -3,7 +3,7 @@ package previapp
 class Visita {
 
 	Date fecha_de_visita
-	String nombre_visita
+	String comentario
 
     static constraints = {
     	fecha_de_visita nullable: false
@@ -17,8 +17,8 @@ class Visita {
 	static belongsTo = [usuario: Usuario, lugar: Lugar]
 
 	Visita(String nombre) {
-		this.nombre_visita = nombre
 		this.fecha_de_visita = new Date()
+		this.comentario = ''
 	}
 
 }

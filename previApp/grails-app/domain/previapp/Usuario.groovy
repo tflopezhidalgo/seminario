@@ -5,10 +5,10 @@ class Usuario {
 	String nombre
 	Reputacion reputacion
 	Persona persona
-
-/*	TipoDeMusica[] tipoDeMusica
-	Zona nombre_zona
-	Date creacion 	*/
+	Zona zona
+	Musica musica_favorita
+	Date creacion
+	Presupuesto presupuesto
 
 	static mapping = {
 		table 'usuarios'
@@ -23,17 +23,21 @@ class Usuario {
     }
 
     static hasMany = [visitas: Visita]
-	static embedded = ['reputacion', 'persona']
+	static embedded = ['reputacion', 'persona', 'presupuesto']
 
 	Usuario(String nombre) {
 		this.nombre = nombre
 		this.reputacion = new Reputacion()
 	}
 
-	Usuario(String nombre, Persona persona){
+	Usuario(String nombre, Persona persona, Zona zona, Musica musica_favorita, Presupuesto presupuesto){
 		this.nombre = nombre
-		this.persona = persona
 		this.reputacion = new Reputacion()
+		this.persona = persona
+		this.zona = zona
+		this.musica_favorita = musica_favorita
+		this.creacion = new Date()
+		this.presupuesto = presupuesto
 	}
 
 
