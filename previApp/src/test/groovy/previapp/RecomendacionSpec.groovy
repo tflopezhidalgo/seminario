@@ -1,9 +1,9 @@
 package previapp
 
-import grails.testing.services.ServiceUnitTest
+import grails.testing.gorm.DomainUnitTest
 import spock.lang.Specification
 
-class OndaServiceSpec extends Specification implements ServiceUnitTest<OndaService>{
+class RecomendacionSpec extends Specification implements DomainUnitTest<Recomendacion> {
 
     def setup() {
     }

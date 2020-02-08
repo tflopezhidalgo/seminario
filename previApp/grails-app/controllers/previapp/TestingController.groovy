@@ -6,6 +6,7 @@ class TestingController {
 	UsuarioService usuarioService
 	ZonaService zonaService
 	MusicaService musicaService
+	RecomendacionService recomendacionService
 
     def index() { 
 

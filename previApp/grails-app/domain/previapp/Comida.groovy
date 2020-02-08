@@ -21,4 +21,9 @@ class Comida {
 		this.nombre = nombre
 	}
 
+	Integer calcularSimilitud(Comida comida) {
+
+		return 0
+	}
+
 }
