@@ -20,7 +20,4 @@ class Zona {
 		return lugares.size()
 	}
 
-	def getZonasCercanas() {
-		return this.zonas_cercanas
-	}
 }
