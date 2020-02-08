@@ -12,13 +12,17 @@ class Recomendacion {
     static constraints = {
     }
 
+	Recomendacion(){
+
+	}
+
 	Recomendacion(Lugar lugar, Usuario usuario) {
 		this.lugar = lugar
 		this.usuario = usuario
 		this.puntaje = -1
 	}
 
-	void calcularPuntaje(Lugar lugar, Usuario usuario) {
+	void calcularPuntaje() {
 		// TODO: Hacer algo mejor
 		/* TODO: Faltan los campos
 		 * - Puntaje del usuario
@@ -28,25 +32,25 @@ class Recomendacion {
 
 		Integer puntaje = 0
 
-		if (lugar.zona == usuario.zona) {
+		if (this.lugar.zona == this.usuario.zona) {
 			this.puntaje += 2
 		}
 
-		lugar.obtenerMusica().each { musica ->
-			if (musica == usuario.obtenerMusicaFavorita()) {
+		this.lugar.musica.each { musica ->
+			if (musica == usuario.musicaFavorita) {
 				this.puntaje += 1
 			}
 		}
 		
-		if (lugar.obtenerPrecio() <= usuario.obtenerPresupuest()){
-			this.puntaje += 3
-		}
+//		if (lugar.obtenerPrecio() <= usuario.obtenerPresupuest()){
+//			this.puntaje += 3
+//		}
 
-		if (lugar.obtenerEstrellas() > 3) {
-			this.puntaje += 1
-		} else {
-			this.puntaje -= 1
-		}
+//		if (lugar.obtenerEstrellas() > 3) {
+//			this.puntaje += 1
+//		} else {
+//			this.puntaje -= 1
+//		}
 
 
 	}

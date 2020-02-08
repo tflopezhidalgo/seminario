@@ -6,7 +6,7 @@ class Usuario {
 	Reputacion reputacion
 	Persona persona
 	Zona zona
-	Musica musica_favorita
+	Musica musicaFavorita
 	Date creacion
 	Presupuesto presupuesto
 
@@ -25,17 +25,12 @@ class Usuario {
     static hasMany = [visitas: Visita]
 	static embedded = ['reputacion', 'persona', 'presupuesto']
 
-	Usuario(String nombre) {
-		this.nombre = nombre
-		this.reputacion = new Reputacion()
-	}
-
-	Usuario(String nombre, Persona persona, Zona zona, Musica musica_favorita, Presupuesto presupuesto){
+	Usuario(String nombre, Persona persona, Zona zona, Musica musicaFavorita, Presupuesto presupuesto){
 		this.nombre = nombre
 		this.reputacion = new Reputacion()
 		this.persona = persona
 		this.zona = zona
-		this.musica_favorita = musica_favorita
+		this.musicaFavorita = musicaFavorita
 		this.creacion = new Date()
 		this.presupuesto = presupuesto
 	}

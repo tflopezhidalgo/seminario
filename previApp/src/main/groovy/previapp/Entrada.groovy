@@ -8,7 +8,7 @@ class Entrada {
         precio nullable: false
     }
 
-	Entrada() {}
+	Entrada(){}
 
     Entrada(Integer precio) {
         this.precio = precio

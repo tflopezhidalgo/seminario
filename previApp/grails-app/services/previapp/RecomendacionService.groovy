@@ -13,12 +13,12 @@ class RecomendacionService {
 		List<Lugar> lugares = zonaService.obtenerLugaresEnZona(usuario.zona)
 		List<Recomendacion> recomendaciones = []
 		lugares.each { lugar ->
-			recomendacion = new Recomendacion(lugar, usuario)
+			Recomendacion recomendacion = new Recomendacion(lugar, usuario)
 			recomendacion.calcularPuntaje()
-			recomendaciones.append(recomendacion)
+			recomendaciones << recomendacion
 		}
 
-		return recomendaciones
+		return recomendaciones.sort()
 	}
 
 }

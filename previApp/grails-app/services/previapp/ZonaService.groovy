@@ -6,6 +6,8 @@ import grails.gorm.services.Service
 @Service(Zona)
 abstract class ZonaService {
 
+	LugarService lugarService
+
     abstract Zona get(Serializable id) 
 	
 	abstract List<Zona> list(Map args)
@@ -18,7 +20,7 @@ abstract class ZonaService {
 
 	List<Lugar> obtenerLugaresEnZona(Zona zona){
 	
-		[]
+		[lugarService.get('Mi casa')]
 	}
 
 

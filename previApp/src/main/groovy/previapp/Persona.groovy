@@ -12,7 +12,8 @@ class Persona {
     	edad nullable: false
     }
 
-	Persona() {}
+	Persona(){
+	}
 
 	Persona(String nombre, String apellido, Integer edad){
 		this.nombre = nombre

@@ -11,8 +11,11 @@ class PersonaSpec extends Specification implements DomainUnitTest<Persona> {
     def cleanup() {
     }
 
-    void "test something"() {
-        expect:"fix me"
-            true == false
+    void "Se crea una Persona con nombre y apellido"() {
+		when: "Se crea presona con nombre: Tomas"
+			Persona persona = new Persona('Tomas', 'Testing', 23)
+	
+        then:"Nombre de la persona sea Tomas"
+            persona.nombre == 'Tomas'
     }
 }
