@@ -5,14 +5,16 @@ import spock.lang.Specification
 
 class MusicaSpec extends Specification implements DomainUnitTest<Musica> {
 
-    def setup() {
+    def cleanup() {}
+
+    void "se crea una clase de musica de un genero"() {
+        when "se crea una clase de musica de genero Jazz"
+            Musica musica = new Musica('Jazz')
+
+        then "chequeo el genero de musica"
+            musica.generoMusical == "Jazz"
     }
 
-    def cleanup() {
-    }
+    //def setup() {}
 
-    void "test something"() {
-        expect:"fix me"
-            true == false
-    }
 }
