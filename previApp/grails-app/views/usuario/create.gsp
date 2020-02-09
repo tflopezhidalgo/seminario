@@ -26,9 +26,12 @@
             </ul>
             </g:hasErrors>
             <g:form resource="${this.usuario}" method="POST">
-                <fieldset class="form">
-                    <f:all bean="usuario"/>
-                </fieldset>
+                <f:field bean="usuario" property="nombre" name="nombre"/>
+                <f:field bean="usuario" property="reputacion" name="reputacion"/>
+                <f:field bean="usuario" property="persona" name="persona"/>
+                <f:field bean="usuario" property="zona" name="zona" min="0"/>
+                <f:field bean="usuario" property="musicaFavorita" name="musicaFavorita"/>
+                <f:field bean="usuario" property="presupuesto" name="presupuesto"/>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
                 </fieldset>
