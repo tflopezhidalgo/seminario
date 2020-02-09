@@ -17,7 +17,7 @@ class Comida {
 	}
 
 	Comida(String nombre, Integer precio){
-		this.costo = costo
+		this.costo = precio
 		this.nombre = nombre
 	}
 
