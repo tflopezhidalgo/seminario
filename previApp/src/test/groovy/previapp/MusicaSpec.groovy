@@ -11,7 +11,7 @@ class MusicaSpec extends Specification implements DomainUnitTest<Musica> {
     def cleanup() {
     }
 
-    void "Esto es un test de test"() {
+    void "Test de constructor de musica"() {
 		when:"Creo un genero musical"
 		Musica musica = new Musica('Rock')
 
