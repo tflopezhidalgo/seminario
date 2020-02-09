@@ -35,4 +35,14 @@ class LugarSpec extends Specification implements DomainUnitTest<Lugar> {
         then: "chequeo la capacidad"
         lugar.capacidadMaxima == 125
     }
+
+    void "se crea un lugar con entrada"() {
+        when: "se crea un lugar"
+        Entrada entradita = new Entrada(20)
+        Lugar lugar = new Lugar('Palermo', 'nvm', 125, entradita)
+
+        then: "chequeo la entrada"
+        lugar.entrada == entradita
+    }
+
 }
