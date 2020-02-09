@@ -25,18 +25,11 @@ class Visita {
 	}
 
 	def setComentario(String comentario) {
-		this.comentario = comentario
+		this.comentario_visita = comentario
 	}
 
-	def getComentario() {
-		return this.comentario
-	}
 
 	def setPuntuacion(Integer puntuacion) {
 		this.puntuacion = puntuacion
-	}
-
-	def getPuntuacion() {
-		return this.puntuacion
 	}
 }
