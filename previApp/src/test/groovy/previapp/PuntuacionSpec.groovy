@@ -11,8 +11,11 @@ class PuntuacionSpec extends Specification implements DomainUnitTest<Puntuacion>
     def cleanup() {
     }
 
-    void "test something"() {
-        expect:"fix me"
-            true == false
+    void "se crea una Puntuacion"() {
+        when: "creo una Puntuacion"
+        Puntuacion puntuacion = new Puntuacion(2)
+
+        then: "chequeo la cantidad de estrellas"
+        puntuacion.puntaje_del_usuario == 2
     }
 }
