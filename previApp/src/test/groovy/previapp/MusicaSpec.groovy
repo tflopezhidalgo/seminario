@@ -15,7 +15,7 @@ class MusicaSpec extends Specification implements DomainUnitTest<Musica> {
 		when:"Creo un genero musical"
 		Musica musica = new Musica('Rock')
 
-        then:"fix me"
+        then:"veo que se creo bien"
         musica.generoMusical == 'Rock'
     }
 }
