@@ -6,24 +6,28 @@ class Reputacion {
 	//	y un "rango" -ORO, PLATA, BRONCE- )
 
 	/* TODO: Pasar a tipo enumerativo */
-	String nombreReputacion
+	String  nombre
 	Integer puntos
+
+	enum Nivel {
+		BRONCE, PLATA, ORO
+	}
 
     static constraints = {}
 	static mapping = {}
 
 	Reputacion(){
-		this.nombreReputacion = 'Bronce'
+		this.nombre = "${Nivel.MIN_VALUE}"
 		this.puntos = 0
 	}
 
 	// a medida que el usuario o lugar gana valor, se actualiza su reputacion
 	void actualizarReputacion() {
 		if (this.puntos >= 50 && this.puntos < 150) {
-			nombreReputacion = 'Plata'
+			this.nombre = "${Nivel.MIN_VALUE.next()}"
 		}
 		if (this.puntos >= 150) {
-			nombreReputacion = 'Oro'
+			this.nombre = "${Nivel.MAX_VALUE}"
 		}
 	}
 

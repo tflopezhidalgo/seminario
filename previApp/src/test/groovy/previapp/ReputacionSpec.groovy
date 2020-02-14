@@ -16,7 +16,7 @@ class ReputacionSpec extends Specification implements DomainUnitTest<Reputacion>
         Reputacion reputacion = new Reputacion()
 
         then: "chequeo que inicialize bien"
-        reputacion.puntos == 0 && reputacion.nombreReputacion == 'Bronce'
+        reputacion.puntos == 0 && reputacion.nombre == 'BRONCE'
     }
 
     void "se cargan puntos a una Reputacion"() {
@@ -34,7 +34,7 @@ class ReputacionSpec extends Specification implements DomainUnitTest<Reputacion>
         reputacion.sumarPuntos(60)
 
         then: "chequeo que sea de plata"
-        reputacion.nombreReputacion == 'Plata'
+        reputacion.nombre == 'PLATA'
     }
 
     void "convierto una Reputacion a Oro"() {
@@ -43,6 +43,6 @@ class ReputacionSpec extends Specification implements DomainUnitTest<Reputacion>
         reputacion.sumarPuntos(160)
 
         then: "chequeo que sea de oro"
-        reputacion.nombreReputacion == 'Oro'
+        reputacion.nombre == 'ORO'
     }
 }
