@@ -2,37 +2,41 @@ package previapp
 
 class BootStrap {
 
-    UsuarioService usuarioService
-    LugarService lugarService
-    PersonaService personaService
+	MusicaService musicaService
+	ComidaService comidaService
+	BebidaService bebidaService
+	ZonaService zonaService
+	UsuarioService usuarioService
+	LugarService lugarService
 
     def init = { servletContext ->
 
 		Musica musica = new Musica('Rock')
-		musica.save()
+		musicaService.save(musica)
 
 		Comida comida = new Comida('Sushi', 25)
-		comida.save()
+		comidaService.save(comida)
 
 		Bebida bebida = new Bebida('Coca-cola', 250)
-		bebida.save()
+		bebidaService.save(bebida)
 
-        def lugar = new Lugar('Mi casa', 'Ortigoza 283', 20)
-        lugar.save()
-       
-        def persona = new Persona('Tomas', 'Lopez', 23)
-        persona.save()
+		Zona zona = new Zona('Avellaneda')
+		zonaService.save(zona)
 
-        def usuario = new Usuario("Tomas", persona)
-          // .addToPersona(nombre: "Tomas", apellido: "Lopez", edad: 23)
-          //  .addToReputacion(reputacion)
-        usuario.save()
+		Persona persona = new Persona('Tomas', 'Lopez', 23)
+		
+		Presupuesto pr = new Presupuesto(100)
+		Usuario usuario = new Usuario('tomas131', persona, zona, musica, pr)
+		usuarioService.save(usuario)
 
-        //def visita = new Visita(persona, lugar)
-        //usuario.agregarVisita(visita)
+		Lugar lugar = new Lugar('Mi casa', 'QueTeImporta 123', 300)
+		lugar.addToComidas(comida)
+		lugar.addToBebidas(bebida)
+		lugar.addToMusica(musica)
+		lugar.setZona(zona)
 
-        //visita.save()
+		lugarService.save(lugar)
     }
-    def destroy = {
-    }
+    
+	def destroy = {}
 }

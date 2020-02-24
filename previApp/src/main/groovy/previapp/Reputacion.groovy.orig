@@ -8,6 +8,7 @@ class Reputacion {
 	String  nombre
 	Integer puntos
 
+<<<<<<< HEAD:previApp/grails-app/domain/previapp/Reputacion.groovy
 	enum Nivel {
 		BRONCE, PLATA, ORO
 	}
@@ -17,6 +18,12 @@ class Reputacion {
 
 	Reputacion(){
 		this.nombre = "${Nivel.MIN_VALUE}"
+=======
+    static constraints = {}
+
+	Reputacion() {
+		this.nombreReputacion = 'Bronce'
+>>>>>>> dev-tomas:previApp/src/main/groovy/previapp/Reputacion.groovy
 		this.puntos = 0
 	}
 

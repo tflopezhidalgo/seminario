@@ -21,4 +21,9 @@ class Bebida {
 		this.nombre = nombre
 	}
 
+	Integer calcularSimilitud(Bebida bebida) {
+
+		return 0
+	}
+
 }

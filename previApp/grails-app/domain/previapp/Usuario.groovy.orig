@@ -21,6 +21,15 @@ class Usuario {
 		presupuesto nullable: false
 	}
 
+<<<<<<< HEAD
+	static constraints = {
+		nombre nullable: false
+		persona nullable: false
+	}
+
+	static hasMany = [visitas: Visita]
+	static embedded = ['reputacion', 'persona']
+=======
     static constraints = {
     	nombre nullable: false
 		reputacion nullable: false
@@ -33,14 +42,11 @@ class Usuario {
 
     static hasMany = [visitas: Visita]
 	static embedded = ['reputacion', 'persona', 'presupuesto']
+>>>>>>> dev-tomas
 
 	Usuario(String nombre, Persona persona, Zona zona, Musica musicaFavorita, Presupuesto presupuesto) {
 		this.nombre = nombre
 		this.reputacion = new Reputacion()
-	}
-
-	Usuario(String nombre, Persona persona){
-		this.nombre = nombre
 		this.persona = persona
 		this.zona = zona
 		this.musicaFavorita = musicaFavorita
@@ -50,3 +56,6 @@ class Usuario {
 
 
 }
+
+
+

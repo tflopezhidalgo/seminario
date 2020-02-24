@@ -17,7 +17,7 @@ class Zona {
 	}
 
 	Integer cantidadDeLugares() {
-		return lugares.size()
+		lugares.size()
 	}
 
 }

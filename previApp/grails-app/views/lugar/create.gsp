@@ -26,9 +26,14 @@
             </ul>
             </g:hasErrors>
             <g:form resource="${this.lugar}" method="POST">
-                <fieldset class="form">
-                    <f:all bean="lugar"/>
-                </fieldset>
+                <f:field bean="lugar" property="nombre" name="nombre"/>
+                <f:field bean="lugar" property="direccion" name="direccion"/>
+                <f:field bean="lugar" property="descripcion" name="descripcion"/>
+                <f:field bean="lugar" property="capacidadMaxima" name="capacidadMaxima" min="0"/>
+                <f:field bean="lugar" property="entrada" name="entrada"/>
+                <f:field bean="lugar" property="musica" name="musica"/>
+                <f:field bean="lugar" property="comidas" name="comidas"/>
+                <f:field bean="lugar" property="bebidas" name="bebidas"/>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
                 </fieldset>

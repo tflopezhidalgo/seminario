@@ -3,7 +3,7 @@ package previapp
 import grails.testing.services.ServiceUnitTest
 import spock.lang.Specification
 
-class OndaServiceSpec extends Specification implements ServiceUnitTest<OndaService>{
+class ComidaServiceSpec extends Specification implements ServiceUnitTest<ComidaService>{
 
     def setup() {
     }

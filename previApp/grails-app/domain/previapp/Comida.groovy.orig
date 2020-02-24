@@ -13,11 +13,14 @@ class Comida {
 	static mapping = { 
 		table 'comidas'
 		id name: 'nombre', generator: 'assigned', type: 'string'
-
 	}
 
 	Comida(String nombre, Integer precio){
-		this.costo = costo
+<<<<<<< HEAD
+		this.costo = precio
+=======
+		this.costo = precio 
+>>>>>>> dev-tomas
 		this.nombre = nombre
 	}
 

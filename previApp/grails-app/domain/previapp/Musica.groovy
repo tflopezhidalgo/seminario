@@ -16,4 +16,9 @@ class Musica {
 	Musica(String generoMusical) {
 		this.generoMusical = generoMusical
 	}
+
+
+	Integer calcularSimilitud(Musica musica) {
+		0
+	}
 }

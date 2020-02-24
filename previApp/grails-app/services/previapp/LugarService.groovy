@@ -15,9 +15,4 @@ abstract class LugarService {
 
     abstract Lugar save(Lugar lugar)
 
-	List<Lugar> obtenerLugaresCompatibles(Usuario usuario) {
-		return []
-	}
-
-
 }

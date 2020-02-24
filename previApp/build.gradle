@@ -25,6 +25,10 @@ repositories {
     maven { url "https://repo.grails.org/grails/core" }
 }
 
+springBoot {
+	mainClassName = "previapp.Application"
+}
+
 configurations {
     developmentOnly
     runtimeClasspath {

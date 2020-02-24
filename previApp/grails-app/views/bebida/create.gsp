@@ -2,36 +2,34 @@
 <html>
     <head>
         <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'usuario.label', default: 'Usuario')}" />
+        <g:set var="entityName" value="${message(code: 'bebida.label', default: 'Bebida')}" />
         <title><g:message code="default.create.label" args="[entityName]" /></title>
     </head>
     <body>
-        <a href="#create-usuario" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
+        <a href="#create-bebida" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
         <div class="nav" role="navigation">
             <ul>
                 <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
                 <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
             </ul>
         </div>
-        <div id="create-usuario" class="content scaffold-create" role="main">
+        <div id="create-bebida" class="content scaffold-create" role="main">
             <h1><g:message code="default.create.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <g:hasErrors bean="${this.usuario}">
+            <g:hasErrors bean="${this.bebida}">
             <ul class="errors" role="alert">
-                <g:eachError bean="${this.usuario}" var="error">
+                <g:eachError bean="${this.bebida}" var="error">
                 <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
                 </g:eachError>
             </ul>
             </g:hasErrors>
-            <g:form resource="${this.usuario}" method="POST">
-                <f:field bean="usuario" property="nombre" name="nombre"/>
-                <f:field bean="usuario" property="reputacion" name="reputacion"/>
-                <f:field bean="usuario" property="persona" name="persona"/>
-                <f:field bean="usuario" property="zona" name="zona" min="0"/>
-                <f:field bean="usuario" property="musicaFavorita" name="musicaFavorita"/>
-                <f:field bean="usuario" property="presupuesto" name="presupuesto"/>
+            <g:form resource="${this.bebida}" method="POST">
+                <fieldset class="form">
+                    <f:field bean="bebida" property="nombre" name="nombre"/>
+                    <f:all bean="bebida"/>
+                </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
                 </fieldset>

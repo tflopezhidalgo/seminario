@@ -4,15 +4,24 @@ import grails.gorm.transactions.Transactional
 import grails.gorm.services.Service
 
 @Service(Zona)
-interface ZonaService {
+abstract class ZonaService {
 
-    Zona get(Serializable id) 
+	LugarService lugarService
+
+    abstract Zona get(Serializable id) 
 	
-	List<Zona> list(Map args)
+	abstract List<Zona> list(Map args)
 
-	Long count()
+	abstract Long count()
 
-	void delete(Serializable id)
+	abstract void delete(Serializable id)
 
-	Zona save(Zona zona)
+	abstract Zona save(Zona zona)
+
+	List<Lugar> obtenerLugaresEnZona(Zona zona){
+	
+		[lugarService.get('Mi casa')]
+	}
+
+
 }

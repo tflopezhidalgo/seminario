@@ -3,70 +3,70 @@ package previapp
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 
-class UsuarioController {
+class MusicaController {
 
-    UsuarioService usuarioService
+    MusicaService musicaService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond usuarioService.list(params), model:[usuarioCount: usuarioService.count()]
+        respond musicaService.list(params), model:[musicaCount: musicaService.count()]
     }
 
     def show(Long id) {
-        respond usuarioService.get(id)
+        respond musicaService.get(id)
     }
 
     def create() {
-        respond new Usuario(params)
+        respond new Musica(params)
     }
 
-    def save(Usuario usuario) {
-        if (usuario == null) {
+    def save(Musica musica) {
+        if (musica == null) {
             notFound()
             return
         }
 
         try {
-            usuarioService.save(usuario)
+            musicaService.save(musica)
         } catch (ValidationException e) {
-            respond usuario.errors, view:'create'
+            respond musica.errors, view:'create'
             return
         }
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuario.id])
+                //flash.message = message(code: 'default.created.message', args: [message(code: 'musica.label', default: 'Musica'), musica.id])
                 redirect(action: 'index')
             }
-            '*' { respond usuario, [status: CREATED] }
+            '*' { respond musica, [status: CREATED] }
         }
     }
 
     def edit(Long id) {
-        respond usuarioService.get(id)
+        respond musicaService.get(id)
     }
 
-    def update(Usuario usuario) {
-        if (usuario == null) {
+    def update(Musica musica) {
+        if (musica == null) {
             notFound()
             return
         }
 
         try {
-            usuarioService.save(usuario)
+            musicaService.save(musica)
         } catch (ValidationException e) {
-            respond usuario.errors, view:'edit'
+            respond musica.errors, view:'edit'
             return
         }
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuario.id])
-                redirect usuario
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'musica.label', default: 'Musica'), musica.id])
+                redirect musica
             }
-            '*'{ respond usuario, [status: OK] }
+            '*'{ respond musica, [status: OK] }
         }
     }
 
@@ -76,11 +76,11 @@ class UsuarioController {
             return
         }
 
-        usuarioService.delete(id)
+        musicaService.delete(id)
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'usuario.label', default: 'Usuario'), id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'musica.label', default: 'Musica'), id])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
@@ -90,7 +90,7 @@ class UsuarioController {
     protected void notFound() {
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'usuario.label', default: 'Usuario'), params.id])
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'musica.label', default: 'Musica'), params.id])
                 redirect action: "index", method: "GET"
             }
             '*'{ render status: NOT_FOUND }
