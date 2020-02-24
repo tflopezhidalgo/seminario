@@ -2,30 +2,30 @@ package previapp
 
 class Visita {
 
-	String comentario_visita
-	Usuario usuario_visitante
-	Lugar lugar_visitado
-	Date fecha_de_visita
+	String comentarioVisita
+	Usuario usuarioVisitante
+	Lugar lugarVisitado
+	Date fechaDeVisita
 	Integer puntuacion
 
     static constraints = {
-    	fecha_de_visita nullable: false
+		fechaDeVisita nullable: false
     }
 
 	static mapping = {
 		table "visitas"
-		fecha_de_visita column: 'fecha'
+		fechaDeVisita column: 'fecha'
 	}
 	
 	static belongsTo = [usuario: Usuario, lugar: Lugar]
 
 	Visita(String comentario) {
-		this.comentario_visita = comentario
-		this.fecha_de_visita = new Date()
+		this.comentarioVisita = comentario
+		this.fechaDeVisita = new Date()
 	}
 
 	def setComentario(String comentario) {
-		this.comentario_visita = comentario
+		this.comentarioVisita = comentario
 	}
 
 

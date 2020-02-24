@@ -16,7 +16,7 @@ class PresupuestoSpec extends Specification implements DomainUnitTest<Presupuest
 		Presupuesto presupuesto = new Presupuesto(15)
 
         then:"veo que se creo bien"
-        presupuesto.monto_presupuesto == 15
+        presupuesto.montoPresupuesto == 15
     }
 
     void "Test de exceder presupuesto"() {

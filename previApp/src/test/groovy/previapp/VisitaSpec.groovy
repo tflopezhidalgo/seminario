@@ -16,7 +16,7 @@ class VisitaSpec extends Specification implements DomainUnitTest<Visita> {
 		Visita visita = new Visita("lindo lugar")
 
         then:"veo que se cree bien"
-        visita.comentario_visita == "lindo lugar"
+        visita.comentarioVisita == "lindo lugar"
     }
 
     void "Test de cambiar comentario"() {
@@ -25,7 +25,7 @@ class VisitaSpec extends Specification implements DomainUnitTest<Visita> {
         visita.setComentario("era barato")
 
         then:"veo que se cambiara el comentario"
-        visita.comentario_visita == "era barato"
+        visita.comentarioVisita == "era barato"
     }
     //todo hacer test de la fecha de creacion
 }

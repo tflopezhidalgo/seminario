@@ -5,7 +5,6 @@ class Reputacion {
 	//	Clase que representa un valor (valor de reputación
 	//	y un "rango" -ORO, PLATA, BRONCE- )
 
-	/* TODO: Pasar a tipo enumerativo */
 	String  nombre
 	Integer puntos
 

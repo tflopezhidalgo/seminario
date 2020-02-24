@@ -16,6 +16,6 @@ class PuntuacionSpec extends Specification implements DomainUnitTest<Puntuacion>
         Puntuacion puntuacion = new Puntuacion(2)
 
         then: "chequeo la cantidad de estrellas"
-        puntuacion.puntaje_del_usuario == 2
+        puntuacion.puntajeDelUsuario == 2
     }
 }

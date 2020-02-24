@@ -1,13 +1,13 @@
 package previapp
 
 class Presupuesto {
-    Integer monto_presupuesto
+    Integer montoPresupuesto
 
     static constraints = {
     }
 
 	Presupuesto(int monto) {
-        this.monto_presupuesto = monto
+        this.montoPresupuesto = monto
     }
 
     def lugarExcedePresupuesto(Lugar lugar) {
@@ -16,7 +16,7 @@ class Presupuesto {
     }
 
     def excediPresupuesto(int dineroGastado) {
-        if (this.monto_presupuesto < dineroGastado) {
+        if (this.montoPresupuesto < dineroGastado) {
             return true
         }
         return false
