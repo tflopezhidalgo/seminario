@@ -4,9 +4,9 @@ class Musica {
 
 	String generoMusical
 
-    static constraints = {
+	static constraints = {
 		generoMusical nullable: false
-    }
+	}
 
 	static mapping = {
 		table 'musica'

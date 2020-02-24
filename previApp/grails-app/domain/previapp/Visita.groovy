@@ -8,9 +8,9 @@ class Visita {
 	Date fechaDeVisita
 	Integer puntuacion
 
-    static constraints = {
+	static constraints = {
 		fechaDeVisita nullable: false
-    }
+	}
 
 	static mapping = {
 		table "visitas"
@@ -27,7 +27,6 @@ class Visita {
 	def setComentario(String comentario) {
 		this.comentarioVisita = comentario
 	}
-
 
 	def setPuntuacion(Integer puntuacion) {
 		this.puntuacion = puntuacion

@@ -12,7 +12,7 @@ class Reputacion {
 		BRONCE, PLATA, ORO
 	}
 
-    static constraints = {}
+	static constraints = {}
 	static mapping = {}
 
 	Reputacion(){

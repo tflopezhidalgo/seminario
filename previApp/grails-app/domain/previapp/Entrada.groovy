@@ -4,11 +4,11 @@ class Entrada {
 
 	Integer precio
 	
-    static constraints = {
+	static constraints = {
 		precio nullable: false
-    }
+	}
 
 	Entrada(Integer precio) {
- 		this.precio = precio
+		this.precio = precio
 	}
 }

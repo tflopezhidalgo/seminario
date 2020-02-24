@@ -4,7 +4,7 @@ class Puntuacion {
 
 	Integer puntajeDelUsuario
 
-    static constraints = {}
+	static constraints = {}
 
 	Puntuacion(Integer estrellas) {
 		this.puntajeDelUsuario = estrellas
