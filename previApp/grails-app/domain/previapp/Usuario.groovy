@@ -17,12 +17,12 @@ class Usuario {
 		persona nullable: false
 	}
 
-    static constraints = {
-    	nombre nullable: false
+	static constraints = {
+		nombre nullable: false
 		persona nullable: false
-    }
+	}
 
-    static hasMany = [visitas: Visita]
+	static hasMany = [visitas: Visita]
 	static embedded = ['reputacion', 'persona']
 
 	Usuario(String nombre) {

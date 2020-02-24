@@ -5,14 +5,15 @@ import spock.lang.Specification
 
 class ZonaSpec extends Specification implements DomainUnitTest<Zona> {
 
-    def setup() {
+    def cleanup() {}
+
+    void "se crea una zona y se chequea su nombre"() {
+        when: "se crea una clase de zona"
+        Zona zona = new Zona('palermo')
+
+        then: "chequeo que la zona sea palermo"
+        zona.nombre == "palermo"
     }
 
-    def cleanup() {
-    }
-
-    void "test something"() {
-        expect:"fix me"
-            true == false
-    }
+    //ToDo agregar test sobre los lugares de la zona
 }

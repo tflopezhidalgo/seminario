@@ -14,13 +14,13 @@ class Lugar {
 	static hasOne = [zona: Zona]
 	static embedded = ['puntuacion', 'entrada']
 
-    static constraints = {
-        nombre nullable: false
-        direccion nullable:false
-        capacidadMaxima nullable: true
+	static constraints = {
+		nombre nullable: false
+		direccion nullable:false
+		capacidadMaxima nullable: true
 		entrada nullable: true
 		descripcion nullable: true
-    }
+	}
 
 	static mapping = {
 		table 'lugares'

@@ -1,13 +1,12 @@
 package previapp
 
 class Zona {
-
 	String nombre
 	static hasMany = [lugares: Lugar]
 
-    static constraints = {
+	static constraints = {
 		id name: 'nombre', generator: 'assigned', type: 'string'
-    }
+	}
 
 	Zona(String nombre){
 		this.nombre = nombre

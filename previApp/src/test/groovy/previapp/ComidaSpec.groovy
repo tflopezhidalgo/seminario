@@ -5,14 +5,27 @@ import spock.lang.Specification
 
 class ComidaSpec extends Specification implements DomainUnitTest<Comida> {
 
-    def setup() {
-    }
-
     def cleanup() {
+
     }
 
-    void "test something"() {
-        expect:"fix me"
-            true == false
+    def setup() {
+
+    }
+
+    void "se crea una comida y se chequea su nombre"() {
+        when: "se crea una clase de comida"
+        Comida comida = new Comida('papa', 20)
+
+        then: "chequeo que la comida sea papa"
+        comida.nombre == "papa"
+    }
+
+    void "se crea una comida y se chequea el precio de venta"() {
+        when: "se crea una clase de comida"
+        Comida comida = new Comida('papa', 30)
+
+        then: "chequeo que la comida valga 30"
+        comida.costo == 30
     }
 }

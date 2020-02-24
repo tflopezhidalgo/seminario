@@ -11,8 +11,11 @@ class EntradaSpec extends Specification implements DomainUnitTest<Entrada> {
     def cleanup() {
     }
 
-    void "test something"() {
-        expect:"fix me"
-            true == false
+    void "se crea una entrada y se chequea el precio de venta"() {
+        when: "se crea una clase de entrada"
+        Entrada entrada = new Entrada(30)
+
+        then: "chequeo que la entrada valga 30"
+        entrada.precio == 30
     }
 }
