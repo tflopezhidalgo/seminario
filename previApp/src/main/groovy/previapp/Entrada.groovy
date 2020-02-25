@@ -8,6 +8,10 @@ class Entrada {
         precio nullable: false
     }
 
+	static mapping = {
+		precio nullable: false
+	}
+
 	Entrada(){}
 
     Entrada(Integer precio) {

@@ -12,8 +12,13 @@ class Persona {
 		edad nullable: false
 	}
 
-	Persona(){
+	static mapping = {
+		nombre nullable: false
+		apellido nullable: false
+		edad nullable: false
 	}
+
+	Persona(){}
 
 	Persona(String nombre, String apellido, Integer edad){
 		this.nombre = nombre

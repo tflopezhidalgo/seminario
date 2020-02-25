@@ -10,11 +10,12 @@ class Recomendacion {
 	Usuario usuario
 
     static constraints = {
+		puntaje nullable: false
+		lugar nullable: false
+		usuario nullable: false
     }
 
-	Recomendacion(){
-
-	}
+	Recomendacion(){}
 
 	Recomendacion(Lugar lugar, Usuario usuario) {
 		this.lugar = lugar

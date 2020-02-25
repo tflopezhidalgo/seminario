@@ -37,16 +37,10 @@ class Usuario {
 	Usuario(String nombre, Persona persona, Zona zona, Musica musicaFavorita, Presupuesto presupuesto) {
 		this.nombre = nombre
 		this.reputacion = new Reputacion()
-	}
-
-	Usuario(String nombre, Persona persona){
-		this.nombre = nombre
 		this.persona = persona
 		this.zona = zona
 		this.musicaFavorita = musicaFavorita
-		this.creacion = new Date()
 		this.presupuesto = presupuesto
+		this.creacion = new Date()
 	}
-
-
 }

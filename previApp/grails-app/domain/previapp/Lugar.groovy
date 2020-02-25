@@ -25,6 +25,10 @@ class Lugar {
 	static mapping = {
 		table 'lugares'
 		id name: 'nombre', type: 'string', generator: 'assigned'  // Declara la primary key de la tabla
+		direccion nullabe: false
+		capacidadMaxima nullable: true
+		entrada nullable: true
+		descripcion nullabe: true
 	}
 
 	Lugar(String nombre, String direccion, Integer capacidadMaxima) {

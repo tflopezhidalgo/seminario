@@ -7,9 +7,12 @@ class Presupuesto {
     static constraints = {
 		monto nullable: false
     }
-
-	Presupuesto(){
+	
+	static mapping = {
+		monto nullable: false
 	}
+
+	Presupuesto(){}
 
 	Presupuesto(Integer monto) {
 		this.monto = monto
