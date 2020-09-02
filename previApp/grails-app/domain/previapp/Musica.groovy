@@ -2,23 +2,22 @@ package previapp
 
 class Musica {
 
-	String generoMusical
+    String generoMusical
 
-	static constraints = {
-		generoMusical nullable: false
-	}
+    static constraints = {
+        generoMusical nullable: false
+    }
 
-	static mapping = {
-		table 'musica'
-		id name: 'generoMusical', generator: 'assigned', type: 'string'
-	}
+    static mapping = {
+        table 'musica'
+        id name: 'generoMusical', generator: 'assigned', type: 'string'
+    }
 
-	Musica(String generoMusical) {
-		this.generoMusical = generoMusical
-	}
+    Musica(String generoMusical) {
+        this.generoMusical = generoMusical
+    }
 
-
-	Integer calcularSimilitud(Musica musica) {
-		0
-	}
+    Integer calcularSimilitud(Musica musica) {
+        return 0
+    }
 }

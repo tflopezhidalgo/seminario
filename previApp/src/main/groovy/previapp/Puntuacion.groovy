@@ -2,21 +2,21 @@ package previapp
 
 class Puntuacion {
 
-	Integer puntajeDelUsuario
+    Integer puntajeDelUsuario
 
-	static constraints = { 
-		puntajeDelUsuario nullable: false
-	}
+    static constraints = { 
+        puntajeDelUsuario nullable: false
+    }
 
-	static mapping = {
-		puntajeDelUsuario nullable: false
-	}
+    static mapping = {
+        puntajeDelUsuario nullable: false
+    }
 
-	Puntuacion(Integer estrellas) {
-		this.puntajeDelUsuario = estrellas
-	}
+    Puntuacion(Integer estrellas) {
+        this.puntajeDelUsuario = estrellas
+    }
 
-	def getPuntuacion() {
-		return this.puntajeDelUsuario
-	}
+    def getPuntuacion() {
+        return this.puntajeDelUsuario
+    }
 }

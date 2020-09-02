@@ -2,24 +2,23 @@ package previapp
 
 class Presupuesto {
 
-	Integer monto
+    Integer monto
 
     static constraints = {
-		monto nullable: false
+        monto nullable: false
     }
-	
-	static mapping = {
-		monto nullable: false
-	}
 
-	Presupuesto(){}
+    static mapping = {
+        monto nullable: false
+    }
 
-	Presupuesto(Integer monto) {
-		this.monto = monto
-	}
+    Presupuesto(){}
 
-	boolean esMenorA(Integer monto) {
-		this.monto < monto
-	}
+    Presupuesto(Integer monto) {
+        this.monto = monto
+    }
 
+    boolean esMenorA(Integer monto) {
+        this.monto < monto
+    }
 }

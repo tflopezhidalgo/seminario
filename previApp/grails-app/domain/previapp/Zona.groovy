@@ -1,23 +1,23 @@
 package previapp
 
 class Zona {
-	String nombre
-	static hasMany = [lugares: Lugar]
+    String nombre
 
-	static constraints = {
-		id name: 'nombre', generator: 'assigned', type: 'string'
-	}
+    static constraints = {
+            id name: 'nombre', generator: 'assigned', type: 'string'
+    }
 
-	Zona(String nombre){
-		this.nombre = nombre
-	}
+    static hasMany = [lugares: Lugar]
 
-	void agregarLugar(Lugar lugar) {	
-		lugares << lugar
-	}
+    Zona(String nombre){
+        this.nombre = nombre
+    }
 
-	Integer cantidadDeLugares() {
-		lugares.size()
-	}
+    void agregarLugar(Lugar lugar) {
+        lugares << lugar
+    }
 
+    Integer cantidadDeLugares() {
+        return lugares.size()
+    }
 }
