@@ -3,70 +3,70 @@ package previapp
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 
-class UsuarioController {
+class RoleController {
 
-    UsuarioService usuarioService
+    RoleService roleService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond usuarioService.list(params), model:[usuarioCount: usuarioService.count()]
+        respond roleService.list(params), model:[roleCount: roleService.count()]
     }
 
     def show(Long id) {
-        respond usuarioService.get(id)
+        respond roleService.get(id)
     }
 
     def create() {
-        respond new Usuario(params)
+        respond new Role(params)
     }
 
-    def save(Usuario usuario) {
-        if (usuario == null) {
+    def save(Role role) {
+        if (role == null) {
             notFound()
             return
         }
 
         try {
-            usuarioService.save(usuario)
+            roleService.save(role)
         } catch (ValidationException e) {
-            respond usuario.errors, view:'create'
+            respond role.errors, view:'create'
             return
         }
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuario.id])
-                redirect usuario
+                flash.message = message(code: 'default.created.message', args: [message(code: 'role.label', default: 'Role'), role.id])
+                redirect role
             }
-            '*' { respond usuario, [status: CREATED] }
+            '*' { respond role, [status: CREATED] }
         }
     }
 
     def edit(Long id) {
-        respond usuarioService.get(id)
+        respond roleService.get(id)
     }
 
-    def update(Usuario usuario) {
-        if (usuario == null) {
+    def update(Role role) {
+        if (role == null) {
             notFound()
             return
         }
 
         try {
-            usuarioService.save(usuario)
+            roleService.save(role)
         } catch (ValidationException e) {
-            respond usuario.errors, view:'edit'
+            respond role.errors, view:'edit'
             return
         }
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuario.id])
-                redirect usuario
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'role.label', default: 'Role'), role.id])
+                redirect role
             }
-            '*'{ respond usuario, [status: OK] }
+            '*'{ respond role, [status: OK] }
         }
     }
 
@@ -76,11 +76,11 @@ class UsuarioController {
             return
         }
 
-        usuarioService.delete(id)
+        roleService.delete(id)
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'usuario.label', default: 'Usuario'), id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'role.label', default: 'Role'), id])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
@@ -90,7 +90,7 @@ class UsuarioController {
     protected void notFound() {
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'usuario.label', default: 'Usuario'), params.id])
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'role.label', default: 'Role'), params.id])
                 redirect action: "index", method: "GET"
             }
             '*'{ render status: NOT_FOUND }

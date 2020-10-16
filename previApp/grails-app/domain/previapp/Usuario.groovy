@@ -1,8 +1,22 @@
 package previapp
 
-class Usuario {
+import groovy.transform.EqualsAndHashCode
+import groovy.transform.ToString
+import grails.compiler.GrailsCompileStatic
 
-    String nombre
+@GrailsCompileStatic
+@EqualsAndHashCode(includes='username')
+@ToString(includes='username', includeNames=true, includePackage=false)
+class Usuario implements Serializable {
+
+    private static final long serialVersionUID = 1
+
+    String username
+    String password
+    boolean enabled = true
+    boolean accountExpired
+    boolean accountLocked
+    boolean passwordExpired
     Reputacion reputacion
     Persona persona
     Zona zona
@@ -10,19 +24,27 @@ class Usuario {
     Date creacion
     Presupuesto presupuesto
 
-    static mapping = {
-        table 'usuarios'
-        id name: 'nombre', generator: 'assigned', type: 'string'
-        reputacion nullable: true
-        persona nullable: false
-        zona nullable: false
-        musicaFavorita nullable: false
-        creacion nullable: false
-        presupuesto nullable: false
+    static hasMany = [visitas: Visita]
+    static embedded = ['reputacion', 'persona', 'presupuesto']
+
+    Usuario(String username, String password, Persona persona, Zona zona, Musica musicaFavorita, Presupuesto presupuesto) {
+        this.username = username
+        this.password = password
+        this.reputacion = new Reputacion()
+        this.persona = persona
+        this.zona = zona
+        this.musicaFavorita = musicaFavorita
+        this.presupuesto = presupuesto
+        this.creacion = new Date()
+    }
+
+    Set<Role> getAuthorities() {
+        (UsuarioRole.findAllByUsuario(this) as List<UsuarioRole>)*.role as Set<Role>
     }
 
     static constraints = {
-        nombre nullable: false
+        username nullable: false, blank: false, unique: true
+        password nullable: false, blank: false, password: true
         reputacion nullable: false
         persona nullable: false
         zona nullable: false
@@ -31,16 +53,16 @@ class Usuario {
         presupuesto nullable: true
     }
 
-    static hasMany = [visitas: Visita]
-    static embedded = ['reputacion', 'persona', 'presupuesto']
+    static mapping = {
+        table 'usuarios'
+        id name: 'username', generator: 'assigned', type: 'string'
+	password column: '`password`'
+        reputacion nullable: true
+        persona nullable: false
+        zona nullable: false
+        musicaFavorita nullable: false
+        creacion nullable: false
+        presupuesto nullable: false
 
-    Usuario(String nombre, Persona persona, Zona zona, Musica musicaFavorita, Presupuesto presupuesto) {
-        this.nombre = nombre
-        this.reputacion = new Reputacion()
-        this.persona = persona
-        this.zona = zona
-        this.musicaFavorita = musicaFavorita
-        this.presupuesto = presupuesto
-        this.creacion = new Date()
     }
 }
