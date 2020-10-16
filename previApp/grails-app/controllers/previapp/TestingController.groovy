@@ -11,7 +11,7 @@ class TestingController {
     def index() { 
 		
 		def lugar = lugarService.get('Mi casa')
-		def usuario = usuarioService.get('tomas131')
+		def usuario = usuarioService.get('tomas')
 
 		def recomendacionList = recomendacionService.recomendar(usuario)
 

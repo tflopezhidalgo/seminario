@@ -4,7 +4,7 @@ class Zona {
     String nombre
 
     static constraints = {
-            id name: 'nombre', generator: 'assigned', type: 'string'
+        id name: 'nombre', generator: 'assigned', type: 'string'
     }
 
     static hasMany = [lugares: Lugar]

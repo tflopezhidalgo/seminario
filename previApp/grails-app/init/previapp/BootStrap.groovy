@@ -9,32 +9,23 @@ class BootStrap {
     LugarService lugarService
 
     def init = { servletContext ->
-        Musica musica = new Musica('Rock')
-        musicaService.save(musica)
+        def musica = new Musica('Rock').save(flush: true, failOnError: true)
+        def comida = new Comida('Sushi', 25).save(flush: true, failOnError: true)
+        def bebida = new Bebida('Coca-cola', 250).save(flush: true, failOnError: true)
+        def zona = new Zona('Avellaneda').save(flush: true, failOnError: true)
 
-        Comida comida = new Comida('Sushi', 25)
-        comidaService.save(comida)
-
-        Bebida bebida = new Bebida('Coca-cola', 250)
-        bebidaService.save(bebida)
-
-        Zona zona = new Zona('Avellaneda')
-        zonaService.save(zona)
-
-        Persona persona = new Persona('Tomas', 'Lopez', 23)
+        def persona = new Persona('Tomas', 'Lopez', 23)
+        def pr = new Presupuesto(2300)
 		
-        Presupuesto pr = new Presupuesto(100)
-
-        Lugar lugar = new Lugar('Mi casa', 'QueTeImporta 123', 300)
+        def lugar = new Lugar('Mi casa', 'QueTeImporta 123', 300)
         lugar.addToComidas(comida)
         lugar.addToBebidas(bebida)
         lugar.addToMusica(musica)
         lugar.setZona(zona)
 
-        lugarService.save(lugar)
+        lugar.save(flush: true, failOnError: true)
 
         // security reoles iniciales
-
 
         def userRole = Role.findByAuthority("ROLE_USER") ?: new Role(authority: "ROLE_USER").save(failOnError: true) 
         def adminRole = Role.findByAuthority("ROLE_ADMIN") ?: new Role(authority: "ROLE_ADMIN").save(failOnError: true)
