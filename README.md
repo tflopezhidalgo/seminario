@@ -16,9 +16,11 @@ cd $PATH_TO_REPO
 grails run-app
 ```
 
+---
 
 ## Domain Driven Design
 
+```
 Value objects:
     - Entrada
     - Presupuesto
@@ -35,4 +37,4 @@ Entidades:
     - Usuario
     - Visita (*)
     - Zona
-
+```
