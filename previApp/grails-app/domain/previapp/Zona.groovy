@@ -3,8 +3,12 @@ package previapp
 class Zona {
     String nombre
 
+    static mapping = {
+        nombre nullable: false
+    }
+
     static constraints = {
-        id name: 'nombre', generator: 'assigned', type: 'string'
+        nombre nullable: false
     }
 
     static hasMany = [lugares: Lugar]

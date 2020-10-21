@@ -10,7 +10,7 @@ class Musica {
 
     static mapping = {
         table 'musica'
-        id name: 'generoMusical', generator: 'assigned', type: 'string'
+        generoMusical nullable: false
     }
 
     Musica(String generoMusical) {
