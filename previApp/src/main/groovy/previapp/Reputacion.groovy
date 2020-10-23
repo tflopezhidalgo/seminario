@@ -10,7 +10,6 @@ class Reputacion {
     enum Nivel { BRONCE, PLATA, ORO }
 
     static constraints = {}
-    static mapping = {}
 
     Reputacion(){
         this.nombre = "${Nivel.MIN_VALUE}"

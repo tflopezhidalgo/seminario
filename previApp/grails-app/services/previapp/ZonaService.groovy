@@ -19,8 +19,8 @@ abstract class ZonaService {
 	abstract Zona save(Zona zona)
 
 	List<Lugar> obtenerLugaresEnZona(Zona zona){
-	
-		[lugarService.get('Mi casa')]
+		print("buscando lugares en zona ... $zona")
+		[lugarService.get(1)]
 	}
 
 

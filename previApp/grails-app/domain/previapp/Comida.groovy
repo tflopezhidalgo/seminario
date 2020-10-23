@@ -6,13 +6,14 @@ class Comida {
     Integer costo
 
     static constraints = {
-        nombre nullable: false
+        nombre(unique:true, nullable: false)
         costo nullable: false
     }
 
     static mapping = { 
         table 'comidas'
-        id name: 'nombre', generator: 'assigned', type: 'string'
+        nombre nullable: false, unique: true
+        costo nullable: false
     }
 
     Comida(String nombre, Integer precio){

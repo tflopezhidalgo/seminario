@@ -4,14 +4,6 @@ class Presupuesto {
 
     Integer monto
 
-    static constraints = {
-        monto nullable: false
-    }
-
-    static mapping = {
-        monto nullable: false
-    }
-
     Presupuesto(){}
 
     Presupuesto(Integer monto) {

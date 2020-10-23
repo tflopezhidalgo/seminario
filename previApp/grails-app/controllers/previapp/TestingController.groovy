@@ -1,4 +1,6 @@
 package previapp
+import grails.plugin.springsecurity.SpringSecurityService
+import grails.plugin.springsecurity.annotation.Secured
 
 class TestingController {
 
@@ -7,15 +9,18 @@ class TestingController {
 	ZonaService zonaService
 	MusicaService musicaService
 	RecomendacionService recomendacionService
+	SpringSecurityService springSecurityService
 
     def index() { 
-		
-		def lugar = lugarService.get('Mi casa')
-		def usuario = usuarioService.get('tomas')
 
-		def recomendacionList = recomendacionService.recomendar(usuario)
+    	String user = springSecurityService.principal.username
 
-		render "Se obtuvo como recomendacion $recomendacionList"
+	def lugar = lugarService.get('Mi casa')
+	def usuario = usuarioService.get('tomas')
+
+	def recomendacionList = recomendacionService.recomendar(usuario)
+
+	render "Se obtuvo como recomendacion $recomendacionList para el usuario actual $usuario"	
 	}
 
 	def addOneVisit() {

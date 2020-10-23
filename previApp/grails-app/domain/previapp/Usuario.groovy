@@ -46,7 +46,6 @@ class Usuario implements Serializable {
         username nullable: false, blank: false, unique: true
         password nullable: false, blank: false, password: true
         reputacion nullable: false
-        persona nullable: false
         zona nullable: false
         musicaFavorita nullable: true
         creacion nullable: false
@@ -57,12 +56,8 @@ class Usuario implements Serializable {
         table 'usuarios'
         id name: 'username', generator: 'assigned', type: 'string'
 	password column: '`password`'
-        reputacion nullable: true
-        persona nullable: false
         zona nullable: false
         musicaFavorita nullable: false
         creacion nullable: false
-        presupuesto nullable: false
-
     }
 }

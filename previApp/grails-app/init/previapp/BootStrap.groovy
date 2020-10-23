@@ -17,13 +17,16 @@ class BootStrap {
         def persona = new Persona('Tomas', 'Lopez', 23)
         def pr = new Presupuesto(2300)
 		
+        def entrada = new Entrada(200)
+
         def lugar = new Lugar('Mi casa', 'QueTeImporta 123', 300)
         lugar.addToComidas(comida)
         lugar.addToBebidas(bebida)
         lugar.addToMusica(musica)
         lugar.setZona(zona)
+        lugar.setEntrada(entrada)
 
-        lugar.save(flush: true, failOnError: true)
+        lugar.save(failOnError: true)
 
         // security reoles iniciales
 
@@ -33,14 +36,13 @@ class BootStrap {
         def adminUser = Usuario.findByUsername("admin") ?: new Usuario("admin", "admin", persona, zona, musica, pr).save(failOnError: true)
         def newUser = Usuario.findByUsername("tomas") ?: new Usuario("tomas", "tomas", persona, zona, musica, pr).save(failOnError: true)
 
-        // TODO: ESTO NO ESTÁ FUNCIONANDO
         def userrole1 = UsuarioRole.create(adminUser, adminRole, true)
         print("Guardado user role ${userrole1}")
 
         def userrole2 = UsuarioRole.create(newUser, userRole, true)
         print("Guardado user role ${userrole2}")
 
-        print("Bootstrap inicializado!\n")
+        print("\n-- Bootstrap inicializado! --\n")
     }
 
     def destroy = {

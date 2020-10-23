@@ -1,15 +1,13 @@
 package previapp
 
+import previapp.Entrada
+
 class Entrada {
 
     Integer precio
 
-    static constraints = {
-        precio nullable: false
-    }
-
-    static mapping = {
-        precio nullable: false
+    String toString() {
+        precio
     }
 
     Entrada(){}

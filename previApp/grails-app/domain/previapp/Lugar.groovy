@@ -5,10 +5,10 @@ class Lugar {
     String nombre
     String direccion
     String descripcion
-    /* TODO: Agregar atributo de horario de atención */
-    Puntuacion puntuacion
     Integer capacidadMaxima
+    Puntuacion puntuacion
     Entrada entrada
+    //TODO: Agregar atributo de horario de atención
 
     static hasMany = [visitas: Visita, comidas: Comida, bebidas: Bebida, musica: Musica] 
     static hasOne = [zona: Zona]
@@ -17,20 +17,20 @@ class Lugar {
     static constraints = {
         nombre nullable: false
         direccion nullable:false
-        capacidadMaxima nullable: true
-        entrada nullable: true
         descripcion nullable: true
+        capacidadMaxima nullable: true
         puntuacion nullable: true
+        entrada nullable: false
     }
 
     static mapping = {
         table 'lugares'
-        name nullable: false
+        nombre nullable: false
         direccion nullabe: false
-        capacidadMaxima nullable: true
-        entrada nullable: true
         descripcion nullabe: true
+        capacidadMaxima nullable: true
         puntuacion nullable: true
+        entrada nullable: false
     }
 
     Lugar(String nombre, String direccion, Integer capacidadMaxima) {
@@ -42,7 +42,7 @@ class Lugar {
         this.entrada = null 
     }
 
-/*  Lugar(String nombre, String direccion, Integer capacidadMaxima=250, Entrada entrada) {
+    Lugar(String nombre, String direccion, Integer capacidadMaxima, Entrada entrada) {
         this.puntuacion = new Puntuacion()
         this.nombre = nombre
         this.descripcion = ''
@@ -51,16 +51,20 @@ class Lugar {
         this.entrada = entrada
     }
 
-    /*
-    def obtenerPrecio() {
-        def precioBebidas = 0
-        bebidas.each { bebida -> precioBebidas += bebida.obtenerCosto() }
-        precioBebidas /= bebidas.length
+    String toString() {
+        this.nombre
+    }
 
-        def precioComidad = 0
-        comidad.each { comida -> precioComidad + = comida.obtenerCosto() }
-        precioComida /= comidas.length
 
-        return precioComida + precioBebidas + entrada.obtenerPrecio()
-    } */
+    //def obtenerPrecio() {
+    //    def precioBebidas = 0
+    //    bebidas.each { bebida -> precioBebidas += bebida.obtenerCosto() }
+    //    precioBebidas /= bebidas.length
+
+    //    def precioComidad = 0
+    //    comidad.each { comida -> precioComidad + = comida.obtenerCosto() }
+    //    precioComida /= comidas.length
+
+    //    return precioComida + precioBebidas + entrada.obtenerPrecio()
+    //} 
 }

@@ -10,7 +10,7 @@ class Musica {
 
     static mapping = {
         table 'musica'
-        generoMusical nullable: false
+        generoMusical(unique: true, nullable: false)
     }
 
     Musica(String generoMusical) {
