@@ -7,31 +7,10 @@
 <body>
 <content tag="nav">
     <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Application Status <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <li class="dropdown-item"><a href="#">Environment: ${grails.util.Environment.current.name}</a></li>
-            <li class="dropdown-item"><a href="#">App profile: ${grailsApplication.config.grails?.profile}</a></li>
-            <li class="dropdown-item"><a href="#">App version:
-                <g:meta name="info.app.version"/></a>
-            </li>
-            <li role="separator" class="dropdown-divider"></li>
-            <li class="dropdown-item"><a href="#">Grails version:
-                <g:meta name="info.app.grailsVersion"/></a>
-            </li>
-            <li class="dropdown-item"><a href="#">Groovy version: ${GroovySystem.getVersion()}</a></li>
-            <li class="dropdown-item"><a href="#">JVM version: ${System.getProperty('java.version')}</a></li>
-            <li role="separator" class="dropdown-divider"></li>
-            <li class="dropdown-item"><a href="#">Reloading active: ${grails.util.Environment.reloadingAgentEnabled}</a></li>
-        </ul>
+        <a href="/profile"> Mi perfil <span class="caret"></span> </a>
     </li>
     <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Artefacts <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <li class="dropdown-item"><a href="#">Controllers: ${grailsApplication.controllerClasses.size()}</a></li>
-            <li class="dropdown-item"><a href="#">Domains: ${grailsApplication.domainClasses.size()}</a></li>
-            <li class="dropdown-item"><a href="#">Services: ${grailsApplication.serviceClasses.size()}</a></li>
-            <li class="dropdown-item"><a href="#">Tag Libraries: ${grailsApplication.tagLibClasses.size()}</a></li>
-        </ul>
+        <a href="/logout" style="justify-content: center;" role="button" aria-haspopup="true" > Cerrar sesión </a>
     </li>
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Controllers <span class="caret"></span></a>
@@ -52,14 +31,15 @@
 
 <div id="content" role="main" >
     <section class="row colset-12-its">
-        <h1>Welcome to PreviApp</h1>
-        <g:each in="${[1,2,3,4,5]}">
+        <h1>Bienvenido a PreviApp</h1>
+        <g:each in="${recomendaciones}" var="recomendacion">
             <div class="card">
                 <div class="card-body">
-                    <asset:image src="place.png" alt="Previapp Logo" style="width: 200px;"/>
-                    <p><b>Lugar</b>: El mejor lugar para vos</p>
-                    <p><b>Zona</b>: Muy cerca tuyo</p>
+                    <asset:image src="place.png" alt="Previapp Logo" style="width: 100px;"/>
+                    <p><b>Lugar</b>: ${recomendacion.lugar}</p>
+                    <p><b>Zona</b>: ${recomendacion.lugar.zona} </p>
                     <p><b>Descripcion</b>: Birra gratis</p>
+                    <p><b>Puntaje</b>: ${recomendacion.puntaje}</p>
                 </div>
             </div>
         </g:each>

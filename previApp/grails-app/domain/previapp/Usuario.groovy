@@ -54,7 +54,7 @@ class Usuario implements Serializable {
 
     static mapping = {
         table 'usuarios'
-        id name: 'username', generator: 'assigned', type: 'string'
+        username nullable: false, unique: true
 	password column: '`password`'
         zona nullable: false
         musicaFavorita nullable: false
