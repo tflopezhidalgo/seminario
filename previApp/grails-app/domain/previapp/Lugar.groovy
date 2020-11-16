@@ -34,21 +34,12 @@ class Lugar {
     }
 
     Lugar(String nombre, String direccion, Integer capacidadMaxima) {
-        this.puntuacion = null
-        this.nombre = nombre
-        this.direccion = direccion
-        this.descripcion = ''
-        this.capacidadMaxima = capacidadMaxima
-        this.entrada = null 
-    }
-
-    Lugar(String nombre, String direccion, Integer capacidadMaxima, Entrada entrada) {
         this.puntuacion = new Puntuacion()
         this.nombre = nombre
-        this.descripcion = ''
         this.direccion = direccion
+        this.descripcion = ''
         this.capacidadMaxima = capacidadMaxima
-        this.entrada = entrada
+        this.entrada = null
     }
 
     String toString() {

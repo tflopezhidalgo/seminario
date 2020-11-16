@@ -19,7 +19,7 @@ class BootStrap {
 		
         def entrada = new Entrada(200)
 
-        def lugar = new Lugar('Mi casa', 'QueTeImporta 123', 300)
+        Lugar lugar = new Lugar('Mi casa', 'QueTeImporta 123', 300)
         lugar.addToComidas(comida)
         lugar.addToBebidas(bebida)
         lugar.addToMusica(musica)
@@ -27,6 +27,25 @@ class BootStrap {
         lugar.setEntrada(entrada)
 
         lugar.save(failOnError: true)
+
+        Lugar lugar2 = new Lugar('Un lugar al aire libre', 'QueTeImporta 123', 300)
+        lugar2.addToComidas(comida)
+        lugar2.addToBebidas(bebida)
+        lugar2.addToMusica(musica)
+        lugar2.setZona(zona)
+        lugar2.setEntrada(entrada)
+
+        lugar2.save(failOnError: true)
+
+        Lugar lugar3 = new Lugar('Otro lugar al aire libre', 'QueTeImporta 123', 300)
+        lugar3.addToComidas(comida)
+        lugar3.addToBebidas(bebida)
+        lugar3.addToMusica(musica)
+        lugar3.setZona(zona)
+        lugar3.setEntrada(entrada)
+
+        lugar3.save(failOnError: true)
+
 
         // security reoles iniciales
 

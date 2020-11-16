@@ -2,17 +2,17 @@ package previapp
 
 class Puntuacion {
 
-    Integer puntajeDelUsuario
+    Integer valor
 
     static constraints = { 
-        puntajeDelUsuario nullable: false
+        valor nullable: false
     }
 
-    Puntuacion(Integer estrellas) {
-        this.puntajeDelUsuario = estrellas
+    Puntuacion() {
+        this.valor = 0
     }
 
-    def getPuntuacion() {
-        this.puntajeDelUsuario
+    String toString() {
+        "${this.valor} estrellas"
     }
 }

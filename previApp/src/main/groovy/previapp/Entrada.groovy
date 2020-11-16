@@ -2,6 +2,8 @@ package previapp
 
 import previapp.Entrada
 
+// TODO: HACER CLASE DINERO
+
 class Entrada {
 
     Integer precio

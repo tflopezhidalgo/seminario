@@ -8,7 +8,7 @@ abstract class ZonaService {
 
 	LugarService lugarService
 
-    abstract Zona get(Serializable id) 
+    	abstract Zona get(Serializable id) 
 	
 	abstract List<Zona> list(Map args)
 
@@ -19,8 +19,7 @@ abstract class ZonaService {
 	abstract Zona save(Zona zona)
 
 	List<Lugar> obtenerLugaresEnZona(Zona zona){
-		print("buscando lugares en zona ... $zona")
-		[lugarService.get(1)]
+		return new ArrayList<Lugar>(zona.getLugares())
 	}
 
 

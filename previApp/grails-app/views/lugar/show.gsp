@@ -19,7 +19,12 @@
             <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:display bean="lugar" />
+            <label style="font-weight: bold; font-size: 30">Nombre: </label> <f:display bean="lugar" property="nombre"/><br>
+            <label style="font-weight: bold; font-size: 30">Dirección: </label> <f:display bean="lugar" property="direccion"/><br>
+            <label style="font-weight: bold; font-size: 30">Descripción: </label> <f:display bean="lugar" property="descripcion"/><br>
+            <label style="font-weight: bold; font-size: 30">Puntuación: </label> <f:display bean="lugar" property="puntuacion"/><br>
+            <label style="font-weight: bold; font-size: 30">Entrada: </label> <f:display bean="lugar" property="entrada"/><br>
+            <label style="font-weight: bold; font-size: 30">Capacidad máxima: </label> <f:display bean="lugar" property="capacidadMaxima"/><br>
             <g:form resource="${this.lugar}" method="DELETE">
                 <fieldset class="buttons">
                     <g:link class="edit" action="edit" resource="${this.lugar}"><g:message code="default.button.edit.label" default="Edit" /></g:link>

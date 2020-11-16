@@ -2,10 +2,12 @@ package previapp
 
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
+import grails.plugin.springsecurity.SpringSecurityService
 
 class VisitaController {
 
     VisitaService visitaService
+    SpringSecurityService springSecurityService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -18,8 +20,21 @@ class VisitaController {
         respond visitaService.get(id)
     }
 
-    def create() {
-        respond new Visita(params)
+    def create(Lugar lugar) {
+	String user = springSecurityService.principal.username
+
+	def currentUser = Usuario.findByUsername(user)
+
+
+        def visita = new Visita(params)
+
+        //TODO: fixear valores de usuario y visita
+        visita.setUsuario(currentUser)
+        visita.setLugar(lugar)
+
+	print("Creada visita con $lugar, $currentUser")
+
+        respond visita
     }
 
     def save(Visita visita) {

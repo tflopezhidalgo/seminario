@@ -18,7 +18,11 @@ class ProfileController {
 
 	print("Entrando a perfil de usuario $currentUser")
 
-	render(view: 'show', model: ['entityName': 'Usuario', 'currentUser': currentUser])
+	if (!currentUser) {
+		render "No hay ningun usuario logeado!"
+	} else {
+		render(view: 'show', model: ['entityName': 'Usuario', 'currentUser': currentUser])
+	}
     }
 
     def edit(user) {

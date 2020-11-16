@@ -17,8 +17,4 @@ class Visita {
 	
     static belongsTo = [usuario: Usuario, lugar: Lugar]
 
-    Visita(String nombre) {
-        this.nombre_visita = nombre
-        this.fecha_de_visita = new Date()
-    }
 }

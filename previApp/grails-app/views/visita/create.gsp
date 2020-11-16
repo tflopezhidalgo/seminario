@@ -27,7 +27,17 @@
             </g:hasErrors>
             <g:form resource="${this.visita}" method="POST">
                 <fieldset class="form">
-                    <f:all bean="visita"/>
+                    <f:field bean="${this.visita}" property="fecha_de_visita"/>
+                    <f:field bean="${this.visita}" property="comentario"/>
+                    <div> Usuario es: ${this.visita.getUsuario()} </div>
+                    <div> Lugar es: ${this.visita.getLugar()} </div>
+                    <f:field property="usuario">
+                        <g:textField name="${property}" readonly="true" value="${this.visita.getUsuario()}"/>
+                    </f:field>
+                    <f:field property="lugar">
+                        <g:textField name="${property}" readonly="true" value="${this.visita.getLugar()}"/>
+                    </f:field>
+                    <f:field bean="${this.visita}" property="puntuacion"/>
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
