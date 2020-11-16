@@ -4,6 +4,7 @@ import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 import grails.plugin.springsecurity.SpringSecurityService
 
+@Secured(['ROLE_ADMIN', 'ROLE_USER'])
 class VisitaController {
 
     VisitaService visitaService
@@ -21,18 +22,14 @@ class VisitaController {
     }
 
     def create(Lugar lugar) {
-	String user = springSecurityService.principal.username
+        String user = springSecurityService.principal.username
 
 	def currentUser = Usuario.findByUsername(user)
-
-
         def visita = new Visita(params)
 
-        //TODO: fixear valores de usuario y visita
-        visita.setUsuario(currentUser)
-        visita.setLugar(lugar)
-
 	print("Creada visita con $lugar, $currentUser")
+
+	visita.setLugar(lugar)
 
         respond visita
     }
@@ -44,6 +41,10 @@ class VisitaController {
         }
 
         try {
+            String user = springSecurityService.principal.username
+            def currentUser = Usuario.findByUsername(user)
+
+            visita.setUsuario(currentUser)
             visitaService.save(visita)
         } catch (ValidationException e) {
             respond visita.errors, view:'create'
