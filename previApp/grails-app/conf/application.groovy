@@ -1,8 +1,7 @@
-
-
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'previapp.Usuario'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'previapp.UsuarioRole'
+grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.authority.className = 'previapp.Role'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],

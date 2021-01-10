@@ -18,7 +18,8 @@ class LugarController {
     }
 
     def show(Long id) {
-        respond lugarService.get(id)
+        // El lugar solo se puede editar por el admin, no incluímos botones de edit / delete
+        respond lugarService.get(id), view: 'guestView'
     }
 
     def create() {
@@ -30,7 +31,6 @@ class LugarController {
         musicaService.save(musica)
         comidaService.save(comida)
         bebidaService.save(comida)
-
     }
 
     def save(Lugar lugar) {

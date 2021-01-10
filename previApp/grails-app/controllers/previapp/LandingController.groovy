@@ -2,26 +2,28 @@ package previapp
 
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
+import grails.plugin.springsecurity.SpringSecurityService
 
 class LandingController {
 
     RecomendacionService recomendacionService
-    LugarService lugarService
     UsuarioService usuarioService
+    SpringSecurityService springSecurityService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index() {
-	def lugar = lugarService.get('Mi casa')
-	def usuario = Usuario.findByUsername("tomas")
+        String currentUsername = springSecurityService.principal.username
 
-	def recomendacionList = recomendacionService.recomendar(usuario)
+        def currentUser = Usuario.findByUsername(currentUsername)
 
-        recomendacionList.each { 
-            recomendacion -> print(recomendacion)
-        }
+	if (!currentUser) {
+	    redirect(controller: "login")
+	} else {
+	    println("Buscando recomendaciones para ${currentUsername}")
 
-	render(view: '/index', model: ['recomendaciones': recomendacionList])	
+	    def recomendaciones = recomendacionService.recomendar(currentUser)
+	    render(view: '/index', model: ['recomendaciones': recomendaciones])	
+	}
     }
-
 }

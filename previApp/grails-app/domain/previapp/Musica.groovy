@@ -20,4 +20,8 @@ class Musica {
     Integer calcularSimilitud(Musica musica) {
         return 0
     }
+
+    String toString() {
+        this.generoMusical
+    }
 }

@@ -9,51 +9,58 @@ class BootStrap {
     LugarService lugarService
 
     def init = { servletContext ->
-        def musica = new Musica('Rock').save(flush: true, failOnError: true)
-        def comida = new Comida('Sushi', 25).save(flush: true, failOnError: true)
-        def bebida = new Bebida('Coca-cola', 250).save(flush: true, failOnError: true)
-        def zona = new Zona('Avellaneda').save(flush: true, failOnError: true)
+
+        /* Música disponible */
+        def musicaRock = new Musica('Rock').save(flush: true, failOnError: true)
+        def musicaPop = new Musica('Pop').save(flush: true, failOnError: true)
+        def musicaCumbia = new Musica('Cumbia').save(flush: true, failOnError: true)
+
+        /* Comida y bebida disponible */
+        def comidaSushi = new Comida('Sushi', 25).save(flush: true, failOnError: true)
+        def comidaHamburguesa = new Comida('Hamburguesas', 30).save(flush: true, failOnError: true)
+        def bebidaCoca = new Bebida('Coca-cola', 250).save(flush: true, failOnError: true)
+
+        /* Zonas disponibles */
+        def zonaAvellaneda = new Zona('Avellaneda').save(flush: true, failOnError: true)
+        def zonaQuilmes = new Zona('Quilmes').save(flush: true, failOnError: true)
+        def zonaCapital = new Zona('Capital Federal').save(flush: true, failOnError: true)
+	
+        def entrada = new Entrada(200)
+
+        /* Lugares disponibles */
+        Lugar lugar = new Lugar('Restaurant "El molino"', 'Calle 123', 300)
+        lugar.addToComidas(comidaSushi)
+        lugar.addToBebidas(bebidaCoca)
+        lugar.addToMusica(musicaRock)
+        lugar.setZona(zonaAvellaneda)
+        lugar.setEntrada(entrada)
+        lugar.save(failOnError: true)
+
+        Lugar lugar2 = new Lugar('Bar "El bar de Moe"', 'Washington 342', 300)
+        lugar2.addToComidas(comidaHamburguesa)
+        lugar2.addToBebidas(bebidaCoca)
+        lugar2.addToMusica(musicaCumbia)
+        lugar2.setZona(zonaCapital)
+        lugar2.setEntrada(entrada)
+        lugar2.save(failOnError: true)
+
+        Lugar lugar3 = new Lugar('Tenedor libre "La vaca"', 'Olivos 5121', 300)
+        lugar3.addToComidas(comidaHamburguesa)
+        lugar3.addToBebidas(bebidaCoca)
+        lugar3.addToMusica(musicaPop)
+        lugar3.setZona(zonaCapital)
+        lugar3.setEntrada(entrada)
+        lugar3.save(failOnError: true)
 
         def persona = new Persona('Tomas', 'Lopez', 23)
         def pr = new Presupuesto(2300)
-		
-        def entrada = new Entrada(200)
-
-        Lugar lugar = new Lugar('Mi casa', 'QueTeImporta 123', 300)
-        lugar.addToComidas(comida)
-        lugar.addToBebidas(bebida)
-        lugar.addToMusica(musica)
-        lugar.setZona(zona)
-        lugar.setEntrada(entrada)
-
-        lugar.save(failOnError: true)
-
-        Lugar lugar2 = new Lugar('Un lugar al aire libre', 'QueTeImporta 123', 300)
-        lugar2.addToComidas(comida)
-        lugar2.addToBebidas(bebida)
-        lugar2.addToMusica(musica)
-        lugar2.setZona(zona)
-        lugar2.setEntrada(entrada)
-
-        lugar2.save(failOnError: true)
-
-        Lugar lugar3 = new Lugar('Otro lugar al aire libre', 'QueTeImporta 123', 300)
-        lugar3.addToComidas(comida)
-        lugar3.addToBebidas(bebida)
-        lugar3.addToMusica(musica)
-        lugar3.setZona(zona)
-        lugar3.setEntrada(entrada)
-
-        lugar3.save(failOnError: true)
-
-
-        // security reoles iniciales
-
+	
+        /* Usuarios - roles disponibles */
         def userRole = Role.findByAuthority("ROLE_USER") ?: new Role(authority: "ROLE_USER").save(failOnError: true) 
         def adminRole = Role.findByAuthority("ROLE_ADMIN") ?: new Role(authority: "ROLE_ADMIN").save(failOnError: true)
 
-        def adminUser = Usuario.findByUsername("admin") ?: new Usuario("admin", "admin", persona, zona, musica, pr).save(failOnError: true)
-        def newUser = Usuario.findByUsername("tomas") ?: new Usuario("tomas", "tomas", persona, zona, musica, pr).save(failOnError: true)
+        def adminUser = Usuario.findByUsername("admin") ?: new Usuario("admin", "admin", persona, zonaCapital, musicaRock, pr).save(failOnError: true)
+        def newUser = Usuario.findByUsername("tomas") ?: new Usuario("tomas", "tomas", persona, zonaCapital, musicaRock, pr).save(failOnError: true)
 
         def userrole1 = UsuarioRole.create(adminUser, adminRole, true)
         print("Guardado user role ${userrole1}")
@@ -61,7 +68,7 @@ class BootStrap {
         def userrole2 = UsuarioRole.create(newUser, userRole, true)
         print("Guardado user role ${userrole2}")
 
-        print("\n-- Bootstrap inicializado! --\n")
+        print("\n~ *** Bootstrap inicializado! *** ~\n")
     }
 
     def destroy = {

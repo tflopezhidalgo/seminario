@@ -24,14 +24,14 @@
             </li>
         </content>
         <div class="svg" role="presentation">
-            <div class="grails-logo-container">
+            <div class="grails-logo-container" style="height: 100px;">
             </div>
         </div>
         <div id="content" role="main" >
             <section class="row colset-12-its">
                 <h1>Bienvenido a PreviApp</h1>
                 <g:each in="${recomendaciones}" var="recomendacion">
-                    <div class="card">
+                    <div style="border-width: 3px" class="card">
                         <div class="card-body">
                             <asset:image src="place.png" alt="Previapp Logo" style="width: 100px;"/>
                             <p><b>Lugar</b>: ${recomendacion.lugar}</p>
@@ -40,10 +40,17 @@
                             <p><b>Precio entrada</b>: ${recomendacion.lugar.entrada} </p>
                             <p><b>Descripcion</b>: Birra gratis</p>
                             <p><b>Puntaje</b>: ${recomendacion.puntaje}</p>
-                            <div style="align-items:center; justify-content:center; ">
-                                <g:form url="[controller: 'visita', action: 'create', id: recomendacion.lugar.id]" method="POST"> 
-                                    <input type="submit" value="Agregar visita"/> 
-                                </g:form>
+                            <div style="display: flex; flex-direction: row; align-items:center; justify-content:center; ">
+                                <div style="margin: 30px;">
+                                    <g:form url="[controller: 'visita', action: 'create', id: recomendacion.lugar.id]" method="POST"> 
+                                        <input style="background-color: #aa7" type="submit" value="Agregar visita"/> 
+                                    </g:form>
+                                </div>
+                                <div style="margin: 30px;">
+                                    <g:form url="[controller: 'lugar', action: 'show', id: recomendacion.lugar.id]" method="GET"> 
+                                        <input style="background-color: #aa7" type="submit" value="Ver detalles del lugar"/> 
+                                    </g:form>
+                                </div>
                             </div>
                         </div>
                     </div>

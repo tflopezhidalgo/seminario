@@ -21,6 +21,4 @@ abstract class ZonaService {
 	List<Lugar> obtenerLugaresEnZona(Zona zona){
 		return new ArrayList<Lugar>(zona.getLugares())
 	}
-
-
 }

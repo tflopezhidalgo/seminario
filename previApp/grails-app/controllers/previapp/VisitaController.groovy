@@ -3,8 +3,8 @@ package previapp
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 import grails.plugin.springsecurity.SpringSecurityService
+import org.springframework.security.access.annotation.Secured
 
-@Secured(['ROLE_ADMIN', 'ROLE_USER'])
 class VisitaController {
 
     VisitaService visitaService
@@ -12,6 +12,7 @@ class VisitaController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond visitaService.list(params), model:[visitaCount: visitaService.count()]
