@@ -47,15 +47,10 @@ class Lugar {
     }
 
 
-    //def obtenerPrecio() {
-    //    def precioBebidas = 0
-    //    bebidas.each { bebida -> precioBebidas += bebida.obtenerCosto() }
-    //    precioBebidas /= bebidas.length
+    def obtenerPrecioBase() {
+        def precioBebidas = bebidas.sum { bebida -> bebida.costo } / bebidas.size()
+        def precioComidas = comidas.sum { comida -> comida.costo } / comidas.size()
 
-    //    def precioComidad = 0
-    //    comidad.each { comida -> precioComidad + = comida.obtenerCosto() }
-    //    precioComida /= comidas.length
-
-    //    return precioComida + precioBebidas + entrada.obtenerPrecio()
-    //} 
+        return precioComidas + precioBebidas + this.entrada.precio
+    } 
 }

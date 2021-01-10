@@ -34,25 +34,22 @@ class Recomendacion {
 
         Integer puntaje = 0
 
-        if (this.lugar.zona == this.usuario.zona) {
-            puntaje += 2
-        }
-
         this.lugar.musica.each { musica ->
             if (musica == usuario.musicaFavorita) {
                 puntaje += 1
             }
         }
-        return puntaje
         
-//        if (lugar.obtenerPrecio() <= usuario.obtenerPresupuest()){
-//            this.puntaje += 3 
-//        }
-//
-//        if (lugar.obtenerEstrellas() > 3) {
-//            this.puntaje += 1
-//        } else {
-//            this.puntaje -= 1
-//        }
+        if (lugar.obtenerPrecioBase() <= usuario.presupuesto.monto){
+            puntaje += 3 
+        }
+
+        //if (lugar.obtenerEstrellas() > 3) {
+        //    this.puntaje += 1
+        //} else {
+        //    this.puntaje -= 1
+        //}
+
+        return puntaje
     }
 }

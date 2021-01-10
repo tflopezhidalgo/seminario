@@ -1,10 +1,10 @@
 package previapp
 
 class Bebida {
-	
-    /* TODO: Pasar 'costo' a clase Currency/Money */
     String nombre
-    Integer costo
+    Dinero costo
+
+    static embedded = ['costo']
 
     static constraints = {
         nombre(unique: true, nullable: false)
@@ -17,12 +17,15 @@ class Bebida {
         costo nullable: false
     }
 
-    Bebida(String nombre, Integer costo) {
+    Bebida(String nombre, Dinero costo) {
         this.costo = costo
         this.nombre = nombre
     }
 
-    Integer calcularSimilitud(Bebida bebida) {
+    Integer calcularSimilitud(Bebida otraBebida) {
+        if(this.nombre == otraBebida.nombre) {
+            return 10
+        }
         return 0
     }
 }

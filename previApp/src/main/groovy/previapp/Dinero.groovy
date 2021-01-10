@@ -43,7 +43,7 @@ class Dinero implements Comparable<Dinero> {
     }
 
     @Override
-    int compareTo(Dinero o) {
+    int compareTo(Dinero that) {
         int iguales = 0
 
         int comparacion = this.monto.compareTo(that.monto)
@@ -53,5 +53,22 @@ class Dinero implements Comparable<Dinero> {
         if ( comparacion != iguales ) return comparacion
 
         return iguales
+    }
+
+    Dinero div(Integer denom) {
+        if (!denom)
+            throw new Exception("No se puede dividir el Dinero por 0")
+
+        return new Dinero(this.monto.div(denom), this.moneda)
+    }
+
+    Dinero plus(Dinero otro) {
+        if (!otro)
+            return new Dinero(this.monto, this.moneda)
+
+        if (otro.moneda != this.moneda)
+            throw new Exception("No se pueden sumar monedas distintas")
+
+        return new Dinero(this.monto + otro.monto, this.moneda)
     }
 }

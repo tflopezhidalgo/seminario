@@ -16,9 +16,10 @@ class BootStrap {
         def musicaCumbia = new Musica('Cumbia').save(flush: true, failOnError: true)
 
         /* Comida y bebida disponible */
-        def comidaSushi = new Comida('Sushi', 25).save(flush: true, failOnError: true)
-        def comidaHamburguesa = new Comida('Hamburguesas', 30).save(flush: true, failOnError: true)
-        def bebidaCoca = new Bebida('Coca-cola', 250).save(flush: true, failOnError: true)
+        def comidaSushi = new Comida('Sushi', new Dinero(25, Moneda.ARG)).save(flush: true, failOnError: true)
+        def comidaHamburguesa = new Comida('Hamburguesas', new Dinero(30, Moneda.ARG)).save(flush: true, failOnError: true)
+
+        def bebidaCoca = new Bebida('Coca-cola', new Dinero(250, Moneda.ARG)).save(flush: true, failOnError: true)
 
         /* Zonas disponibles */
         def zonaAvellaneda = new Zona('Avellaneda').save(flush: true, failOnError: true)
