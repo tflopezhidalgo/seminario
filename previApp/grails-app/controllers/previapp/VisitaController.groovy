@@ -23,13 +23,7 @@ class VisitaController {
     }
 
     def create(Lugar lugar) {
-        String user = springSecurityService.principal.username
-
-	def currentUser = Usuario.findByUsername(user)
         def visita = new Visita(params)
-
-	print("Creada visita con $lugar, $currentUser")
-
 	visita.setLugar(lugar)
 
         respond visita

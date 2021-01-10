@@ -28,7 +28,7 @@
             <g:form resource="visita" method="POST">
                 <fieldset class="form">
                     <g:hiddenField name="lugar.id" value="${this.visita.getLugar().id}"/>
-                    <f:field bean="${this.visita}" label="Fecha de visita" property="fecha_de_visita"/>
+                    <f:field bean="${this.visita}" label="Fecha de visita" property="fecha"/>
                     <f:field bean="${this.visita}" property="comentario"/>
                     <f:field bean="${this.visita}" property="puntuacion"/>
                 </fieldset>

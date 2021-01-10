@@ -2,15 +2,13 @@ package previapp
 
 class Presupuesto {
 
-    Integer monto
+    Dinero monto
 
     Presupuesto(){}
 
-    Presupuesto(Integer monto) {
-        this.monto = monto
-    }
+    static embedded = ['monto']
 
-    boolean esMenorA(Integer monto) {
-        this.monto < monto
+    Presupuesto(Dinero monto) {
+        this.monto = monto
     }
 }

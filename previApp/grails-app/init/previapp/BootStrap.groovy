@@ -25,7 +25,7 @@ class BootStrap {
         def zonaQuilmes = new Zona('Quilmes').save(flush: true, failOnError: true)
         def zonaCapital = new Zona('Capital Federal').save(flush: true, failOnError: true)
 	
-        def entrada = new Entrada(200)
+        def entrada = new Entrada(new Dinero(300, Moneda.ARG))
 
         /* Lugares disponibles */
         Lugar lugar = new Lugar('Restaurant "El molino"', 'Calle 123', 300)
@@ -53,7 +53,7 @@ class BootStrap {
         lugar3.save(failOnError: true)
 
         def persona = new Persona('Tomas', 'Lopez', 23)
-        def pr = new Presupuesto(2300)
+        def pr = new Presupuesto(new Dinero(2300, Moneda.ARG))
 	
         /* Usuarios - roles disponibles */
         def userRole = Role.findByAuthority("ROLE_USER") ?: new Role(authority: "ROLE_USER").save(failOnError: true) 

@@ -1,20 +1,18 @@
 package previapp
 
-import previapp.Entrada
-
-// TODO: HACER CLASE DINERO
-
 class Entrada {
 
-    Integer precio
+    Dinero precio
+
+    static embedded = ['precio']
 
     String toString() {
-        precio
+        precio.toString()
     }
 
     Entrada(){}
 
-    Entrada(Integer precio) {
+    Entrada(Dinero precio) {
         this.precio = precio
     }
 }
