@@ -32,15 +32,18 @@ class VisitaController {
     def save(Visita visita) {
         if (visita == null) {
             notFound()
-            return
+           return
         }
 
         try {
+	
             String user = springSecurityService.principal.username
             def currentUser = Usuario.findByUsername(user)
 
             visita.setUsuario(currentUser)
+	    visita.lugar.calcularPuntuacion()
             visitaService.save(visita)
+
         } catch (ValidationException e) {
             respond visita.errors, view:'create'
             return

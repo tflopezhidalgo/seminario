@@ -46,11 +46,22 @@ class Lugar {
         this.nombre
     }
 
+    def beforeUpdate(){ this.calcularPuntuacion() }
 
     def obtenerPrecioBase() {
-        def precioBebidas = bebidas.sum { bebida -> bebida.costo } / bebidas.size()
-        def precioComidas = comidas.sum { comida -> comida.costo } / comidas.size()
+        def promedioPrecioBebidas = bebidas.sum { bebida -> bebida.costo } / bebidas.size()
+        def promedioPrecioComidas = comidas.sum { comida -> comida.costo } / comidas.size()
 
-        return precioComidas + precioBebidas + this.entrada.precio
+        return promedioPrecioComidas + promedioPrecioBebidas + this.entrada.precio
     } 
+
+    /* hook llamado cuando se agrega una visita, recalcula la puntuación del lugar */
+    def calcularPuntuacion() {
+        //TODO: queda hacer que se ejecute como hook ante cambios en las visitas
+        if (this.visitas) {
+            this.puntuacion = this.visitas.sum({ 
+                visita -> visita.puntuacion 
+            }) / this.visitas.size()
+        }
+    }
 }

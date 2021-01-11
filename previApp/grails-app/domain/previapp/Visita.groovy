@@ -4,10 +4,10 @@ class Visita {
 
     Date fecha
     String comentario
-    Integer puntuacion
+    Puntuacion puntuacion
 
     static constraints = {
-        fecha validator: {
+       fecha validator: {
             /* No podemos hacer visitas a futuro */
             fecha, visita -> 
                 if (fecha > new Date()) {
@@ -15,13 +15,14 @@ class Visita {
                     return ['fechaDeVisitaInvalida', fecha.toString()] 
                 }
         }
-        puntuacion min: 1, max: 10
     }
 
     static mapping = {
         table "visitas"
         fecha column: 'fecha'
     }
+    
+    static embedded = ['puntuacion']
 	
     static belongsTo = [usuario: Usuario, lugar: Lugar]
 }

@@ -11,12 +11,9 @@ class RecomendacionService {
 	List<Recomendacion> recomendar(Usuario usuario) {
 		// Transaccion principal
 		List<Lugar> lugares = zonaService.obtenerLugaresEnZona(usuario.getZona())
-		List<Recomendacion> recomendaciones = []
-		lugares.each {lugar -> 
-			recomendaciones << new Recomendacion(lugar, usuario);
+		List<Recomendacion> recomendaciones = lugares.collect { lugar ->
+			return new Recomendacion(lugar, usuario) 
 		}
-
-		return recomendaciones.sort()
+		recomendaciones.sort().reverse()
 	}
-
 }
