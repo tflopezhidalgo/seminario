@@ -8,6 +8,7 @@ import org.springframework.security.access.annotation.Secured
 class VisitaController {
 
     VisitaService visitaService
+    LugarService lugarService
     SpringSecurityService springSecurityService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
@@ -41,9 +42,11 @@ class VisitaController {
             def currentUser = Usuario.findByUsername(user)
 
             visita.setUsuario(currentUser)
+	    visita.lugar.addToVisitas(visita)
 	    visita.lugar.calcularPuntuacion()
             visitaService.save(visita)
-
+	    lugarService.save(visita.lugar)
+	    
         } catch (ValidationException e) {
             respond visita.errors, view:'create'
             return

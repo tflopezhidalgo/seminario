@@ -39,7 +39,7 @@
                             <p><b>Capacidad Máxima</b>: ${recomendacion.lugar.capacidadMaxima} </p>
                             <p><b>Precio entrada</b>: ${recomendacion.lugar.entrada} </p>
                             <p><b>Descripcion</b>: Birra gratis</p>
-                            <p><b>Puntaje</b>: ${recomendacion.puntaje}</p>
+                            <p><b>Puntaje de recomendación</b>: ${recomendacion.puntaje}</p>
                             <div style="display: flex; flex-direction: row; align-items:center; justify-content:center; ">
                                 <div style="margin: 30px;">
                                     <g:form url="[controller: 'visita', action: 'create', id: recomendacion.lugar.id]" method="POST"> 

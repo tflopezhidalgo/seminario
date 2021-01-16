@@ -19,7 +19,7 @@ class Lugar {
         direccion nullable:false
         descripcion nullable: true
         capacidadMaxima nullable: true
-        puntuacion nullable: true
+        puntuacion nullable: false
         entrada nullable: false
     }
 
@@ -29,12 +29,12 @@ class Lugar {
         direccion nullabe: false
         descripcion nullabe: true
         capacidadMaxima nullable: true
-        puntuacion nullable: true
+        puntuacion nullable: false
         entrada nullable: false
     }
 
     Lugar(String nombre, String direccion, Integer capacidadMaxima) {
-        this.puntuacion = new Puntuacion()
+        this.puntuacion = new Puntuacion(1)
         this.nombre = nombre
         this.direccion = direccion
         this.descripcion = ''
@@ -46,7 +46,9 @@ class Lugar {
         this.nombre
     }
 
-    def beforeUpdate(){ this.calcularPuntuacion() }
+    def beforeUpdate() { this.calcularPuntuacion() }
+
+    def beforeSave() { this.calcularPuntuacion() }
 
     def obtenerPrecioBase() {
         def promedioPrecioBebidas = bebidas.sum { bebida -> bebida.costo } / bebidas.size()
@@ -57,11 +59,9 @@ class Lugar {
 
     /* hook llamado cuando se agrega una visita, recalcula la puntuación del lugar */
     def calcularPuntuacion() {
-        //TODO: queda hacer que se ejecute como hook ante cambios en las visitas
-        if (this.visitas) {
-            this.puntuacion = this.visitas.sum({ 
-                visita -> visita.puntuacion 
-            }) / this.visitas.size()
-        }
+        def nuevaPuntuacion = this.visitas.sum({ 
+            visita -> visita.puntuacion 
+        }) / this.visitas.size()
+        this.setPuntuacion(nuevaPuntuacion)
     }
 }
