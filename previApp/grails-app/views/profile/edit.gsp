@@ -25,11 +25,25 @@
                 </g:eachError>
             </ul>
             </g:hasErrors>
-            <g:form resource="${this.usuario}" method="PUT">
+            <g:form action="update" controller="profile" method="PUT">
                 <g:hiddenField name="version" value="${this.usuario?.version}" />
-                <fieldset class="form">
-                    <f:all bean="usuario"/>
-                </fieldset>
+
+                <f:with bean="${this.usuario}" >  
+                    <f:with prefix="persona." bean="${this.usuario.persona}">
+                        <f:field property="nombre"/>
+                        <f:field property="apellido"/>
+                        <f:field property="edad"/>
+                    </f:with>
+                    <f:field property="zona"/>
+                    <f:field property="musicaFavorita"/>
+                    <f:with bean="${this.usuario.presupuesto}"> 
+                        <f:with bean="${this.usuario.presupuesto.monto}">
+                            <f:field property="monto"/>
+                            <f:field property="moneda"/>
+                        </f:with>
+                    </f:with>
+                </f:with>
+
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
                 </fieldset>
