@@ -17,13 +17,43 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <label style="font-weight: bold; font-size: 30">Nombre: </label> <f:display bean="lugar" property="nombre"/><br>
-            <label style="font-weight: bold; font-size: 30">Dirección: </label> <f:display bean="lugar" property="direccion"/><br>
-            <label style="font-weight: bold; font-size: 30">Descripción: </label> <f:display bean="lugar" property="descripcion"/><br>
-            <label style="font-weight: bold; font-size: 30">Puntuación: </label> <f:display bean="lugar" property="puntuacion"/><br>
-            <label style="font-weight: bold; font-size: 30">Entrada: </label> <f:display bean="lugar" property="entrada"/><br>
-            <label style="font-weight: bold; font-size: 30">Capacidad máxima: </label> <f:display bean="lugar" property="capacidadMaxima"/><br>
-            <label style="font-weight: bold; font-size: 30">Visitas recibidas: </label> <f:display bean="lugar" property="visitas"/><br>
+            <label style="font-weight: bold; font-size: 15px">Nombre: </label> 
+            <f:display bean="lugar" property="nombre"/><br>
+
+            <label style="font-weight: bold; font-size: 15px">Dirección: </label> 
+            <f:display bean="lugar" property="direccion"/><br>
+
+            <label style="font-weight: bold; font-size: 15px">Puntuación: </label> 
+            ${this.lugar.puntuacion} <br>
+
+            <label style="font-weight: bold; font-size: 15px">Entrada: </label> 
+            ${this.lugar.entrada} <br>
+
+            <label style="font-weight: bold; font-size: 15px">Capacidad máxima: </label> 
+            <f:display bean="lugar" property="capacidadMaxima"/><br>
+
+            <label style="font-weight: bold; font-size: 15px">Descripción: </label> 
+            <f:display bean="lugar" property="descripcion"/><br>
+
+            <label style="font-weight: bold; font-size: 18px">Visitas</label> 
+
+            <table style="margin: 30px">
+                <tr>
+                    <th>Fecha de visita </th>
+                    <th>Usuario</th>
+                    <th>Comentario </th>
+                    <th>Puntuación </th>
+                </tr>
+                <g:each in="${this.lugar.visitas}" var="visita">
+                    <tr>
+                        <td> ${visita.fecha} </td>
+                        <td> ${visita.usuario.username} </td>
+                        <td> ${visita.comentario} </td>
+                        <td> ${visita.puntuacion} </td>
+                    </tr>
+                </g:each>
+            </table>
+
         </div>
     </body>
 </html>
