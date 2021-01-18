@@ -4,6 +4,8 @@
 
 Informe: [Ver acá](https://docs.google.com/document/d/1HO976huka28Tqs-q4pQZHEhqln7hbCAe5fv_zaVhPxg/edit?usp=sharing)
 
+Staging: https://previapp-staging.herokuapp.com/
+
 
 ---
 
