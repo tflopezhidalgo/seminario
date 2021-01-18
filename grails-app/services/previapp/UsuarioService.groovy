@@ -1,18 +1,34 @@
 package previapp
 
+import grails.gorm.transactions.Transactional
 import grails.gorm.services.Service
+import groovy.transform.CompileStatic
+import org.springframework.beans.factory.annotation.Autowired
+
+class DummyService {
+
+    @Transactional
+    void recalcularReputaciones() {
+        Usuario.findAll().each {usuario -> 
+            usuario.reputacion.incrementar(10)
+            usuario.markDirty()
+            usuario.save(flush: true, failOnError: true)
+            println("Puntuación de usuario ${usuario} recalculada")
+        }
+    }    
+}
 
 @Service(Usuario)
-interface UsuarioService {
+@CompileStatic
+abstract class UsuarioService {
 
-    Usuario get(Serializable id)
+    abstract Usuario get(Serializable id)
 
-    List<Usuario> list(Map args)
+    abstract List<Usuario> list(Map args)
 
-    Long count()
+    abstract Long count()
 
-    void delete(Serializable id)
+    abstract void delete(Serializable id)
 
-    Usuario save(Usuario usuario)
-
+    abstract Usuario save(Usuario usuario)
 }

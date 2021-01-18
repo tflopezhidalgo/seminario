@@ -7,6 +7,7 @@ class BootStrap {
     ZonaService zonaService
     UsuarioService usuarioService
     LugarService lugarService
+    DummyService dummyService
 
     def init = { servletContext ->
 

@@ -3,7 +3,9 @@ package previapp
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 import grails.compiler.GrailsCompileStatic
+import grails.gorm.dirty.checking.DirtyCheck
 
+@DirtyCheck
 @GrailsCompileStatic
 @EqualsAndHashCode(includes='username')
 @ToString(includes='username', includeNames=true, includePackage=false)
@@ -17,8 +19,11 @@ class Usuario implements Serializable {
     boolean accountExpired
     boolean accountLocked
     boolean passwordExpired
+
     Reputacion reputacion
+
     Persona persona
+
     Zona zona
     Musica musicaFavorita
     Date creacion
