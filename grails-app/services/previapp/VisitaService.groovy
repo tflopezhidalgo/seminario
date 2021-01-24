@@ -29,4 +29,9 @@ abstract class VisitaService {
         }
         return visitasNoOro.sort()
     } 
+
+    Boolean usuarioVisitoLugar(Usuario usuario, Lugar lugar) {
+        def visito = (Visita.findByUsuarioAndLugar(usuario, lugar) == null) ? false : true
+        return visito
+    }
 }
