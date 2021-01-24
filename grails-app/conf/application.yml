@@ -16,9 +16,9 @@ info:
 spring:
     h2:
         console:
-            enabled: true
-            settings:
-            web-allow-others: true
+            enabled: true 
+            settings: 
+                web-allow-others: true
     jmx:
         unique-names: true
     main:
