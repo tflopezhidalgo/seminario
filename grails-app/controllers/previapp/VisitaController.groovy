@@ -9,6 +9,7 @@ class VisitaController {
 
     VisitaService visitaService
     LugarService lugarService
+    UsuarioService usuarioService
     SpringSecurityService springSecurityService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
@@ -46,6 +47,9 @@ class VisitaController {
 	    visita.lugar.calcularPuntuacion()
             visitaService.save(visita)
 	    lugarService.save(visita.lugar)
+
+            currentUser.reputacion.incrementar(20)
+            usuarioService.save(currentUser)
 	    
         } catch (ValidationException e) {
             respond visita.errors, view:'create'

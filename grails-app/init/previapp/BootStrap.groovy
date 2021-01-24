@@ -84,10 +84,10 @@ class BootStrap {
 
         def goldReputation = new Reputacion([rango: Nivel.ORO, puntos: 4500])
         def goldUser = Usuario.findByUsername("oro") ?: { 
-                def usuario = new Usuario("oro", "oro", persona, zonaCapital, musicaRock, pr)
-                usuario.setReputacion(goldReputation)
-                usuario.save(failOnError: true)
-                return usuario 
+            def usuario = new Usuario("oro", "oro", persona, zonaCapital, musicaRock, pr)
+            usuario.setReputacion(goldReputation)
+            usuario.save(failOnError: true)
+            return usuario 
         }()
 
         UsuarioRole.create(adminUser, adminRole, true)
