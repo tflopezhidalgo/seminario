@@ -35,6 +35,25 @@
             <label style="font-weight: bold; font-size: 15px">Descripción: </label> 
             <f:display bean="lugar" property="descripcion"/><br>
 
+            <label style="font-weight: bold; font-size: 18px">Visitas más influyentes</label> 
+
+            <table style="margin: 30px">
+                <tr>
+                    <th>Fecha de visita </th>
+                    <th>Usuario</th>
+                    <th>Comentario </th>
+                    <th>Puntuación </th>
+                </tr>
+                <g:each in="${visitasOro}" var="visita">
+                    <tr>
+                        <td> ${visita.fecha} </td>
+                        <td> ${visita.usuario.username} </td>
+                        <td> ${visita.comentario} </td>
+                        <td> ${visita.puntuacion} </td>
+                    </tr>
+                </g:each>
+            </table>
+
             <label style="font-weight: bold; font-size: 18px">Visitas</label> 
 
             <table style="margin: 30px">
@@ -44,7 +63,7 @@
                     <th>Comentario </th>
                     <th>Puntuación </th>
                 </tr>
-                <g:each in="${this.lugar.visitas}" var="visita">
+                <g:each in="${visitasNoOro}" var="visita">
                     <tr>
                         <td> ${visita.fecha} </td>
                         <td> ${visita.usuario.username} </td>

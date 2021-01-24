@@ -1,5 +1,8 @@
 package previapp
 
+import groovy.transform.Sortable
+
+@Sortable(includes = ['fecha'])
 class Visita {
 
     Date fecha
@@ -8,7 +11,7 @@ class Visita {
 
     static constraints = {
        fecha validator: {
-            /* No podemos hacer visitas a futuro */
+           /* No podemos hacer visitas a futuro */
             fecha, visita -> 
                 if (fecha > new Date()) {
                     println("fecha =${fecha} visita=${visita}")
@@ -25,4 +28,9 @@ class Visita {
     static embedded = ['puntuacion']
 	
     static belongsTo = [usuario: Usuario, lugar: Lugar]
+
+    def esVisitaOro() {
+        return this.usuario.esUsuarioOro() 
+    } 
+
 }

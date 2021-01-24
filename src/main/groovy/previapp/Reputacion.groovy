@@ -25,12 +25,16 @@ class Reputacion {
         if (this.puntos >= 500 && this.puntos < 1500) {
             setRango(Nivel.PLATA)
         }
-        if (this.puntos >= 150) {
+        if (this.puntos >= 4500) {
             setRango(Nivel.ORO)
         }
     }
 
     String toString() {
         "${this.puntos} puntos (${this.rango})"
+    }
+
+    Boolean esOro() {
+        return (this.rango == Nivel.ORO)
     }
 }

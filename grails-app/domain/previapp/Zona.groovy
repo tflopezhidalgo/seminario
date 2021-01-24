@@ -3,6 +3,8 @@ package previapp
 class Zona {
     String nombre
 
+    static hasMany = [lugares: Lugar]
+
     static mapping = {
         nombre(unique: true, nullable: false)
     }
@@ -10,8 +12,6 @@ class Zona {
     static constraints = {
         nombre(unique:true, nullable: false)
     }
-
-    static hasMany = [lugares: Lugar]
 
     Zona(String nombre){
         this.nombre = nombre
@@ -27,5 +27,10 @@ class Zona {
 
     Integer cantidadDeLugares() {
         return lugares.size()
+    }
+
+    Integer distanciaConZona(Zona otra) {
+        def randomDistance = new Random()
+        return randomDistance.nextInt(100)
     }
 }

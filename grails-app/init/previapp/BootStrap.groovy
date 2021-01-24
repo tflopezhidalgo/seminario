@@ -79,13 +79,25 @@ class BootStrap {
         def adminRole = Role.findByAuthority("ROLE_ADMIN") ?: new Role(authority: "ROLE_ADMIN").save(failOnError: true)
 
         def adminUser = Usuario.findByUsername("admin") ?: new Usuario("admin", "admin", persona, zonaCapital, musicaRock, pr).save(failOnError: true)
+
         def newUser = Usuario.findByUsername("tomas") ?: new Usuario("tomas", "tomas", persona, zonaCapital, musicaRock, pr).save(failOnError: true)
 
-        def userrole1 = UsuarioRole.create(adminUser, adminRole, true)
-        print("Guardado user role ${userrole1}")
+        def goldReputation = new Reputacion([rango: Nivel.ORO, puntos: 4500])
+        def goldUser = Usuario.findByUsername("oro") ?: { 
+                def usuario = new Usuario("oro", "oro", persona, zonaCapital, musicaRock, pr)
+                usuario.setReputacion(goldReputation)
+                usuario.save(failOnError: true)
+                return usuario 
+        }()
 
-        def userrole2 = UsuarioRole.create(newUser, userRole, true)
-        print("Guardado user role ${userrole2}")
+        UsuarioRole.create(adminUser, adminRole, true)
+        println("¡Creado usuario ${adminUser.username}!")
+
+        UsuarioRole.create(newUser, userRole, true)
+        println("¡Creado usuario ${newUser.username}!")
+
+        UsuarioRole.create(goldUser, userRole, true)
+        println("¡Creado usuario ${goldUser.username}!")
 
         print("\n~ *** Bootstrap inicializado! *** ~\n")
     }

@@ -6,6 +6,7 @@ import static org.springframework.http.HttpStatus.*
 class LugarController {
 
     LugarService lugarService
+    VisitaService visitaService
     MusicaService musicaService
     ComidaService comidaService
     BebidaService bebidaService
@@ -19,7 +20,13 @@ class LugarController {
 
     def show(Long id) {
         // El lugar solo se puede editar por el admin, no incluímos botones de edit / delete
-        respond lugarService.get(id), view: 'guestView'
+        Lugar lugar = lugarService.get(id)
+        List<Visita> visitas = []
+        visitas.addAll(lugar.visitas)
+        List<Visita> visitasOro = visitaService.visitasDeUsuariosOro(visitas)
+        List<Visita> visitasNoOro = visitaService.visitasDeUsuariosNoOro(visitas)
+
+        respond lugar, model:[visitasOro: visitasOro, visitasNoOro: visitasNoOro], view: 'guestView'
     }
 
     def create() {

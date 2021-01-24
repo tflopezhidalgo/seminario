@@ -54,7 +54,7 @@ class Lugar {
         def promedioPrecioBebidas = bebidas.sum { bebida -> bebida.costo } / bebidas.size()
         def promedioPrecioComidas = comidas.sum { comida -> comida.costo } / comidas.size()
 
-        return promedioPrecioComidas + promedioPrecioBebidas + this.entrada.precio
+        return (promedioPrecioComidas + promedioPrecioBebidas + this.entrada.precio) / 3
     } 
 
     /* hook llamado cuando se agrega una visita, recalcula la puntuación del lugar */

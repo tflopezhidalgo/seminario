@@ -3,16 +3,30 @@ package previapp
 import grails.gorm.services.Service
 
 @Service(Visita)
-interface VisitaService {
+abstract class VisitaService {
 
-    Visita get(Serializable id)
+    abstract Visita get(Serializable id)
 
-    List<Visita> list(Map args)
+    abstract List<Visita> list(Map args)
 
-    Long count()
+    abstract Long count()
 
-    void delete(Serializable id)
+    abstract void delete(Serializable id)
 
-    Visita save(Visita visita)
+    abstract Visita save(Visita visita)
 
+    /* Ordena la lista de visitas según la importancia de los usuarios */
+    List<Visita> visitasDeUsuariosOro(List <Visita> visitas) {
+        List <Visita> visitasOro = visitas.findAll {  
+            visita -> visita.esVisitaOro()
+        }
+        return visitasOro.sort()
+    }
+
+    List <Visita> visitasDeUsuariosNoOro(List <Visita> visitas) {
+        List <Visita> visitasNoOro = visitas.findAll {
+            visita -> !visita.esVisitaOro()
+        }
+        return visitasNoOro.sort()
+    } 
 }

@@ -65,4 +65,8 @@ class Usuario implements Serializable {
         musicaFavorita nullable: false
         creacion nullable: false
     }
+
+    Boolean esUsuarioOro() {
+        return this.reputacion.esOro()
+    }
 }
