@@ -50,7 +50,7 @@ class Lugar {
 
     def beforeSave() { this.calcularPuntuacion() }
 
-    def obtenerPrecioBase() {
+   def obtenerPrecioBase() {
         def promedioPrecioBebidas = bebidas.sum { bebida -> bebida.costo } / bebidas.size()
         def promedioPrecioComidas = comidas.sum { comida -> comida.costo } / comidas.size()
 
@@ -59,9 +59,19 @@ class Lugar {
 
     /* hook llamado cuando se agrega una visita, recalcula la puntuación del lugar */
     def calcularPuntuacion() {
-        def nuevaPuntuacion = this.visitas.sum({ 
-            visita -> visita.puntuacion 
+        def promedioNormal = this.visitas.sum({ 
+            visita -> visita.puntuacion
         }) / this.visitas.size()
-        this.setPuntuacion(nuevaPuntuacion)
+
+        def visitasOro = this.visitas?.findAll { visita -> visita.esVisitaOro() }
+
+        def promedioOro = visitasOro? visitasOro.sum({ 
+            visita -> visita.puntuacion
+        }) / visitasOro.size() : 0
+
+        if (promedioOro)
+            this.setPuntuacion((promedioNormal + promedioOro) / 2)
+        else
+            this.setPuntuacion(promedioNormal)
     }
 }

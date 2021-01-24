@@ -32,5 +32,4 @@ class Visita {
     def esVisitaOro() {
         return this.usuario.esUsuarioOro() 
     } 
-
 }

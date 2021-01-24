@@ -30,6 +30,13 @@ class Puntuacion {
         return new Puntuacion((this.valor / denom).toInteger())
     }
 
+    Puntuacion multiply(Integer factor) {
+        if (factor < 0)
+            throw new Exception('No se puede crear una puntuación negativa')
+
+        return new Puntuacion(factor * this.valor)
+    }
+
     @Override
     String toString() {
         return this.valor + " estrellas"
