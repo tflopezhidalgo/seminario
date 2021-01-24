@@ -16,7 +16,7 @@ info:
 spring:
     h2:
         console:
-            enable: true
+            enabled: true
     jmx:
         unique-names: true
     main:
