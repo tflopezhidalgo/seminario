@@ -18,6 +18,8 @@ class Musica {
     }
 
     Integer calcularSimilitud(Musica musica) {
+        if (musica.generoMusical == this.generoMusical)
+            return 10
         return 0
     }
 

@@ -25,31 +25,6 @@ class Recomendacion {
     }
 
     private Integer calcularPuntaje() {
-        // TODO: Hacer algo mejor
-        /* TODO: Faltan los campos
-         * - Puntaje del usuario
-         * - Cantidad de visitas que hizo el usuario en ese dia
-         * - Edad promedio de visitantes del lugar
-         */
-
-        Integer puntaje = 0
-
-        this.lugar.musica.each { musica ->
-            if (musica == usuario.musicaFavorita) {
-                puntaje += 1
-            }
-        }
-        
-        if (lugar.obtenerPrecioBase() <= usuario.presupuesto.monto){
-            puntaje += 3 
-        }
-
-        //if (lugar.obtenerEstrellas() > 3) {
-        //    this.puntaje += 1
-        //} else {
-        //    this.puntaje -= 1
-        //}
-
-        return puntaje
+        return this.usuario.calcularAfinidadConLugar(lugar)
     }
 }

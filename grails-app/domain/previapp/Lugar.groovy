@@ -65,6 +65,7 @@ class Lugar {
 
         def visitasOro = this.visitas?.findAll { visita -> visita.esVisitaOro() }
 
+        /* Las puntuaciones de usuarios ORO son más influyentes */
         def promedioOro = visitasOro? visitasOro.sum({ 
             visita -> visita.puntuacion
         }) / visitasOro.size() : 0
