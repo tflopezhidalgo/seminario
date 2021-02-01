@@ -16,15 +16,15 @@ class Recomendacion {
         usuario nullable: false
     }
 
+    private Integer calcularPuntaje() {
+        return this.usuario.calcularAfinidadConLugar(lugar)
+    }
+
     Recomendacion(){}
 
     Recomendacion(Lugar lugar, Usuario usuario) {
         this.lugar = lugar
         this.usuario = usuario
         this.puntaje = this.calcularPuntaje()
-    }
-
-    private Integer calcularPuntaje() {
-        return this.usuario.calcularAfinidadConLugar(lugar)
     }
 }

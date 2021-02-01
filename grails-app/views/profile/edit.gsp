@@ -36,6 +36,8 @@
                     </f:with>
                     <f:field property="zona"/>
                     <f:field property="musicaFavorita"/>
+                    <f:field property="comidaFavorita"/>
+                    <f:field property="bebidaFavorita"/>
                     <f:with bean="${this.usuario.presupuesto}"> 
                         <f:with prefix="presupuesto.monto." bean="${this.usuario.presupuesto.monto}">
                             <f:field property="monto"/>

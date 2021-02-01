@@ -20,7 +20,7 @@ class RecomendacionService {
         }
 
         /* TODO: caso en que el usuario visitó todos los lugares de ambas zonas */
-        if (!lugares.size()) {
+       if (!lugares.size()) {
             println("No se encontraron lugares en la zona ${usuario.getZona()}")
             def zonasCercanas = zonaService.obtenerZonasCercanas(usuario.getZona())
             println("Buscando en ${zonasCercanas[0]}")

@@ -84,7 +84,7 @@ class Usuario implements Serializable {
         if (this.musicaFavorita) {
             def promedioMusica = lugar.musica.sum { musica ->
                 musica.calcularSimilitud(this.musicaFavorita)
-            }  / lugar.musica.size()
+           }  / lugar.musica.size()
 
             puntaje += promedioMusica
             terminos += 1
@@ -108,6 +108,6 @@ class Usuario implements Serializable {
         }
 
         println("Similitud con lugar ${puntaje}")
-        (puntaje / terminos).toInteger()
+        return (puntaje / terminos).toInteger()
     }
 }

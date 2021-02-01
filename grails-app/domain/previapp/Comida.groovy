@@ -22,6 +22,8 @@ class Comida {
         this.nombre = nombre
     }
 
+    String toString() { nombre }
+
     Integer calcularSimilitud(Comida otraComida) {
         if (this.nombre == otraComida.nombre) {
             return 10
