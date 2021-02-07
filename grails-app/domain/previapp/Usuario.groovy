@@ -2,11 +2,9 @@ package previapp
 
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
-//import grails.compiler.GrailsCompileStatic
 import grails.gorm.dirty.checking.DirtyCheck
 
 @DirtyCheck
-//@GrailsCompileStatic
 @EqualsAndHashCode(includes='username')
 @ToString(includes='username', includeNames=true, includePackage=false)
 class Usuario implements Serializable {
@@ -34,21 +32,6 @@ class Usuario implements Serializable {
     static hasMany = [visitas: Visita]
     static embedded = ['reputacion', 'persona', 'presupuesto']
 
-    Usuario(String username, String password, Persona persona, Zona zona, Musica musicaFavorita, Presupuesto presupuesto) {
-        this.username = username
-        this.password = password
-        this.reputacion = new Reputacion()
-        this.persona = persona
-        this.zona = zona
-        this.musicaFavorita = musicaFavorita
-        this.presupuesto = presupuesto
-        this.creacion = new Date()
-    }
-
-    Set<Role> getAuthorities() {
-        (UsuarioRole.findAllByUsuario(this) as List<UsuarioRole>)*.role as Set<Role>
-    }
-
     static constraints = {
         username nullable: false, blank: false, unique: true
         password nullable: false, blank: false, password: true
@@ -70,6 +53,27 @@ class Usuario implements Serializable {
         bebidaFavorita nullable: true
         comidaFavorita nullable: true
         creacion nullable: false
+    }
+
+    Usuario(String username, String password, Persona persona, Zona zona, Musica musicaFavorita, Presupuesto presupuesto) {
+        this.username = this.validarUsername(username)
+        this.password = password
+        this.reputacion = new Reputacion()
+        this.persona = persona
+        this.zona = zona
+        this.musicaFavorita = musicaFavorita
+        this.presupuesto = presupuesto
+        this.creacion = new Date()
+    }
+
+    String validarUsername(String username) {
+        if(!username)
+            throw new UsuarioInvalidoError("No se puede crear un usuario sin nombre")
+        username
+    }
+
+    Set<Role> getAuthorities() {
+        (UsuarioRole.findAllByUsuario(this) as List<UsuarioRole>)*.role as Set<Role>
     }
 
     Boolean esUsuarioOro() {
@@ -107,7 +111,6 @@ class Usuario implements Serializable {
             terminos += 1
         }
 
-        println("Similitud con lugar ${puntaje}")
-        return (puntaje / terminos).toInteger()
+        (puntaje / terminos).toInteger()
     }
 }

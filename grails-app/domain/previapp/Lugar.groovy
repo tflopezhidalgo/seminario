@@ -8,7 +8,6 @@ class Lugar {
     Integer capacidadMaxima
     Puntuacion puntuacion
     Entrada entrada
-    //TODO: Agregar atributo de horario de atención
 
     static hasMany = [visitas: Visita, comidas: Comida, bebidas: Bebida, musica: Musica] 
     static hasOne = [zona: Zona]
@@ -18,9 +17,9 @@ class Lugar {
         nombre nullable: false
         direccion nullable:false
         descripcion nullable: true
-        capacidadMaxima nullable: true
-        puntuacion nullable: false
-        entrada nullable: false
+        capacidadMaxima nullable: true, min: 1
+        entrada nullable: true
+        zona nullable: false
     }
 
     static mapping = {
@@ -28,18 +27,45 @@ class Lugar {
         nombre nullable: false
         direccion nullabe: false
         descripcion nullabe: true
-        capacidadMaxima nullable: true
-        puntuacion nullable: false
-        entrada nullable: false
+        capacidadMaxima nullable: true, min: 1
+        entrada nullable: true
+        zona nullable: false
     }
 
-    Lugar(String nombre, String direccion, Integer capacidadMaxima) {
+    Lugar(String nombre, String direccion, String descripcion, Integer capacidadMaxima, Entrada entrada, Zona zona) {
+        this.nombre = this.validarNombre(nombre)
+        this.direccion = this.validarDireccion(direccion)
+        this.capacidadMaxima = this.validarCapacidad(capacidadMaxima)
         this.puntuacion = new Puntuacion(1)
-        this.nombre = nombre
-        this.direccion = direccion
-        this.descripcion = ''
-        this.capacidadMaxima = capacidadMaxima
-        this.entrada = null
+        this.descripcion = descripcion
+        this.entrada = entrada
+        this.zona = this.validarZona(zona)
+    }
+
+    String validarDireccion(String direccion) {
+        if (!direccion)
+            throw new LugarInvalidoError("No se puede crear un lugar sin dirección")
+        //TODO. chequear el caso en que ya hay un lugar con esa dirección
+        direccion
+    }
+
+    String validarNombre(String nombre) {
+        if (!nombre)
+            throw new LugarInvalidoError("No se puede crear un lugar sin nombre")
+        nombre
+    }
+
+    Integer validarCapacidad(Integer capacidadMaxima) {
+        if (capacidadMaxima <= 0)
+            throw new LugarInvalidoError("No se puede crear un lugar con capacidad máxima negativa o nula")
+        capacidadMaxima
+    }
+
+    Zona validarZona(Zona zona) {
+        if (!zona)
+            throw new LugarInvalidoError("No se puede crear un lugar sin una zona")
+
+        zona
     }
 
     String toString() {
@@ -50,11 +76,15 @@ class Lugar {
 
     def beforeSave() { this.calcularPuntuacion() }
 
-   def obtenerPrecioBase() {
+    def agregarVisita(Visita visita) {
+        //TODO.
+    }
+
+    def obtenerPrecioBase() {
         def promedioPrecioBebidas = bebidas.sum { bebida -> bebida.costo } / bebidas.size()
         def promedioPrecioComidas = comidas.sum { comida -> comida.costo } / comidas.size()
 
-        return (promedioPrecioComidas + promedioPrecioBebidas + this.entrada.precio) / 3
+        (promedioPrecioComidas + promedioPrecioBebidas + this.entrada.precio) / 3
     } 
 
     /* hook llamado cuando se agrega una visita, recalcula la puntuación del lugar */

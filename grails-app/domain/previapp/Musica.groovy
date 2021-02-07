@@ -17,10 +17,18 @@ class Musica {
         this.generoMusical = generoMusical
     }
 
+    String validarGenero(String generoMusical) {
+        if (!generoMusical) 
+            throw new MusicaInvalidaError("No se puede crear un género musical sin nombre")
+
+        if(this.findByGeneroMusical(generoMusical))
+            throw new MusicaInvalidaError("Ya existe ese género musical")
+
+        generoMusical
+    }
+
     Integer calcularSimilitud(Musica musica) {
-        if (musica.generoMusical == this.generoMusical)
-            return 10
-        return 0
+        musica.generoMusical == this.generoMusical? 10 : 0
     }
 
     String toString() {

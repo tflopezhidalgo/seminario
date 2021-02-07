@@ -18,16 +18,29 @@ class Bebida {
     }
 
     Bebida(String nombre, Dinero costo) {
-        this.costo = costo
-        this.nombre = nombre
+        this.costo = this.validarCosto(costo)
+        this.nombre = this.validarNombre(nombre)
+    }
+
+    Dinero validarCosto(Dinero costo) {
+        if(!costo)
+            BebidaInvalidaError("No se puede crear una bebida sin costo")
+        costo
+    }
+
+    String validarNombre(nombre) {
+        if(Bebida.findByNombre(nombre))
+            throw new BebidaInvalidaError("Ya existe una bebida con ese nombre")
+
+        if (!nombre)
+            throw new BebidaInvalidaError("No se puede crear una bebida sin nombre")
+
+        nombre
     }
 
     String toString() { nombre }
 
     Integer calcularSimilitud(Bebida otraBebida) {
-        if(this.nombre == otraBebida.nombre) {
-            return 10
-        }
-        return 0
+        this.nombre == otraBebida.nombre? 10 : 0
     }
 }

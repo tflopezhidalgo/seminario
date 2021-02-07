@@ -33,13 +33,6 @@ class LugarController {
         respond new Lugar(params)
     }
 
-    def crearLugar(Lugar lugar, Musica musica, Comida comida, Bebida bebida) {
-        this.save(lugar)
-        musicaService.save(musica)
-        comidaService.save(comida)
-        bebidaService.save(comida)
-    }
-
     def save(Lugar lugar) {
         if (lugar == null) {
             notFound()

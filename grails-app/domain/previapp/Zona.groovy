@@ -14,6 +14,9 @@ class Zona {
     }
 
     Zona(String nombre){
+        if (!nombre)
+            throw new ZonaInvalidaError("No se puede crear una zona sin nombre")
+
         this.nombre = nombre
     }
 
