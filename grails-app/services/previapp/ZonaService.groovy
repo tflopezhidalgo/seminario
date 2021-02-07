@@ -25,7 +25,7 @@ abstract class ZonaService {
 	List<Zona> obtenerZonasCercanas(Zona zona){
 	    def zonasDisponibles = Zona.findAll()
 	    return zonasDisponibles.findAll { zonaDisponible -> 
-		zona.distanciaConZona(zonaDisponible) > 10
+		zona.distanciaConZona(zonaDisponible) < 10
 	    }
 	}
 }
