@@ -39,7 +39,7 @@
                             <p><b>Capacidad Máxima</b>: ${recomendacion.lugar.capacidadMaxima} </p>
                             <p><b>Precio entrada</b>: ${recomendacion.lugar.entrada} </p>
                             <p><b>Presupuesto necesario</b>: ${recomendacion.lugar.obtenerPrecioBase()} </p>
-                            <p><b>Descripcion</b>: Birra gratis</p>
+                            <p><b>Descripcion</b>: ${recomendacion.lugar.descripcion}</p>
                             <p><b>Puntaje de recomendación</b>: ${recomendacion.puntaje}</p>
                             <div style="display: flex; flex-direction: row; align-items:center; justify-content:center; ">
                                 <div style="margin: 30px;">

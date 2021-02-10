@@ -30,7 +30,7 @@ class Visita {
     static belongsTo = [usuario: Usuario, lugar: Lugar]
 
     Visita(Usuario usuario, Lugar lugar, Date fechaVisita, Puntuacion puntuacion, String comentario) {
-        if (!(usuario && lugar)
+        if (!(usuario && lugar))
             throw new VisitaInvalidaError("No se puede crear una visita sin usuario o lugar")
 
         this.fecha = this.validarFecha(fechaVisita)

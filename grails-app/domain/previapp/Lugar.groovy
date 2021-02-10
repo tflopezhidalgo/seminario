@@ -37,11 +37,11 @@ class Lugar {
         this.direccion = this.validarDireccion(direccion)
         this.capacidadMaxima = this.validarCapacidad(capacidadMaxima)
         this.puntuacion = new Puntuacion(1)
-        this.descripcion = descripcion
-        this.entrada = entrada
-        this.zona = this.validarZona(zona)
-    }
-
+        this.descripcion = descripcion                    
+        this.entrada = entrada                            
+        this.zona = this.validarZona(zona)                
+    }                                                     
+                                                          
     String validarDireccion(String direccion) {
         if (!direccion)
             throw new LugarInvalidoError("No se puede crear un lugar sin dirección")
@@ -64,7 +64,6 @@ class Lugar {
     Zona validarZona(Zona zona) {
         if (!zona)
             throw new LugarInvalidoError("No se puede crear un lugar sin una zona")
-
         zona
     }
 

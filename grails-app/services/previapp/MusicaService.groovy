@@ -8,11 +8,11 @@ interface MusicaService {
 
     Musica get(Serializable id)
 	
-	List<Musica> list(Map args)
+    List<Musica> list(Map args)
 
-	Long count()
+    Long count()
 
-	void delete(Serializable id)
+    void delete(Serializable id)
 
-	Musica save(Musica musica)
+    Musica save(Musica musica)
 }

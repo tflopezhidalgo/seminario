@@ -10,6 +10,7 @@ class LugarController {
     MusicaService musicaService
     ComidaService comidaService
     BebidaService bebidaService
+    ZonaService zonaService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -27,31 +28,49 @@ class LugarController {
         List<Visita> visitasNoOro = visitaService.visitasDeUsuariosNoOro(visitas)
 
         respond lugar, model:[visitasOro: visitasOro, visitasNoOro: visitasNoOro], view: 'guestView'
-    }
-
-    def create() {
-        respond new Lugar(params)
-    }
-
-    def save(Lugar lugar) {
-        if (lugar == null) {
-            notFound()
-            return
-        }
-
+    }                                                     
+                                                          
+    def create() {                                        
+        def comidaDisponible = comidaService.list() 
+        def bebidaDisponible = bebidaService.list()
+        def musicaDisponible = musicaService.list()
+        def zonasDisponibles = zonaService.list()
+        respond new Lugar(), model: [zonasDisponibles: zonasDisponibles, musicaDisponible: musicaDisponible, comidaDisponible: comidaDisponible, bebidaDisponible: bebidaDisponible]                               
+    }                                                     
+                                                          
+    def save() {
         try {
-            lugarService.save(lugar)
-        } catch (ValidationException e) {
-            respond lugar.errors, view:'create'
-            return
-        }
+            Lugar lugar = lugarService.crearLugar([
+                nombre: params.nombre,
+                direccion: params.direccion,
+                descripcion: params.descripcion,
+                capacidadMaxima: params.capacidadMaxima,
+                montoEntrada: params.monto,
+                monedaEntrada: params.moneda,
+                zonaId: params.zonaId,
+                musicasId: params.musicasId,
+                bebidasId: params.bebidasId,
+                comidasId: params.comidasId,
+            ])
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'lugar.label', default: 'Lugar'), lugar.id])
-                redirect(action: 'index')
+            lugarService.save(lugar)
+
+            request.withFormat {
+                form multipartForm {
+                    flash.message = message(code: 'default.created.message', args: [message(code: 'lugar.label', default: 'Lugar'), lugar.id])
+                    redirect(action: 'index')
+                }
+                '*' { respond lugar, [status: CREATED] }
             }
-            '*' { respond lugar, [status: CREATED] }
+
+        } catch (ValidationException e) {
+            log.error("ValidationException: ${e}")
+            respond new Lugar(), view:'create', model: [error: e]
+            return
+        } catch (RuntimeException e) {
+            log.error("RuntimeException: ${e}")
+            respond new Lugar(), view:'create', model: [error: e]
+            return
         }
     }
 
