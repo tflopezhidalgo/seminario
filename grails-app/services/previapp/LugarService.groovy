@@ -5,6 +5,11 @@ import grails.gorm.services.Service
 @Service(Lugar)
 abstract class LugarService {
 
+    ZonaService zonaService
+    MusicaService musicaService
+    ComidaService comidaService
+    BebidaService bebidaService
+
     abstract Lugar get(Serializable id)
 
     abstract List<Lugar> list(Map args)
@@ -15,49 +20,14 @@ abstract class LugarService {
 
     abstract Lugar save(Lugar lugar)
 
-    Lugar crearLugar(Map caracteristicas) {
-        try {
-            Entrada entrada = new Entrada(
-                new Dinero(
-                    caracteristicas.montoEntrada.toBigDecimal(), 
-                    Moneda[caracteristicas.monedaEntrada]
-                )
-            )
-        } catch (RuntimeException e) { 
-            throw new RuntimeException("Valor de precio de entrada inválido")
-        }
-
-        Zona zona = zonaService.get(caracteristicas.zonaId)
-
-        try {
-            def capacidad = caracteristicas.capacidadMaxima.toInteger()
-        } catch (RuntimeException e) {
-            throw new RuntimeException("Valor de capacidad máxima del lugar inválido")
-        }
-
-        Lugar lugar = new Lugar(
-            caracteristicas.nombre,
-            caracteristicas.direccion,
-            caracteristicas.descripcion,
-            capacidad,
-            entrada, 
-            zona
-        )
-
-        caracteristicas.musicasId.each{ id ->  
-            def musica = musicaService.get(id)
-            lugar.addToMusica(musica)
-        }
-
-        caracteristicas.comidasId.each{ id ->  
-            def comida = comidaService.get(id)
-            lugar.addToComidas(comida)
-        }
-
-        caracteristicas.bebidasId.each{ id ->  
-            def bebida = bebidaService.get(id)
-            lugar.addToBebidas(bebida)
-        }
+    Lugar crearLugar(Map data) {      
+        Entrada entrada = new Entrada(new Dinero(data.montoEntrada, data.monedaEntrada))
+        Zona zona = zonaService.get(data.zonaId)          
+        Lugar lugar = new Lugar(data.nombre, data.direccion, data.descripcion, data.capacidadMaxima, entrada, zona)
+                                     
+        musicaService.obtenerMusica(data.musicasId).each { musica -> lugar.addToMusica(musica) }
+        comidaService.obtenerComidas(data.comidasIds).each { comida -> lugar.addToComidas(comida) }
+        bebidaService.obtenerBebidas(data.bebidasIds).each { bebida -> lugar.addToBebidas(bebida) }
 
         lugar
     }

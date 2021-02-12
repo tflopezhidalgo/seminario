@@ -16,6 +16,12 @@ class Puntuacion {
         this.valor = valor
     }
 
+    Integer validar(Integer puntuacion) {
+        if (0 < puntuacion && puntuacion <= 10) {
+            throw new PuntuacionInvalidaError(puntuacion)
+        }
+    }
+
     Puntuacion plus(Puntuacion other) {
         if (!other)
             throw new Exception('No se pueden sumar puntuaciones nulas')

@@ -18,39 +18,31 @@
             <g:if test="${flash.message}">                
             <div class="message" role="status">${flash.message}</div>
             </g:if>                                       
-            <g:hasErrors bean="${this.lugar}">            
+            <g:hasErrors bean="${lugarForm}">            
                 <ul class="errors" role="alert">          
-                    <g:eachError bean="${this.lugar}" var="error">
+                    <g:eachError bean="${lugarForm}" var="error">
                     <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
                     </g:eachError>                        
                 </ul>
             </g:hasErrors>
-            <g:if test="${error}">
+            <g:if test="${errorMsg}">
                 <ul class="errors" role="alert">          
-                   <li>${error.message}</li>
+                   <li>${errorMsg}</li>
                 </ul>
             </g:if>
-            <g:form resource="${this.lugar}" method="POST">
-                <f:field bean="lugar" property="nombre" name="nombre"/>
-                <f:field bean="lugar" property="direccion" name="direccion"/>
-                <f:field bean="lugar" property="descripcion" name="descripcion"/>
-                <f:field bean="lugar" property="capacidadMaxima" name="capacidadMaxima" min="0"/>
-                <div class="fieldcontain required">
-                    <label for="monto">Monto entrada</label>
-                    <input type="number decimal" name="monto" min="0" id="lugar.entrada.precio.monto">
-                </div>
-                <div class="fieldcontain required">
-                    <label for="moneda">Moneda entrada</label>
-                    <select name="moneda" id="lugar.entrada.precio.moneda">
-                        <option value="ARG" selected="selected">ARG</option>
-                    </select>
-                </div>
+            <g:form resource="lugar" method="POST">
+                <f:field bean="${lugarForm}" property="nombre" name="nombre"/>
+                <f:field bean="${lugarForm}" property="direccion" name="direccion"/>
+                <f:field bean="${lugarForm}" property="descripcion" name="descripcion"/>
+                <f:field bean="${lugarForm}" property="capacidadMaxima" name="capacidadMaxima" min="0"/>
+                <f:field bean="${lugarForm}" property="monedaEntrada" name="monedaEntrada"/>
+                <f:field bean="${lugarForm}" property="valorEntrada" name="valorEntrada"/>
                 <div style="margin: 50px;">
                     <h2> Seleccioná la zona de tu establecimiento </h2>
                     <hr class="solid">
                     <label for="zona">Zona</label>
                     <select name="zonaId" id="zona">
-                        <g:each var="zona" in="${zonasDisponibles}">
+                        <g:each var="zona" in="${zonas}">
                             <option value="${zona.id}" selected="selected">${zona.nombre}</option>
                         </g:each>
                     </select>
@@ -58,25 +50,25 @@
                 <div style="margin: 50px;">
                     <h2> Seleccioná la comida que tiene tu establecimiento </h2>
                     <hr class="solid">
-                    <g:each var="comida" in="${comidaDisponible}">
+                    <g:each var="comida" in="${comidas}">
                         <label for="comidaSeleccionada">${comida.nombre}</label>
-                        <g:checkBox value="${comida.id}" id="comidaSeleccionada" name="comidasId"/>
+                        <g:checkBox checked="false" value="${comida.id}" id="comidaSeleccionada" name="comidasId"/>
                         </br>
                     </g:each>
                 </div>
                 <div style="margin: 50px;">
                     <h2> Seleccioná la bebida que tiene tu establecimiento </h2>
                     <hr class="solid">
-                    <g:each var="bebida" in="${bebidaDisponible}">
+                    <g:each var="bebida" in="${bebidas}">
                         <label for="bebidaSeleccionada">${bebida.nombre}</label>
                         <g:checkBox value="${bebida.id}" id="bebidaSeleccionada" name="bebidasId"/>
                         </br>
                     </g:each>
                 </div>
                 <div style="margin: 50px;">
-                    <h3> Seleccioná la música que pasan en tu establecimiento </h2>
+                    <h3> Seleccioná la música que se escucha en tu establecimiento </h2>
                     <hr class="solid">
-                    <g:each var="musica" in="${musicaDisponible}">
+                    <g:each var="musica" in="${generosMusicales}">
                         <label for="musicaSeleccionada">${musica.generoMusical}</label>
                         <g:checkBox value="${musica.id}" id="musicaSeleccionada" name="musicasId"/>
                         </br>

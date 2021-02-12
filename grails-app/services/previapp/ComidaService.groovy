@@ -4,16 +4,19 @@ import grails.gorm.transactions.Transactional
 import grails.gorm.services.Service
 
 @Service(Comida)
-interface ComidaService {
+abstract class ComidaService {
 
-	Comida get(Serializable id)
+    abstract Comida get(Serializable id)
 
-	List<Comida> list(Map args)
+    abstract List<Comida> list(Map args)
 
-	Long count()
+    abstract Long count()
 
-	void delete(Serializable id)
+    abstract void delete(Serializable id)
 
-	Comida save(Comida comida)
+    abstract Comida save(Comida comida)
 
+    List<Comida> obtenerComidas(List<Serializable> ids) {
+        ids.collect { id -> this.get(id) }
+    }
 }

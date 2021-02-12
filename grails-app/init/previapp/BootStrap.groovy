@@ -35,7 +35,7 @@ class BootStrap {
         def zonaCapital = new Zona('Capital Federal').save(flush: true, failOnError: true)
 	
         /* Lugares disponibles */
-        def entrada = new Entrada(new Dinero(0, Moneda.ARG)) 
+        def entrada = new Entrada(new Dinero(10, Moneda.ARG)) 
         Lugar lugar = new Lugar('Restaurant "El molino"', 'Calle 123', '', 200, entrada, zonaCapital)
         lugar.addToComidas(comidaSushi)
         lugar.addToComidas(comidaHamburguesa)
@@ -74,7 +74,7 @@ class BootStrap {
         lugar4.addToMusica(musicaRockNRoll)
         lugar4.save(failOnError: true)
 
-        def entrada5 = new Entrada(new Dinero(0, Moneda.ARG))
+        def entrada5 = new Entrada(new Dinero(4, Moneda.ARG))
         Lugar lugar5 = new Lugar('Bar "La birra fría"', 'Alberdi 500', '', 100, entrada5, zonaCapital)
         lugar5.addToComidas(comidaHamburguesa)
         lugar5.addToBebidas(bebidaCoca)
@@ -85,7 +85,7 @@ class BootStrap {
         lugar5.addToMusica(musicaCumbia)
         lugar5.save(failOnError: true)
 
-        def entrada6 = new Entrada(new Dinero(0, Moneda.ARG))
+        def entrada6 = new Entrada(new Dinero(5, Moneda.ARG))
         Lugar lugar6 = new Lugar("Restaurant 'El salóm ahumado'", 'Corrientes 500', '', 100, entrada6, zonaCapital)
         lugar6.addToComidas(comidaHamburguesa)
         lugar6.addToComidas(comidaRavioles)

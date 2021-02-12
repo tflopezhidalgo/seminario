@@ -4,21 +4,25 @@ import java.text.DecimalFormat
 
 enum Moneda { ARG }
 
+
 class Dinero implements Comparable<Dinero> {
 
     BigDecimal monto
     Moneda moneda
 
-    static constraints = {
-        monto min: new BigDecimal(0)
-    }
-
     Dinero () { }
 
     Dinero(BigDecimal monto, Moneda moneda) {
-        this.monto = monto
+        this.monto = this.validarMonto(monto)
         this.monto.setScale(2, BigDecimal.ROUND_DOWN)
         this.moneda = moneda
+    }
+
+    BigDecimal validarMonto(BigDecimal monto) { 
+        if (monto <= 0) {
+            throw new DineroConMontoInvalidoError(monto)
+        }
+        monto
     }
 
     @Override

@@ -4,15 +4,19 @@ import grails.gorm.transactions.Transactional
 import grails.gorm.services.Service
 
 @Service(Musica)
-interface MusicaService {
+abstract class MusicaService {
 
-    Musica get(Serializable id)
-	
-    List<Musica> list(Map args)
+    abstract Musica get(Serializable id)
 
-    Long count()
+    abstract List<Musica> list(Map args)
 
-    void delete(Serializable id)
+    abstract Long count()
 
-    Musica save(Musica musica)
+    abstract void delete(Serializable id)
+
+    abstract Musica save(Musica musica)
+
+    List<Musica> obtenerMusica(List<Serializable> ids) {
+        ids.collect { id -> this.get(id) }
+    }
 }

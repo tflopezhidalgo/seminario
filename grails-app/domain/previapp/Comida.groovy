@@ -23,20 +23,9 @@ class Comida {
     }
 
     String validarNombre(String nombre) {
-        if (this.findByNombre(nombre))
-            throw new ComidaInvalidaError("Ya existe una comida con ese nombre")
-
         if (!nombre)
             throw new ComidaInvalidaError("No se pueden crear comidas sin nombre")
-
         nombre
-    }
-
-    Dinero validarCosto(Dinero costo) {
-        if (!costo) 
-            throw new ComidaInvalidaError("No se pueden crear comidas sin costo")
-
-        costo
     }
 
     String toString() { nombre }

@@ -3,6 +3,36 @@ package previapp
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 
+
+class LugarForm {
+    String nombre
+    String direccion
+    String descripcion
+    Integer capacidadMaxima
+    Moneda monedaEntrada
+    BigDecimal valorEntrada 
+    Long zonaId 
+
+    List<Long> musicasId
+    List<Long> bebidasId
+    List<Long> comidasId
+
+    static constraints = {
+        nombre nullable: false
+        direccion nullable: false
+        descripcion nullable: true
+        capacidadMaxima nullable: false
+        monedaEntrada nullable: false
+        valorEntrada nullable: false
+        zonaId nullable: false
+        musicasId nullable: true
+        bebidasId nullable: true
+        comidasId nullable: true
+    }
+
+}
+
+
 class LugarController {
 
     LugarService lugarService
@@ -27,51 +57,70 @@ class LugarController {
         List<Visita> visitasOro = visitaService.visitasDeUsuariosOro(visitas)
         List<Visita> visitasNoOro = visitaService.visitasDeUsuariosNoOro(visitas)
 
-        respond lugar, model:[visitasOro: visitasOro, visitasNoOro: visitasNoOro], view: 'guestView'
+        respond lugar, model: [visitasOro: visitasOro, visitasNoOro: visitasNoOro], view: 'guestView'
     }                                                     
                                                           
     def create() {                                        
-        def comidaDisponible = comidaService.list() 
-        def bebidaDisponible = bebidaService.list()
-        def musicaDisponible = musicaService.list()
-        def zonasDisponibles = zonaService.list()
-        respond new Lugar(), model: [zonasDisponibles: zonasDisponibles, musicaDisponible: musicaDisponible, comidaDisponible: comidaDisponible, bebidaDisponible: bebidaDisponible]                               
-    }                                                     
+        render(view: 'create', model: [
+            errorMsg: params.errorMsg,
+            lugarForm: new LugarForm(),
+            zonas: zonaService.list(), 
+            generosMusicales: musicaService.list(), 
+            comidas: comidaService.list(), 
+            bebidas: bebidaService.list()
+        ])
+    }                                                    
+
+    def save(LugarForm lugarForm) {
+        if (lugarForm.hasErrors()){
+            render(view: 'create', model: [
+                errorMsg: '',
+                lugarForm: lugarForm,
+                zonas: zonaService.list(), 
+                generosMusicales: musicaService.list(), 
+                comidas: comidaService.list(), 
+                bebidas: bebidaService.list()
+            ])                          
+            return                      
+        }                               
                                                           
-    def save() {
-        try {
-            Lugar lugar = lugarService.crearLugar([
-                nombre: params.nombre,
-                direccion: params.direccion,
-                descripcion: params.descripcion,
-                capacidadMaxima: params.capacidadMaxima,
-                montoEntrada: params.monto,
-                monedaEntrada: params.moneda,
-                zonaId: params.zonaId,
-                musicasId: params.musicasId,
-                bebidasId: params.bebidasId,
-                comidasId: params.comidasId,
-            ])
+        try {                                             
+            Lugar lugar = lugarService.crearLugar([       
+                nombre: lugarForm.nombre,                 
+                direccion: lugarForm.direccion,           
+                descripcion: lugarForm.descripcion,       
+                capacidadMaxima: lugarForm.capacidadMaxima,
+                montoEntrada: lugarForm.valorEntrada,
+                monedaEntrada: lugarForm.monedaEntrada,   
+                zonaId: lugarForm.zonaId,                 
+                musicasId: lugarForm.musicasId,           
+                bebidasId: lugarForm.bebidasId,           
+                comidasId: lugarForm.comidasId,           
+            ])                                             
 
-            lugarService.save(lugar)
-
-            request.withFormat {
-                form multipartForm {
+            lugarService.save(lugar)                      
+                                      
+            request.withFormat {      
+                form multipartForm {  
                     flash.message = message(code: 'default.created.message', args: [message(code: 'lugar.label', default: 'Lugar'), lugar.id])
                     redirect(action: 'index')
-                }
+                }                       
                 '*' { respond lugar, [status: CREATED] }
-            }
-
+            }                           
         } catch (ValidationException e) {
-            log.error("ValidationException: ${e}")
-            respond new Lugar(), view:'create', model: [error: e]
-            return
+            redirect(action: 'create', params: [errorMsg: e.getMessage()])
+        } catch(CapacidadMaximaInvalidaError e) {
+            def msg = "${e.capacidadInvalida} no es un valor válido para la capacidad"
+            redirect(action: 'create', params: [errorMsg: msg])
+        } catch(DineroConMontoInvalidoError e) {
+            def msg = "${e.montoErroneo} no es un monto de entrada válido"
+            redirect(action: 'create', params: [errorMsg: msg])
+        } catch(DireccionInvalidaError e) {
+            def msg = "La dirección ${e.direccionInvalida} no es una dirección válida"
+            redirect(action: 'create', params: [errorMsg: msg])
         } catch (RuntimeException e) {
-            log.error("RuntimeException: ${e}")
-            respond new Lugar(), view:'create', model: [error: e]
-            return
-        }
+            redirect(action: 'create', params: [errorMsg: e.getMessage()])
+        }       
     }
 
     def edit(Long id) {

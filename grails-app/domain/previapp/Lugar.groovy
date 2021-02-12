@@ -39,44 +39,39 @@ class Lugar {
         this.puntuacion = new Puntuacion(1)
         this.descripcion = descripcion                    
         this.entrada = entrada                            
-        this.zona = this.validarZona(zona)                
+        this.zona = zona 
     }                                                     
                                                           
     String validarDireccion(String direccion) {
-        if (!direccion)
-            throw new LugarInvalidoError("No se puede crear un lugar sin dirección")
+        //TODO: validar que la dirección tenga formato <calle> <numero>
         //TODO. chequear el caso en que ya hay un lugar con esa dirección
         direccion
     }
 
     String validarNombre(String nombre) {
-        if (!nombre)
-            throw new LugarInvalidoError("No se puede crear un lugar sin nombre")
+        //TODO: agregar chequeos por signo de puntuación 
         nombre
     }
 
     Integer validarCapacidad(Integer capacidadMaxima) {
         if (capacidadMaxima <= 0)
-            throw new LugarInvalidoError("No se puede crear un lugar con capacidad máxima negativa o nula")
+            throw new CapacidadMaximaInvalidaError(capacidadMaxima)
         capacidadMaxima
     }
 
-    Zona validarZona(Zona zona) {
-        if (!zona)
-            throw new LugarInvalidoError("No se puede crear un lugar sin una zona")
-        zona
-    }
-
-    String toString() {
-        this.nombre
-    }
-
-    def beforeUpdate() { this.calcularPuntuacion() }
-
-    def beforeSave() { this.calcularPuntuacion() }
+    String toString() { this.nombre }
 
     def agregarVisita(Visita visita) {
-        //TODO.
+        /* TODO: casos a revisar:
+            - cuando la visita ya está en la lista de visitas
+            - cuando se intenta agregar una misma visita de la misma persona en el mismo día 
+        */
+        if (!visita) {
+            throw new NullPointerException("No se puede agregar una visita nula a un lugar")
+        }
+
+        this.addToVisitas(visita)
+        this.calcularPuntuacion()
     }
 
     def obtenerPrecioBase() {
@@ -99,9 +94,10 @@ class Lugar {
             visita -> visita.puntuacion
         }) / visitasOro.size() : 0
 
-        if (promedioOro)
+        if (promedioOro) {
             this.setPuntuacion((promedioNormal + promedioOro) / 2)
-        else
+        } else {
             this.setPuntuacion(promedioNormal)
+        }
     }
 }
