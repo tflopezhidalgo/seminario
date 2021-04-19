@@ -5,6 +5,22 @@ import static org.springframework.http.HttpStatus.*
 import grails.plugin.springsecurity.SpringSecurityService
 import org.springframework.security.access.annotation.Secured
 
+
+class VisitaForm {
+    Long lugarId
+    Date fecha
+    String comentario
+    Integer puntuacion
+
+    static constraints = {
+        lugarId nullable: false
+        fecha nullable: false
+        comentario nullable: true
+        puntuacion nullable: false
+    }
+}
+
+
 class VisitaController {
 
     VisitaService visitaService
@@ -25,43 +41,46 @@ class VisitaController {
     }
 
     def create(Lugar lugar) {
-        def visita = new Visita(params)
-	visita.setLugar(lugar)
+        def visitaForm = new VisitaForm()
+        println("params es = ${params}")
+        visitaForm.setLugarId(lugar.id)
 
-        respond visita
+        respond visitaForm, model: [nombreLugar: lugar.getNombre(), errorMsg: params.errorMsg]
     }
 
-    def save(Visita visita) {
-        if (visita == null) {
-            notFound()
-           return
-        }
-
+    def save(VisitaForm visitaForm) {
         try {
-	
             String user = springSecurityService.principal.username
             def currentUser = Usuario.findByUsername(user)
 
-            visita.setUsuario(currentUser)
-	    visita.lugar.addToVisitas(visita)
-	    visita.lugar.calcularPuntuacion()
+            Lugar lugar = lugarService.get(visitaForm.lugarId)
+
+            def visita = visitaService.crearVisitaEnLugar(currentUser, lugar, visitaForm.fecha, visitaForm.comentario, new Puntuacion(visitaForm.puntuacion))
             visitaService.save(visita)
-	    lugarService.save(visita.lugar)
 
-            currentUser.reputacion.incrementar(20)
-            usuarioService.save(currentUser)
-	    
-        } catch (ValidationException e) {
-            respond visita.errors, view:'create'
-            return
-        }
+            log.debug("Guardada visita de ${currentUser} para lugar ${lugar}")
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'visita.label', default: 'Visita'), visita.id])
-                redirect(action: 'index')
+            request.withFormat {
+                form multipartForm {
+                    flash.message = message(code: 'default.created.message', args: [message(code: 'visita.label', default: 'Visita'), visita.id])
+                    redirect(action: 'index')
+                }
+                '*' { respond visita, [status: CREATED] }
             }
-            '*' { respond visita, [status: CREATED] }
+
+        } catch (ValidationException e) {
+            redirect(action: 'create', params: [errorMsg: e.getMessage(), id: visitaForm.lugarId])
+        } catch(CapacidadMaximaInvalidaError e) {
+            def msg = "${e.capacidadInvalida} no es un valor válido para la capacidad"
+            redirect(action: 'create', params: [errorMsg: msg, id: visitaForm.lugarId])
+        } catch(DineroConMontoInvalidoError e) {
+            def msg = "${e.montoErroneo} no es un monto de entrada válido"
+            redirect(action: 'create', params: [errorMsg: msg, id: visitaForm.lugarId])
+        } catch(DireccionInvalidaError e) {
+            def msg = "La dirección ${e.direccionInvalida} no es una dirección válida"
+            redirect(action: 'create', params: [errorMsg: msg, id: visitaForm.lugarId])
+        } catch (RuntimeException e) {
+            redirect(action: 'create', params: [errorMsg: e.getMessage(), id: visitaForm.lugarId])
         }
     }
 

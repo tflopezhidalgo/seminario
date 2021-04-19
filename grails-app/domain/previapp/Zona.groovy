@@ -32,8 +32,11 @@ class Zona {
         return lugares.size()
     }
 
-    Integer distanciaConZona(Zona otra) {
+    Kilometro distanciaConZona(Zona otra) {
+        /* Devolvemos una distancia random simulando ubicaciones
+         * geográficas
+         */
         def randomDistance = new Random()
-        return randomDistance.nextInt(100)
+        return new Kilometro(randomDistance.nextInt(100))
     }
 }

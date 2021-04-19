@@ -10,6 +10,9 @@
                 <a href="/profile"> Mi perfil <span class="caret"></span> </a>
             </li>
             <li class="dropdown">
+                <a href="/lugar/create"> Cargar lugar <span class="caret"></span> </a>
+            </li>
+            <li class="dropdown">
                 <a href="/logout" style="justify-content: center;" role="button" aria-haspopup="true" > Cerrar sesión </a>
             </li>
             <li class="dropdown">

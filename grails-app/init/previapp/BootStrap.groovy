@@ -7,7 +7,6 @@ class BootStrap {
     ZonaService zonaService
     UsuarioService usuarioService
     LugarService lugarService
-    DummyService dummyService
 
     def init = { servletContext ->
 
@@ -33,9 +32,9 @@ class BootStrap {
         def zonaAvellaneda = new Zona('Avellaneda').save(flush: true, failOnError: true)
         def zonaQuilmes = new Zona('Quilmes').save(flush: true, failOnError: true)
         def zonaCapital = new Zona('Capital Federal').save(flush: true, failOnError: true)
-	
+
         /* Lugares disponibles */
-        def entrada = new Entrada(new Dinero(10, Moneda.ARG)) 
+        def entrada = new Entrada(new Dinero(10, Moneda.ARG))
         Lugar lugar = new Lugar('Restaurant "El molino"', 'Calle 123', '', 200, entrada, zonaCapital)
         lugar.addToComidas(comidaSushi)
         lugar.addToComidas(comidaHamburguesa)
@@ -128,7 +127,7 @@ class BootStrap {
         lugar9.addToMusica(musicaPop)
         lugar9.save(failOnError: true)
 
-        def entrada10 = new Entrada(new Dinero(1500, Moneda.ARG)) 
+        def entrada10 = new Entrada(new Dinero(1500, Moneda.ARG))
         Lugar lugar10 = new Lugar('Restaurant "Los tres mosqueteros"', 'Colombres 1253', '', 100, entrada10, zonaCapital)
         lugar10.addToComidas(comidaHamburguesa)
         lugar10.addToComidas(comidaRavioles)
@@ -188,9 +187,9 @@ class BootStrap {
 
         def persona = new Persona('Tomas', 'Lopez', 23)
         def pr = new Presupuesto(new Dinero(900, Moneda.ARG))
-	
+
         /* Usuarios - roles disponibles */
-        def userRole = Role.findByAuthority("ROLE_USER") ?: new Role(authority: "ROLE_USER").save(failOnError: true) 
+        def userRole = Role.findByAuthority("ROLE_USER") ?: new Role(authority: "ROLE_USER").save(failOnError: true)
         def adminRole = Role.findByAuthority("ROLE_ADMIN") ?: new Role(authority: "ROLE_ADMIN").save(failOnError: true)
 
         def adminUser = Usuario.findByUsername("admin") ?: {
@@ -208,11 +207,11 @@ class BootStrap {
         }().save(failOnError: true)
 
         def goldReputation = new Reputacion([rango: Nivel.ORO, puntos: 4500])
-        def goldUser = Usuario.findByUsername("oro") ?: { 
+        def goldUser = Usuario.findByUsername("oro") ?: {
             def usuario = new Usuario("oro", "oro", persona, zonaCapital, musicaRock, pr)
             usuario.setReputacion(goldReputation)
             usuario.save(failOnError: true)
-            return usuario 
+            return usuario
         }()
 
         UsuarioRole.create(adminUser, adminRole, true)

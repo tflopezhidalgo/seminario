@@ -9,7 +9,7 @@ class Lugar {
     Puntuacion puntuacion
     Entrada entrada
 
-    static hasMany = [visitas: Visita, comidas: Comida, bebidas: Bebida, musica: Musica] 
+    static hasMany = [visitas: Visita, comidas: Comida, bebidas: Bebida, musica: Musica]
     static hasOne = [zona: Zona]
     static embedded = ['puntuacion', 'entrada']
 
@@ -37,11 +37,11 @@ class Lugar {
         this.direccion = this.validarDireccion(direccion)
         this.capacidadMaxima = this.validarCapacidad(capacidadMaxima)
         this.puntuacion = new Puntuacion(1)
-        this.descripcion = descripcion                    
-        this.entrada = entrada                            
-        this.zona = zona 
-    }                                                     
-                                                          
+        this.descripcion = descripcion
+        this.entrada = entrada
+        this.zona = zona
+    }
+
     String validarDireccion(String direccion) {
         //TODO: validar que la dirección tenga formato <calle> <numero>
         //TODO. chequear el caso en que ya hay un lugar con esa dirección
@@ -49,7 +49,7 @@ class Lugar {
     }
 
     String validarNombre(String nombre) {
-        //TODO: agregar chequeos por signo de puntuación 
+        //TODO: agregar chequeos por signo de puntuación
         nombre
     }
 
@@ -64,7 +64,7 @@ class Lugar {
     def agregarVisita(Visita visita) {
         /* TODO: casos a revisar:
             - cuando la visita ya está en la lista de visitas
-            - cuando se intenta agregar una misma visita de la misma persona en el mismo día 
+            - cuando se intenta agregar una misma visita de la misma persona en el mismo día
         */
         if (!visita) {
             throw new NullPointerException("No se puede agregar una visita nula a un lugar")
@@ -75,22 +75,25 @@ class Lugar {
     }
 
     def obtenerPrecioBase() {
-        def promedioPrecioBebidas = bebidas.sum { bebida -> bebida.costo } / bebidas.size()
-        def promedioPrecioComidas = comidas.sum { comida -> comida.costo } / comidas.size()
+        def totalPrecioBebidas = bebidas.sum { bebida -> bebida.costo }
+        def totalPrecioComidas = comidas.sum { comida -> comida.costo }
+
+        def promedioPrecioBebidas = totalPrecioBebidas? (totalPrecioBebidas / bebidas.size()) : new Dinero(0, Moneda.ARG)
+        def promedioPrecioComidas = totalPrecioComidas? (totalPrecioComidas / comidas.size()) : new Dinero(0, Moneda.ARG)
 
         (promedioPrecioComidas + promedioPrecioBebidas + this.entrada.precio) / 3
-    } 
+    }
 
     /* hook llamado cuando se agrega una visita, recalcula la puntuación del lugar */
     def calcularPuntuacion() {
-        def promedioNormal = this.visitas.sum({ 
+        def promedioNormal = this.visitas.sum({
             visita -> visita.puntuacion
         }) / this.visitas.size()
 
         def visitasOro = this.visitas?.findAll { visita -> visita.esVisitaOro() }
 
         /* Las puntuaciones de usuarios ORO son más influyentes */
-        def promedioOro = visitasOro? visitasOro.sum({ 
+        def promedioOro = visitasOro? visitasOro.sum({
             visita -> visita.puntuacion
         }) / visitasOro.size() : 0
 

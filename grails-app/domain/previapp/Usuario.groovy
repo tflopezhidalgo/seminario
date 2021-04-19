@@ -85,7 +85,7 @@ class Usuario implements Serializable {
         def puntaje = 0
         def terminos = 0
 
-        if (this.musicaFavorita) {
+        if (this.musicaFavorita && lugar.musica) {
             def promedioMusica = lugar.musica.sum { musica ->
                 musica.calcularSimilitud(this.musicaFavorita)
            }  / lugar.musica.size()
@@ -94,7 +94,7 @@ class Usuario implements Serializable {
             terminos += 1
         }
 
-        if (this.bebidaFavorita) {
+        if (this.bebidaFavorita && lugar.bebidas) {
             def promedioBebidas = lugar.bebidas.sum { bebida ->
                 bebida.calcularSimilitud(this.bebidaFavorita)
             } / lugar.bebidas.size()
@@ -103,7 +103,7 @@ class Usuario implements Serializable {
             terminos += 1
         }
         
-        if (this.comidaFavorita) {
+        if (this.comidaFavorita && lugar.comidas) {
             def promedioComidas = lugar.comidas.sum { comida ->
                 comida.calcularSimilitud(this.comidaFavorita)
             } / lugar.comidas.size()

@@ -9,12 +9,15 @@ class CalcularReputacionJobService {
 
     static lazyInit = false
 
-    DummyService dummyService
+    IncrementarReputacionService incrementarReputacionService
 
-    /* Diario a las 00:00 horas */
     @Scheduled(cron = "0 0 0 * * *")
     void execute() {
-        dummyService.recalcularReputaciones()
-        println("¡Todas las puntuaciones recalculadas!")
+        /* Diariamente incrementa las reputaciones de los usuarios
+         * esto para que los usuarios vayan adquiriendo reputación
+         * en base a su antiguedad
+         */
+        incrementarPuntuacionService.recalcularReputaciones()
+        log.debug("Reputaciones recalculadas")
     }
 }

@@ -18,8 +18,8 @@ class Dinero implements Comparable<Dinero> {
         this.moneda = moneda
     }
 
-    BigDecimal validarMonto(BigDecimal monto) { 
-        if (monto <= 0) {
+    BigDecimal validarMonto(BigDecimal monto) {
+        if (monto < 0) {
             throw new DineroConMontoInvalidoError(monto)
         }
         monto
@@ -28,7 +28,7 @@ class Dinero implements Comparable<Dinero> {
     @Override
     boolean equals(Object o) {
         return (
-            o != null && 
+            o != null &&
             o.getClass() == Dinero.class &&
             this.monto == (BigDecimal) o.monto &&
             this.moneda == (Moneda) o.moneda

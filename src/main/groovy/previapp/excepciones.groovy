@@ -1,16 +1,25 @@
 package previapp
 
 class LugarInvalidoError extends RuntimeException {
-    public LugarInvalidoError(String msg) { 
-        super(msg) 
+    public LugarInvalidoError(String msg) {
+        super(msg)
     }
+}
+
+class KilometroConValorInvalidoError extends RuntimeException {
+    BigDecimal valorErroneo
+
+    public KilometroConValorInvalidoError(BigDecimal valor) {
+        this.valorErroneo = valor
+    }
+
 }
 
 class DineroConMontoInvalidoError extends RuntimeException {
     BigDecimal montoErroneo
 
     public DineroConMontoInvalidoError(BigDecimal monto) {
-        this.montoErroneo = monto 
+        this.montoErroneo = monto
     }
 }
 
@@ -36,11 +45,11 @@ class DireccionInvalidaError extends RuntimeException {
     public DireccionInvalidaError(String direccionInvalida) {
         this.direccioInvalida = direccionInvalida
     }
-}                                   
-                                    
+}
+
 class CapacidadMaximaInvalidaError extends RuntimeException {
-    Integer capacidadInvalida       
-                                    
+    Integer capacidadInvalida
+
     public CapacidadMaximaInvalidaError(Integer capacidadInvalida) {
         this.capacidadInvalida = capacidadInvalida
     }
