@@ -11,7 +11,7 @@ class Comida {
         costo nullable: false
     }
 
-    static mapping = { 
+    static mapping = {
         table 'comidas'
         nombre nullable: false, unique: true
         costo nullable: false
@@ -22,7 +22,7 @@ class Comida {
         this.nombre = nombre
     }
 
-    String validarNombre(String nombre) {
+    private String validarNombre(String nombre) {
         if (!nombre)
             throw new ComidaInvalidaError("No se pueden crear comidas sin nombre")
         nombre

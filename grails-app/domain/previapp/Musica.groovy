@@ -17,8 +17,8 @@ class Musica {
         this.generoMusical = generoMusical
     }
 
-    String validarGenero(String generoMusical) {
-        if (!generoMusical) 
+    private String validarGenero(String generoMusical) {
+        if (!generoMusical)
             throw new MusicaInvalidaError("No se puede crear un género musical sin nombre")
 
         if(this.findByGeneroMusical(generoMusical))

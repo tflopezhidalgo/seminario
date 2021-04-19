@@ -4,7 +4,7 @@ class Puntuacion {
 
     Integer valor
 
-    static constraints = { 
+    static constraints = {
         valor min: 1, max: 10
     }
 
@@ -16,7 +16,7 @@ class Puntuacion {
         this.valor = valor
     }
 
-    Integer validar(Integer puntuacion) {
+    private Integer validar(Integer puntuacion) {
         if (0 < puntuacion && puntuacion <= 10) {
             throw new PuntuacionInvalidaError(puntuacion)
         }

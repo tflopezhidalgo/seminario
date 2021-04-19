@@ -47,7 +47,7 @@ class Usuario implements Serializable {
     static mapping = {
         table 'usuarios'
         username nullable: false, unique: true
-	password column: '`password`'
+	    password column: '`password`'
         zona nullable: false
         musicaFavorita nullable: false
         bebidaFavorita nullable: true
@@ -66,7 +66,7 @@ class Usuario implements Serializable {
         this.creacion = new Date()
     }
 
-    String validarUsername(String username) {
+    private String validarUsername(String username) {
         if(!username)
             throw new UsuarioInvalidoError("No se puede crear un usuario sin nombre")
         username
@@ -102,7 +102,7 @@ class Usuario implements Serializable {
             puntaje += promedioBebidas
             terminos += 1
         }
-        
+
         if (this.comidaFavorita && lugar.comidas) {
             def promedioComidas = lugar.comidas.sum { comida ->
                 comida.calcularSimilitud(this.comidaFavorita)

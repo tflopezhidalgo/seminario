@@ -31,7 +31,7 @@ class Visita {
         this.comentario = comentario
     }
 
-    Date validarFecha(Date fechaVisita, Date fechaActual = new Date()) {
+    private Date validarFecha(Date fechaVisita, Date fechaActual = new Date()) {
         if (fechaVisita > fechaActual)
             throw new VisitaInvalidaError("No se pueden crear visitas con fechas en el futuro")
 

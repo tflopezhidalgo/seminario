@@ -42,18 +42,18 @@ class Lugar {
         this.zona = zona
     }
 
-    String validarDireccion(String direccion) {
+    private String validarDireccion(String direccion) {
         //TODO: validar que la dirección tenga formato <calle> <numero>
         //TODO. chequear el caso en que ya hay un lugar con esa dirección
         direccion
     }
 
-    String validarNombre(String nombre) {
+    private String validarNombre(String nombre) {
         //TODO: agregar chequeos por signo de puntuación
         nombre
     }
 
-    Integer validarCapacidad(Integer capacidadMaxima) {
+    private Integer validarCapacidad(Integer capacidadMaxima) {
         if (capacidadMaxima <= 0)
             throw new CapacidadMaximaInvalidaError(capacidadMaxima)
         capacidadMaxima

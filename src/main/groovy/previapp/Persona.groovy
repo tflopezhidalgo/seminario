@@ -1,4 +1,4 @@
-package previapp 
+package previapp
 
 class Persona {
 
@@ -22,7 +22,7 @@ class Persona {
         this.edad = edad
     }
 
-    Integer validarEdad(Integer edad) {
+    private Integer validarEdad(Integer edad) {
         if (edad <= EDAD_MINIMA) {
             throw new EdadInvalidaError(edad)
         }
