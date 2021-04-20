@@ -35,6 +35,6 @@ class Reputacion {
     }
 
     Boolean esOro() {
-        return (this.rango == Nivel.ORO)
+        this.rango == Nivel.ORO
     }
 }

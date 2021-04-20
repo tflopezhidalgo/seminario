@@ -20,11 +20,11 @@ abstract class LugarService {
 
     abstract Lugar save(Lugar lugar)
 
-    Lugar crearLugar(Map data) {      
+    Lugar crearLugar(Map data) {
         Entrada entrada = new Entrada(new Dinero(data.montoEntrada, data.monedaEntrada))
-        Zona zona = zonaService.get(data.zonaId)          
+        Zona zona = zonaService.get(data.zonaId)
         Lugar lugar = new Lugar(data.nombre, data.direccion, data.descripcion, data.capacidadMaxima, entrada, zona)
-                                     
+
         musicaService.obtenerMusica(data.musicasId).each { musica -> lugar.addToMusica(musica) }
         comidaService.obtenerComidas(data.comidasIds).each { comida -> lugar.addToComidas(comida) }
         bebidaService.obtenerBebidas(data.bebidasIds).each { bebida -> lugar.addToBebidas(bebida) }

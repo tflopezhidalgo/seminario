@@ -21,12 +21,12 @@ abstract class ZonaService {
 	abstract Zona save(Zona zona)
 
 	List<Lugar> obtenerLugaresEnZona(Zona zona){
-	    return new ArrayList<Lugar>(zona.getLugares())
+	    new ArrayList<Lugar>(zona.getLugares())
 	}
 
 	List<Zona> obtenerZonasCercanas(Zona zona){
 	    def zonasDisponibles = Zona.findAll()
-	    return zonasDisponibles.findAll { zonaDisponible ->
+	    zonasDisponibles.findAll { zonaDisponible ->
             zona.distanciaConZona(zonaDisponible) < this.RADIO_MAXIMO
 	    }
 	}

@@ -22,11 +22,9 @@ class Kilometro implements Comparable<Kilometro> {
 
     @Override
     boolean equals(Object o) {
-        return (
-            o != null &&
-            o.getClass() == Kilometro.class &&
-            this.cantidad == (BigDecimal) o.cantidad
-        )
+        o != null &&
+        o.getClass() == Kilometro.class &&
+        this.cantidad == (BigDecimal) o.cantidad
     }
 
     @Override

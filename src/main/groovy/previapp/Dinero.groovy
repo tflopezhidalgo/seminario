@@ -27,12 +27,10 @@ class Dinero implements Comparable<Dinero> {
 
     @Override
     boolean equals(Object o) {
-        return (
-            o != null &&
-            o.getClass() == Dinero.class &&
-            this.monto == (BigDecimal) o.monto &&
-            this.moneda == (Moneda) o.moneda
-        )
+        o != null &&
+        o.getClass() == Dinero.class &&
+        this.monto == (BigDecimal) o.monto &&
+        this.moneda == (Moneda) o.moneda
     }
 
     @Override
@@ -43,7 +41,7 @@ class Dinero implements Comparable<Dinero> {
         df.setMinimumFractionDigits(0)
         df.setGroupingUsed(false)
 
-        return df.format(this.monto) + " " + this.moneda.toString()
+        df.format(this.monto) + " " + this.moneda.toString()
     }
 
     @Override
@@ -56,14 +54,14 @@ class Dinero implements Comparable<Dinero> {
         comparacion = this.moneda <=> that.moneda
         if ( comparacion != iguales ) return comparacion
 
-        return iguales
+        iguales
     }
 
     Dinero div(Integer denom) {
         if (!denom)
             throw new Exception("No se puede dividir el Dinero por 0")
 
-        return new Dinero(this.monto.div(denom), this.moneda)
+        new Dinero(this.monto.div(denom), this.moneda)
     }
 
     Dinero plus(Dinero otro) {
@@ -73,6 +71,6 @@ class Dinero implements Comparable<Dinero> {
         if (otro.moneda != this.moneda)
             throw new Exception("No se pueden sumar monedas distintas")
 
-        return new Dinero(this.monto + otro.monto, this.moneda)
+        new Dinero(this.monto + otro.monto, this.moneda)
     }
 }

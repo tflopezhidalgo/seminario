@@ -77,7 +77,7 @@ class Usuario implements Serializable {
     }
 
     Boolean esUsuarioOro() {
-        return this.reputacion.esOro()
+        this.reputacion.esOro()
     }
 
     Integer calcularAfinidadConLugar(Lugar lugar) {

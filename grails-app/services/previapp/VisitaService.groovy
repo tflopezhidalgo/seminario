@@ -36,18 +36,18 @@ abstract class VisitaService {
         List <Visita> visitasOro = visitas.findAll {
             visita -> visita.esVisitaOro()
         }
-        return visitasOro.sort()
+        visitasOro.sort()
     }
 
     List <Visita> visitasDeUsuariosNoOro(List <Visita> visitas) {
         List <Visita> visitasNoOro = visitas.findAll {
             visita -> !visita.esVisitaOro()
         }
-        return visitasNoOro.sort()
+        visitasNoOro.sort()
     }
 
     Boolean usuarioVisitoLugar(Usuario usuario, Lugar lugar) {
-        def visito = (Visita.findByUsuarioAndLugar(usuario, lugar) == null) ? false : true
-        return visito
+        def visito = Visita.findByUsuarioAndLugar(usuario, lugar)
+        visito
     }
 }

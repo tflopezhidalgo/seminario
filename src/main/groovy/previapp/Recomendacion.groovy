@@ -17,7 +17,7 @@ class Recomendacion {
     }
 
     private Integer calcularPuntaje() {
-        return this.usuario.calcularAfinidadConLugar(lugar)
+        this.usuario.calcularAfinidadConLugar(lugar)
     }
 
     Recomendacion(){}

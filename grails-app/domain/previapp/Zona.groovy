@@ -29,7 +29,7 @@ class Zona {
     }
 
     Integer cantidadDeLugares() {
-        return lugares.size()
+        lugares.size()
     }
 
     Kilometro distanciaConZona(Zona otra) {
@@ -37,6 +37,6 @@ class Zona {
          * geográficas
          */
         def randomDistance = new Random()
-        return new Kilometro(randomDistance.nextInt(100))
+        new Kilometro(randomDistance.nextInt(100))
     }
 }
