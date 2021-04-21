@@ -33,9 +33,11 @@ class RecomendacionService {
         })
 
         List<Recomendacion> recomendaciones = lugares.collect { lugar ->
-            return new Recomendacion(lugar, usuario) 
+            return new Recomendacion(lugar, usuario)
         }
 
-        recomendaciones.subList(0, [RECOMENDATION_LIMIT, recomendaciones.size()].min()).sort().reverse()
+        recomendaciones = recomendaciones.sort().reverse()
+
+        recomendaciones.subList(0, [RECOMENDATION_LIMIT, recomendaciones.size()].min())
     }
 }

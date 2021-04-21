@@ -1,6 +1,7 @@
 package previapp
 
 import groovy.transform.Sortable
+import groovy.transform.ToString
 
 @Sortable(includes = ['puntaje'])
 class Recomendacion {
@@ -26,5 +27,10 @@ class Recomendacion {
         this.lugar = lugar
         this.usuario = usuario
         this.puntaje = this.calcularPuntaje()
+    }
+
+    @Override
+    String toString() {
+        "Recomendacion (${this.puntaje}): ${this.usuario} -> ${this.lugar}\n"
     }
 }

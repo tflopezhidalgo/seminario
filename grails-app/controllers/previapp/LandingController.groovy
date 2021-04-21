@@ -17,13 +17,13 @@ class LandingController {
 
         def currentUser = Usuario.findByUsername(currentUsername)
 
-	if (!currentUser) {
-	    redirect(controller: "login")
-	} else {
-	    println("Buscando recomendaciones para ${currentUsername}")
+	    if (!currentUser) {
+	        redirect(controller: "login")
+	    } else {
+	        log.info("Buscando recomendaciones para ${currentUsername}")
 
-	    def recomendaciones = recomendacionService.recomendar(currentUser)
-	    render(view: '/index', model: ['recomendaciones': recomendaciones])	
-	}
+	        def recomendaciones = recomendacionService.recomendar(currentUser)
+	        render(view: '/index', model: ['recomendaciones': recomendaciones])
+	    }
     }
 }
