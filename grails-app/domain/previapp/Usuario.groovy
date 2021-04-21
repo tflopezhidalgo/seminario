@@ -81,36 +81,40 @@ class Usuario implements Serializable {
     }
 
     Integer calcularAfinidadConLugar(Lugar lugar) {
+        /* Calcula la afinidad entre un Lugar y this */
 
-        def puntaje = 0
-        def terminos = 0
+        def calcularPromedioLista = { l -> (l.sum() / l.size) }
+
+        def promediablesAfinidad = []
 
         if (this.musicaFavorita && lugar.musica) {
-            def promedioMusica = lugar.musica.sum { musica ->
+            def similitudesUsuarioLugarMusica = lugar.musica.collect { musica ->
                 musica.calcularSimilitud(this.musicaFavorita)
-           }  / lugar.musica.size()
+           }
 
-            puntaje += promedioMusica
-            terminos += 1
+           promediablesAfinidad << calcularPromedioLista(similitudesUsuarioLugarMusica)
         }
 
         if (this.bebidaFavorita && lugar.bebidas) {
-            def promedioBebidas = lugar.bebidas.sum { bebida ->
+            def similitudesUsuarioLugarBebidas = lugar.bebidas.collect { bebida ->
                 bebida.calcularSimilitud(this.bebidaFavorita)
-            } / lugar.bebidas.size()
+           }
 
-            puntaje += promedioBebidas
-            terminos += 1
+           promediablesAfinidad << calcularPromedioLista(similitudesUsuarioLugarBebidas)
         }
 
         if (this.comidaFavorita && lugar.comidas) {
-            def promedioComidas = lugar.comidas.sum { comida ->
+            def similitudesUsuarioLugarComidas = lugar.comidas.collect { comida->
                 comida.calcularSimilitud(this.comidaFavorita)
-            } / lugar.comidas.size()
-            puntaje += promedioComidas
-            terminos += 1
+           }
+
+           promediablesAfinidad << calcularPromedioLista(similitudesUsuarioLugarComidas)
         }
 
-        (puntaje / terminos).toInteger()
+        if (promediablesAfinidad.size) {
+            return calcularPromedioLista(promediablesAfinidad)
+        }
+
+        0
     }
 }

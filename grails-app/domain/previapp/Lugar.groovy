@@ -75,27 +75,32 @@ class Lugar {
     }
 
     def obtenerPrecioBase() {
-        def totalPrecioBebidas = bebidas.sum { bebida -> bebida.costo }
-        def totalPrecioComidas = comidas.sum { comida -> comida.costo }
+        /* Calcula precio base del lugar (bebidas, comidas) */
 
-        def promedioPrecioBebidas = totalPrecioBebidas? (totalPrecioBebidas / bebidas.size()) : new Dinero(0, Moneda.ARG)
-        def promedioPrecioComidas = totalPrecioComidas? (totalPrecioComidas / comidas.size()) : new Dinero(0, Moneda.ARG)
+        def calcularPromedioLista = { l -> (l.sum() / l.size) }
 
-        (promedioPrecioComidas + promedioPrecioBebidas + this.entrada.precio) / 3
+        def promediables = [this.entrada.precio]
+
+        if (this.bebidas.size()) {
+            def promedioBebidas = calcularPromedioLista(this.bebidas.collect { b -> b.costo })
+            promediables << promedioBebidas
+        }
+
+        if (this.comidas.size()) {
+            def promedioComidas = calcularPromedioLista(this.comidas.collect { c -> c.costo })
+            promediables << promedioComidas
+        }
+
+        calcularPromedioLista(promediables)
     }
 
-    /* hook llamado cuando se agrega una visita, recalcula la puntuación del lugar */
     def calcularPuntuacion() {
-        def promedioNormal = this.visitas.sum({
-            visita -> visita.puntuacion
-        }) / this.visitas.size()
+        def promedioNormal = this.visitas.sum({ visita -> visita.puntuacion }) / this.visitas.size()
 
         def visitasOro = this.visitas?.findAll { visita -> visita.esVisitaOro() }
 
         /* Las puntuaciones de usuarios ORO son más influyentes */
-        def promedioOro = visitasOro? visitasOro.sum({
-            visita -> visita.puntuacion
-        }) / visitasOro.size() : 0
+        def promedioOro = visitasOro? visitasOro.sum({ visita -> visita.puntuacion }) / visitasOro.size() : 0
 
         if (promedioOro) {
             this.setPuntuacion((promedioNormal + promedioOro) / 2)
