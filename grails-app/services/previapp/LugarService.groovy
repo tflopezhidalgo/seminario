@@ -26,8 +26,8 @@ abstract class LugarService {
         Lugar lugar = new Lugar(data.nombre, data.direccion, data.descripcion, data.capacidadMaxima, entrada, zona)
 
         musicaService.obtenerMusica(data.musicasId).each { musica -> lugar.addToMusica(musica) }
-        comidaService.obtenerComidas(data.comidasIds).each { comida -> lugar.addToComidas(comida) }
-        bebidaService.obtenerBebidas(data.bebidasIds).each { bebida -> lugar.addToBebidas(bebida) }
+        comidaService.obtenerComidas(data.comidasId).each { comida -> lugar.addToComidas(comida) }
+        bebidaService.obtenerBebidas(data.bebidasId).each { bebida -> lugar.addToBebidas(bebida) }
 
         lugar
     }

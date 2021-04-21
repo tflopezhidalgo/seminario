@@ -10,8 +10,8 @@ class LugarForm {
     String descripcion
     Integer capacidadMaxima
     Moneda monedaEntrada
-    BigDecimal valorEntrada 
-    Long zonaId 
+    BigDecimal valorEntrada
+    Long zonaId
 
     List<Long> musicasId
     List<Long> bebidasId
@@ -29,7 +29,6 @@ class LugarForm {
         bebidasId nullable: true
         comidasId nullable: true
     }
-
 }
 
 
@@ -58,55 +57,55 @@ class LugarController {
         List<Visita> visitasNoOro = visitaService.visitasDeUsuariosNoOro(visitas)
 
         respond lugar, model: [visitasOro: visitasOro, visitasNoOro: visitasNoOro], view: 'guestView'
-    }                                                     
-                                                          
-    def create() {                                        
+    }
+
+    def create() {
         render(view: 'create', model: [
             errorMsg: params.errorMsg,
             lugarForm: new LugarForm(),
-            zonas: zonaService.list(), 
-            generosMusicales: musicaService.list(), 
-            comidas: comidaService.list(), 
+            zonas: zonaService.list(),
+            generosMusicales: musicaService.list(),
+            comidas: comidaService.list(),
             bebidas: bebidaService.list()
         ])
-    }                                                    
+    }
 
     def save(LugarForm lugarForm) {
         if (lugarForm.hasErrors()){
             render(view: 'create', model: [
                 errorMsg: '',
                 lugarForm: lugarForm,
-                zonas: zonaService.list(), 
-                generosMusicales: musicaService.list(), 
-                comidas: comidaService.list(), 
+                zonas: zonaService.list(),
+                generosMusicales: musicaService.list(),
+                comidas: comidaService.list(),
                 bebidas: bebidaService.list()
-            ])                          
-            return                      
-        }                               
-                                                          
-        try {                                             
-            Lugar lugar = lugarService.crearLugar([       
-                nombre: lugarForm.nombre,                 
-                direccion: lugarForm.direccion,           
-                descripcion: lugarForm.descripcion,       
+            ])
+            return
+        }
+
+        try {
+            Lugar lugar = lugarService.crearLugar([
+                nombre: lugarForm.nombre,
+                direccion: lugarForm.direccion,
+                descripcion: lugarForm.descripcion,
                 capacidadMaxima: lugarForm.capacidadMaxima,
                 montoEntrada: lugarForm.valorEntrada,
-                monedaEntrada: lugarForm.monedaEntrada,   
-                zonaId: lugarForm.zonaId,                 
-                musicasId: lugarForm.musicasId,           
-                bebidasId: lugarForm.bebidasId,           
-                comidasId: lugarForm.comidasId,           
-            ])                                             
+                monedaEntrada: lugarForm.monedaEntrada,
+                zonaId: lugarForm.zonaId,
+                musicasId: lugarForm.musicasId,
+                bebidasId: lugarForm.bebidasId,
+                comidasId: lugarForm.comidasId,
+            ])
 
-            lugarService.save(lugar)                      
-                                      
-            request.withFormat {      
-                form multipartForm {  
+            lugarService.save(lugar)
+
+            request.withFormat {
+                form multipartForm {
                     flash.message = message(code: 'default.created.message', args: [message(code: 'lugar.label', default: 'Lugar'), lugar.id])
                     redirect(action: 'index')
-                }                       
+                }
                 '*' { respond lugar, [status: CREATED] }
-            }                           
+            }
         } catch (ValidationException e) {
             redirect(action: 'create', params: [errorMsg: e.getMessage()])
         } catch(CapacidadMaximaInvalidaError e) {
@@ -120,7 +119,7 @@ class LugarController {
             redirect(action: 'create', params: [errorMsg: msg])
         } catch (RuntimeException e) {
             redirect(action: 'create', params: [errorMsg: e.getMessage()])
-        }       
+        }
     }
 
     def edit(Long id) {
