@@ -28,7 +28,6 @@
             <g:form resource="${this.musica}" method="POST">
                 <fieldset class="form">
                     <f:field bean="musica" property="generoMusical" name="generoMusical"/>
-                    <f:all bean="musica"/>
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />

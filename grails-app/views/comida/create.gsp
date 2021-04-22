@@ -28,7 +28,7 @@
             <g:form resource="${this.comida}" method="POST">
                 <fieldset class="form">
                     <f:field bean="comida" property="nombre" name="nombre"/>
-                    <f:all bean="comida"/>
+                    <f:field bean="comida" property="costo" name="nombre"/>
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />

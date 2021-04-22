@@ -19,7 +19,7 @@ class Comida {
 
     Comida(String nombre, Dinero precio) {
         this.costo = precio
-        this.nombre = nombre
+        this.nombre = this.validarNombre(nombre)
     }
 
     private String validarNombre(String nombre) {

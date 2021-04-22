@@ -19,7 +19,8 @@ class BebidaController {
     }
 
     def create() {
-        respond new Bebida(params)
+        println("params ${params}")
+        respond new Bebida(params), view: 'create'
     }
 
     def save(Bebida bebida) {

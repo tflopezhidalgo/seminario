@@ -14,15 +14,12 @@ class Musica {
     }
 
     Musica(String generoMusical) {
-        this.generoMusical = generoMusical
+        this.generoMusical = this.validarGenero(generoMusical)
     }
 
     private String validarGenero(String generoMusical) {
         if (!generoMusical)
             throw new MusicaInvalidaError("No se puede crear un género musical sin nombre")
-
-        if(this.findByGeneroMusical(generoMusical))
-            throw new MusicaInvalidaError("Ya existe ese género musical")
 
         generoMusical
     }
