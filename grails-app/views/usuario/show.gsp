@@ -19,10 +19,15 @@
             <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:display bean="usuario" />
+            <f:display bean="usuario" property="username"/><br>
+            <f:display bean="usuario" property="reputacion"/><br>
+            <f:display bean="usuario" property="persona"/><br>
+            <f:display bean="usuario" property="musicaFavorita"/><br>
+            <f:display bean="usuario" property="comidaFavorita"/><br>
+            <f:display bean="usuario" property="bebidaFavorita"/><br>
             <g:form resource="${this.usuario}" method="DELETE">
                 <fieldset class="buttons">
-                    <g:link class="edit" action="edit" resource="${this.usuario}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+                   <g:link class="edit" action="edit" resource="${this.usuario}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
                     <input class="delete" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
                 </fieldset>
             </g:form>

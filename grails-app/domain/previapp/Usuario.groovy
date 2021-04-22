@@ -80,6 +80,11 @@ class Usuario implements Serializable {
         this.reputacion.esOro()
     }
 
+    @Override
+    String toString(){
+        this.username
+    }
+
     Integer calcularAfinidadConLugar(Lugar lugar) {
         /* Calcula la afinidad entre un Lugar y this */
 

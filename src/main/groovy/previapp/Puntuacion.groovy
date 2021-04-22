@@ -13,13 +13,15 @@ class Puntuacion {
     }
 
     Puntuacion(Integer valor) {
-        this.valor = valor
+        this.valor = this.validar(valor)
     }
 
     private Integer validar(Integer puntuacion) {
-        if (0 < puntuacion && puntuacion <= 10) {
+        if (0 > puntuacion || puntuacion > 10) {
             throw new PuntuacionInvalidaError(puntuacion)
         }
+
+        puntuacion
     }
 
     Puntuacion plus(Puntuacion other) {

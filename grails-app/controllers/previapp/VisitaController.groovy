@@ -16,7 +16,7 @@ class VisitaForm {
         lugarId nullable: false
         fecha nullable: false
         comentario nullable: true
-        puntuacion nullable: false
+        puntuacion nullable: false, min: 0
     }
 }
 
@@ -42,7 +42,6 @@ class VisitaController {
 
     def create(Lugar lugar) {
         def visitaForm = new VisitaForm()
-        println("params es = ${params}")
         visitaForm.setLugarId(lugar.id)
 
         respond visitaForm, model: [nombreLugar: lugar.getNombre(), errorMsg: params.errorMsg]
@@ -78,6 +77,9 @@ class VisitaController {
             redirect(action: 'create', params: [errorMsg: msg, id: visitaForm.lugarId])
         } catch(DireccionInvalidaError e) {
             def msg = "La dirección ${e.direccionInvalida} no es una dirección válida"
+            redirect(action: 'create', params: [errorMsg: msg, id: visitaForm.lugarId])
+        } catch(PuntuacionInvalidaError e) {
+            def msg = "${e.puntuacionInvalida} no es un valor válido para la puntuación"
             redirect(action: 'create', params: [errorMsg: msg, id: visitaForm.lugarId])
         } catch (RuntimeException e) {
             redirect(action: 'create', params: [errorMsg: e.getMessage(), id: visitaForm.lugarId])

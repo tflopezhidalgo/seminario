@@ -30,54 +30,62 @@
                    <li>${errorMsg}</li>
                 </ul>
             </g:if>
-            <g:form resource="lugar" method="POST">
-                <f:field bean="${lugarForm}" property="nombre" name="nombre"/>
-                <f:field bean="${lugarForm}" property="direccion" name="direccion"/>
-                <f:field bean="${lugarForm}" property="descripcion" name="descripcion"/>
-                <f:field bean="${lugarForm}" property="capacidadMaxima" name="capacidadMaxima" min="0"/>
-                <f:field bean="${lugarForm}" property="monedaEntrada" name="monedaEntrada"/>
-                <f:field bean="${lugarForm}" property="valorEntrada" name="valorEntrada"/>
-                <div style="margin: 50px;">
-                    <h2> Seleccioná la zona de tu establecimiento </h2>
-                    <hr class="solid">
-                    <label for="zona">Zona</label>
-                    <select name="zonaId" id="zona">
-                        <g:each var="zona" in="${zonas}">
-                            <option value="${zona.id}" selected="selected">${zona.nombre}</option>
-                        </g:each>
-                    </select>
+            <div style="justify-content: center; display: flex; flex-direction: row;">
+                <div>
+                    <asset:image src="lugar.png" alt="Lugar" style="margin: 100px; self-align: left; width: 200px;"/>
+                    <br>
                 </div>
-                <div style="margin: 50px;">
-                    <h2> Seleccioná la comida que tiene tu establecimiento </h2>
-                    <hr class="solid">
-                    <g:each var="comida" in="${comidas}">
-                        <label for="comidaSeleccionada">${comida.nombre}</label>
-                        <g:checkBox checked="false" value="${comida.id}" id="comidaSeleccionada" name="comidasId"/>
-                        </br>
-                    </g:each>
+                <div>
+                    <g:form resource="lugar" method="POST">
+                        <f:field bean="${lugarForm}" property="nombre" name="nombre"/>
+                        <f:field bean="${lugarForm}" property="direccion" name="direccion"/>
+                        <f:field bean="${lugarForm}" property="descripcion" name="descripcion"/>
+                        <f:field bean="${lugarForm}" property="capacidadMaxima" name="capacidadMaxima" min="0"/>
+                        <f:field bean="${lugarForm}" property="monedaEntrada" name="monedaEntrada"/>
+                        <f:field bean="${lugarForm}" property="valorEntrada" name="valorEntrada"/>
+                        <div style="margin: 50px;">
+                            <h2> Seleccioná la zona de tu establecimiento </h2>
+                            <hr class="solid">
+                            <label for="zona">Zona</label>
+                            <select name="zonaId" id="zona">
+                                <g:each var="zona" in="${zonas}">
+                                    <option value="${zona.id}" selected="selected">${zona.nombre}</option>
+                                </g:each>
+                            </select>
+                        </div>
+                        <div style="margin: 50px;">
+                            <h2> Seleccioná la comida que tiene tu establecimiento </h2>
+                            <hr class="solid">
+                            <g:each var="comida" in="${comidas}">
+                                <label for="comidaSeleccionada">${comida.nombre}</label>
+                                <g:checkBox checked="false" value="${comida.id}" id="comidaSeleccionada" name="comidasId"/>
+                                </br>
+                            </g:each>
+                        </div>
+                        <div style="margin: 50px;">
+                            <h2> Seleccioná la bebida que tiene tu establecimiento </h2>
+                            <hr class="solid">
+                            <g:each var="bebida" in="${bebidas}">
+                                <label for="bebidaSeleccionada">${bebida.nombre}</label>
+                                <g:checkBox checked="false" value="${bebida.id}" id="bebidaSeleccionada" name="bebidasId"/>
+                                </br>
+                            </g:each>
+                        </div>
+                        <div style="margin: 50px;">
+                            <h3> Seleccioná la música que se escucha en tu establecimiento </h2>
+                            <hr class="solid">
+                            <g:each var="musica" in="${generosMusicales}">
+                                <label for="musicaSeleccionada">${musica.generoMusical}</label>
+                                <g:checkBox checked="false" value="${musica.id}" id="musicaSeleccionada" name="musicasId"/>
+                                </br>
+                            </g:each>
+                        </div>
+                        <fieldset class="buttons">
+                            <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                        </fieldset>
+                    </g:form>
                 </div>
-                <div style="margin: 50px;">
-                    <h2> Seleccioná la bebida que tiene tu establecimiento </h2>
-                    <hr class="solid">
-                    <g:each var="bebida" in="${bebidas}">
-                        <label for="bebidaSeleccionada">${bebida.nombre}</label>
-                        <g:checkBox value="${bebida.id}" id="bebidaSeleccionada" name="bebidasId"/>
-                        </br>
-                    </g:each>
-                </div>
-                <div style="margin: 50px;">
-                    <h3> Seleccioná la música que se escucha en tu establecimiento </h2>
-                    <hr class="solid">
-                    <g:each var="musica" in="${generosMusicales}">
-                        <label for="musicaSeleccionada">${musica.generoMusical}</label>
-                        <g:checkBox value="${musica.id}" id="musicaSeleccionada" name="musicasId"/>
-                        </br>
-                    </g:each>
-                </div>
-                <fieldset class="buttons">
-                    <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-                </fieldset>
-            </g:form>
+            </div>
         </div>
     </body>
 </html>

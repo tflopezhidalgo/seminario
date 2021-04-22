@@ -11,7 +11,7 @@ class Persona {
     static constraints = {
         nombre nullable: false
         apellido nullable: false
-        edad nullable: false
+        edad nullable: false, min: 18
     }
 
     Persona(){}
@@ -19,7 +19,7 @@ class Persona {
     Persona(String nombre, String apellido, Integer edad){
         this.nombre = nombre
         this.apellido = apellido
-        this.edad = edad
+        this.edad = this.validarEdad(edad)
     }
 
     private Integer validarEdad(Integer edad) {

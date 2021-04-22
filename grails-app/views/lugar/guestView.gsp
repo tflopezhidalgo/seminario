@@ -47,43 +47,49 @@
             <f:display bean="lugar" property="descripcion"/><br>
 
             <div style="padding: 30px">
-                <label style="font-weight: bold; font-size: 18px">Visitas más influyentes</label> 
+                <g:if test="${visitasOro}">
+                    <label style="font-weight: bold; font-size: 18px">Visitas más influyentes</label> 
 
-                <table style="margin: 30px">
-                    <tr>
-                        <th>Fecha de visita </th>
-                        <th>Usuario</th>
-                        <th>Comentario </th>
-                        <th>Puntuación </th>
-                    </tr>
-                    <g:each in="${visitasOro}" var="visita">
+                    <table style="margin: 30px">
                         <tr>
-                            <td> ${visita.fecha} </td>
-                            <td> ${visita.usuario.username} </td>
-                            <td> ${visita.comentario} </td>
-                            <td> ${visita.puntuacion} </td>
+                            <th>Fecha de visita </th>
+                            <th>Usuario</th>
+                            <th>Comentario </th>
+                            <th>Puntuación </th>
                         </tr>
-                    </g:each>
-                </table>
+                        <g:each in="${visitasOro}" var="visita">
+                            <tr>
+                                <td> ${visita.fecha} </td>
+                                <td> ${visita.usuario.username} </td>
+                                <td> ${visita.comentario} </td>
+                                <td> ${visita.puntuacion} </td>
+                            </tr>
+                        </g:each>
+                    </table>
 
+                </g:if>
+                <g:if test="${visitasNoOro}">
                 <label style="font-weight: bold; font-size: 18px">Visitas</label> 
-
-                <table style="margin: 30px">
-                    <tr>
-                        <th>Fecha de visita </th>
-                        <th>Usuario</th>
-                        <th>Comentario </th>
-                        <th>Puntuación </th>
-                    </tr>
-                    <g:each in="${visitasNoOro}" var="visita">
+                    <table style="margin: 30px">
                         <tr>
-                            <td> ${visita.fecha} </td>
-                            <td> ${visita.usuario.username} </td>
-                            <td> ${visita.comentario} </td>
-                            <td> ${visita.puntuacion} </td>
+                            <th>Fecha de visita </th>
+                            <th>Usuario</th>
+                            <th>Comentario </th>
+                            <th>Puntuación </th>
                         </tr>
-                    </g:each>
-                </table>
+                        <g:each in="${visitasNoOro}" var="visita">
+                            <tr>
+                                <td> ${visita.fecha} </td>
+                                <td> ${visita.usuario.username} </td>
+                                <td> ${visita.comentario} </td>
+                                <td> ${visita.puntuacion} </td>
+                            </tr>
+                        </g:each>
+                    </table>
+                </g:if>
+                <g:if test="${!visitasNoOro && !visitasOro}">
+                    <h2> Parece que el lugar no tiene visitas todavia </h2>
+                </g:if>
             </div>
         </div>
     </body>

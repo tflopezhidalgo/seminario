@@ -44,4 +44,9 @@ class Visita {
     def esVisitaOro() {
         this.usuario.esUsuarioOro()
     }
+
+    @Override
+    String toString() {
+        "${this.usuario} -> ${this.lugar}"
+    }
 }
